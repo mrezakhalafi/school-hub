@@ -27,6 +27,7 @@
                                     <th>Email</th>
                                     <th>Gender</th>
                                     <th>Class Advisor</th>
+                                    <th>QR Code</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -57,6 +58,16 @@
                                             @endif
                                         </td>
                                         <td>
+                                            <button class="btn btn-sm btn-secondary" 
+                                                    data-bs-toggle="modal" 
+                                                    data-bs-target="#qrModal"
+                                                    data-qrcode="{{ route('teachers.qr', $teacher) }}"
+                                                    data-name="{{ $teacher->first_name . ' ' . $teacher->last_name }}"
+                                                    data-type="Teacher">
+                                                Tampilkan QR
+                                            </button>
+                                        </td>
+                                        <td>
                                             <a href="{{ route('teachers.show', $teacher) }}" class="btn btn-sm btn-info">View</a>
                                             <a href="{{ route('teachers.edit', $teacher) }}" class="btn btn-sm btn-warning">Edit</a>
                                             <form action="{{ route('teachers.destroy', $teacher) }}" method="POST" class="d-inline">
@@ -71,7 +82,7 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="6" class="text-center">No teachers found.</td>
+                                        <td colspan="7" class="text-center">No teachers found.</td>
                                     </tr>
                                 @endforelse
                             </tbody>
@@ -85,5 +96,43 @@
             </div>
         </div>
     </div>
-</div>
+    
+    <!-- QR Code Modal -->
+    <div class="modal fade" id="qrModal" tabindex="-1" aria-labelledby="qrModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="qrModalLabel">QR Code</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <p id="qrEntityName"></p>
+                    <div id="qrCodeContainer">
+                        <img id="qrCodeImage" src="" alt="QR Code" style="width: 300px; height: 300px;">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const qrModal = document.getElementById('qrModal');
+            
+            qrModal.addEventListener('show.bs.modal', function (event) {
+                const button = event.relatedTarget;
+                const qrCodeUrl = button.getAttribute('data-qrcode');
+                const name = button.getAttribute('data-name');
+                const type = button.getAttribute('data-type');
+                
+                document.getElementById('qrEntityName').textContent = type + ': ' + name;
+                
+                // Update the QR code image source
+                document.getElementById('qrCodeImage').src = qrCodeUrl;
+            });
+        });
+    </script>
 @endsection

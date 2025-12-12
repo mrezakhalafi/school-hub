@@ -22,10 +22,14 @@ Route::get('/dashboard', [DashboardController::class, 'index'])
 // Student routes
 Route::resource('students', StudentController::class)
     ->middleware(['auth']);
+    
+Route::get('students/{student}/qr', [StudentController::class, 'generateStudentQR'])->name('students.qr');
 
 // Teacher routes
 Route::resource('teachers', TeacherController::class)
     ->middleware(['auth']);
+    
+Route::get('teachers/{teacher}/qr', [TeacherController::class, 'generateTeacherQR'])->name('teachers.qr');
 
 // Class routes
 Route::resource('classes', ClassController::class)

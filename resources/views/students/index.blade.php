@@ -27,6 +27,7 @@
                                     <th>Name</th>
                                     <th>Class</th>
                                     <th>Gender</th>
+                                    <th>QR Code</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -49,6 +50,16 @@
                                         <td>{{ $student->class ? $student->class->name : 'N/A' }}</td>
                                         <td>{{ ucfirst($student->gender) }}</td>
                                         <td>
+                                            <button class="btn btn-sm btn-secondary" 
+                                                    data-bs-toggle="modal" 
+                                                    data-bs-target="#qrModal"
+                                                    data-qrcode="{{ route('students.qr', $student) }}"
+                                                    data-name="{{ $student->first_name . ' ' . $student->last_name }}"
+                                                    data-type="Student">
+                                                Tampilkan QR
+                                            </button>
+                                        </td>
+                                        <td>
                                             <a href="{{ route('students.show', $student) }}" class="btn btn-sm btn-info">View</a>
                                             <a href="{{ route('students.edit', $student) }}" class="btn btn-sm btn-warning">Edit</a>
                                             <form action="{{ route('students.destroy', $student) }}" method="POST" class="d-inline">
@@ -63,7 +74,7 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="6" class="text-center">No students found.</td>
+                                        <td colspan="7" class="text-center">No students found.</td>
                                     </tr>
                                 @endforelse
                             </tbody>
@@ -77,5 +88,43 @@
             </div>
         </div>
     </div>
-</div>
+    
+    <!-- QR Code Modal -->
+    <div class="modal fade" id="qrModal" tabindex="-1" aria-labelledby="qrModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="qrModalLabel">QR Code</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <p id="qrEntityName"></p>
+                    <div id="qrCodeContainer">
+                        <img id="qrCodeImage" src="" alt="QR Code" style="width: 300px; height: 300px;">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const qrModal = document.getElementById('qrModal');
+            
+            qrModal.addEventListener('show.bs.modal', function (event) {
+                const button = event.relatedTarget;
+                const qrCodeUrl = button.getAttribute('data-qrcode');
+                const name = button.getAttribute('data-name');
+                const type = button.getAttribute('data-type');
+                
+                document.getElementById('qrEntityName').textContent = type + ': ' + name;
+                
+                // Update the QR code image source
+                document.getElementById('qrCodeImage').src = qrCodeUrl;
+            });
+        });
+    </script>
 @endsection

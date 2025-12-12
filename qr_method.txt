@@ -1,0 +1,22 @@
+
+    /**
+     * Generate QR code for a teacher.
+     */
+    public function generateTeacherQR(Teacher $teacher)
+    {
+        // Create a unique identifier for the teacher
+        $data = [
+            "type" => "teacher",
+            "id" => $teacher->id,
+            "name" => $teacher->first_name . " " . $teacher->last_name,
+            "email" => $teacher->email,
+            "timestamp" => now()->toISOString(),
+        ];
+        
+        $qrCode = QrCode::size(300)->generate(json_encode($data));
+        
+        return Response::make($qrCode, 200, [
+            "Content-Type" => "image/svg+xml"
+        ]);
+    }
+}

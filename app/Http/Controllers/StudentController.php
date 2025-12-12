@@ -6,6 +6,8 @@ use App\Models\Student;
 use App\Models\ClassModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Response;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class StudentController extends Controller
 {
@@ -129,5 +131,26 @@ class StudentController extends Controller
         $student->delete();
 
         return redirect()->route('students.index')->with('success', 'Student deleted successfully.');
+    }
+    
+    /**
+     * Generate QR code for a student.
+     */
+    public function generateStudentQR(Student $student)
+    {
+        // Create a unique identifier for the student
+        $data = [
+            'type' => 'student',
+            'id' => $student->id,
+            'name' => $student->first_name . ' ' . $student->last_name,
+            'student_id' => $student->student_id,
+            'timestamp' => now()->toISOString(),
+        ];
+        
+        $qrCode = QrCode::size(300)->generate(json_encode($data));
+        
+        return Response::make($qrCode, 200, [
+            'Content-Type' => 'image/svg+xml'
+        ]);
     }
 }
