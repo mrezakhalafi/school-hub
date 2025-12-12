@@ -36,13 +36,11 @@
                                     <tr>
                                         <td>
                                             @if($student->profile_image)
-                                                <img src="{{ asset('storage/' . $student->profile_image) }}" 
+                                                <img src="{{ asset('storage/' . $student->profile_image) }}"
                                                      alt="Profile" class="rounded-circle" width="40" height="40">
                                             @else
-                                                <div class="bg-secondary rounded-circle d-flex align-items-center justify-content-center" 
-                                                     style="width: 40px; height: 40px;">
-                                                    <span class="text-white">{{ substr($student->first_name, 0, 1) . substr($student->last_name, 0, 1) }}</span>
-                                                </div>
+                                                <img src="https://picsum.photos/80/80?random={{ $student->id }}"
+                                                     alt="Profile" class="rounded-circle" width="40" height="40">
                                             @endif
                                         </td>
                                         <td>{{ $student->student_id }}</td>

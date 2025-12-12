@@ -20,13 +20,12 @@
                     <div class="row">
                         <div class="col-md-4 text-center mb-4">
                             @if($teacher->profile_image)
-                                <img src="{{ asset('storage/' . $teacher->profile_image) }}" 
+                                <img src="{{ asset('storage/' . $teacher->profile_image) }}"
                                      alt="Profile" class="rounded-circle img-fluid" style="max-width: 200px; height: auto;">
                             @else
-                                <div class="bg-secondary rounded-circle d-flex align-items-center justify-content-center mx-auto" 
-                                     style="width: 200px; height: 200px;">
-                                    <span class="text-white display-4">{{ substr($teacher->first_name, 0, 1) . substr($teacher->last_name, 0, 1) }}</span>
-                                </div>
+                                <img src="https://picsum.photos/400/400?random={{ $teacher->id }}"
+                                     class="rounded-circle img-fluid" style="max-width: 200px; height: auto;"
+                                     alt="Profile">
                             @endif
                         </div>
                         

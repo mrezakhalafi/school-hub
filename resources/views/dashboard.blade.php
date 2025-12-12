@@ -97,7 +97,7 @@
                     </div>
                     <div class="carousel-inner rounded">
                         <div class="carousel-item active">
-                            <img src="https://via.placeholder.com/1200x400/4e73df/ffffff?text=Welcome+to+SchoolHub"
+                            <img src="https://picsum.photos/1200/400?random=1"
                                 class="d-block w-100" alt="School Promotion">
                             <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded p-3">
                                 <h5>Welcome to SchoolHub</h5>
@@ -105,7 +105,7 @@
                             </div>
                         </div>
                         <div class="carousel-item">
-                            <img src="https://via.placeholder.com/1200x400/1cc88a/ffffff?text=School+Events+and+Activities"
+                            <img src="https://picsum.photos/1200/400?random=2"
                                 class="d-block w-100" alt="Events">
                             <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded p-3">
                                 <h5>School Events and Activities</h5>
@@ -113,7 +113,7 @@
                             </div>
                         </div>
                         <div class="carousel-item">
-                            <img src="https://via.placeholder.com/1200x400/36b9cc/ffffff?text=Student+and+Teacher+Management"
+                            <img src="https://picsum.photos/1200/400?random=3"
                                 class="d-block w-100" alt="Management">
                             <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded p-3">
                                 <h5>Student and Teacher Management</h5>
