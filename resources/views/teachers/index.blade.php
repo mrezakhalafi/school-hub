@@ -8,7 +8,46 @@
                 <h1 class="h3">Teachers</h1>
                 <a href="{{ route('teachers.create') }}" class="btn btn-primary">Add New Teacher</a>
             </div>
-            
+
+            <!-- Search and Filter Form -->
+            <div class="card mb-4">
+                <div class="card-body">
+                    <form method="GET" action="{{ route('teachers.index') }}">
+                        <div class="row g-3 align-items-end">
+                            <div class="col-md-4">
+                                <label for="search" class="form-label">Search</label>
+                                <input type="text" name="search" id="search" class="form-control" placeholder="Search by name, email, or class..." value="{{ request('search') }}">
+                            </div>
+                            <div class="col-md-3">
+                                <label for="class_id" class="form-label">Class</label>
+                                <select name="class_id" id="class_id" class="form-select">
+                                    <option value="">All Classes</option>
+                                    @foreach($classes as $class)
+                                        <option value="{{ $class->id }}" {{ request('class_id') == $class->id ? 'selected' : '' }}>
+                                            {{ $class->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="gender" class="form-label">Gender</label>
+                                <select name="gender" id="gender" class="form-select">
+                                    <option value="">All Genders</option>
+                                    @foreach($genders as $genderOption)
+                                        <option value="{{ $genderOption }}" {{ request('gender') == $genderOption ? 'selected' : '' }}>
+                                            {{ ucfirst($genderOption) }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <button type="submit" class="btn btn-primary w-100">Filter</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
             @if(session('success'))
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                     {{ session('success') }}
@@ -88,7 +127,7 @@
                     </div>
                     
                     <div class="d-flex justify-content-center">
-                        {{ $teachers->links() }}
+                        {{ $teachers->appends(['search' => request('search'), 'class_id' => request('class_id'), 'gender' => request('gender')])->links() }}
                     </div>
                 </div>
             </div>

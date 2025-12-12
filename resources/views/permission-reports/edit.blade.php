@@ -33,10 +33,22 @@
                             @enderror
                         </div>
 
+                        <input type="hidden" name="student_name" id="student_name" value="{{ old('student_name', $permissionReport->student_name) }}">
+
                         <div class="mb-3">
-                            <label for="student_name" class="form-label">Student Name</label>
-                            <input type="text" name="student_name" id="student_name" class="form-control @error('student_name') is-invalid @enderror" value="{{ old('student_name', $permissionReport->student_name) }}" required>
-                            @error('student_name')
+                            <label for="student_id" class="form-label">Student</label>
+                            <select name="student_id" id="student_id" class="form-select @error('student_id') is-invalid @enderror" required>
+                                <option value="">Select a student</option>
+                                @foreach($students as $student)
+                                    <option value="{{ $student->id }}"
+                                        data-name="{{ $student->first_name . ' ' . $student->last_name }}"
+                                        data-class="{{ $student->class ? $student->class->name : 'N/A' }}"
+                                        {{ $student->id == $permissionReport->student_id ? 'selected' : '' }}>
+                                        {{ $student->first_name . ' ' . $student->last_name }} ({{ $student->class ? $student->class->name : 'No class' }})
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('student_id')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
@@ -63,6 +75,20 @@
                         </div>
 
                         <div class="mb-3">
+                            <label for="permission_type" class="form-label">Permission Type</label>
+                            <select name="permission_type" id="permission_type" class="form-select @error('permission_type') is-invalid @enderror" required>
+                                <option value="">Select permission type</option>
+                                <option value="sick" {{ old('permission_type', $permissionReport->permission_type) == 'sick' ? 'selected' : '' }}>Sick</option>
+                                <option value="event" {{ old('permission_type', $permissionReport->permission_type) == 'event' ? 'selected' : '' }}>Event</option>
+                                <option value="family" {{ old('permission_type', $permissionReport->permission_type) == 'family' ? 'selected' : '' }}>Family</option>
+                                <option value="other" {{ old('permission_type', $permissionReport->permission_type) == 'other' ? 'selected' : '' }}>Other</option>
+                            </select>
+                            @error('permission_type')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="mb-3">
                             <label for="reason" class="form-label">Reason</label>
                             <textarea name="reason" id="reason" class="form-control @error('reason') is-invalid @enderror" rows="4" required>{{ old('reason', $permissionReport->reason) }}</textarea>
                             @error('reason')
@@ -85,13 +111,20 @@
 document.addEventListener('DOMContentLoaded', function() {
     const studentSelect = document.getElementById('student_id');
     const studentNameInput = document.getElementById('student_name');
+    const classNameInput = document.getElementById('class_name');
 
     studentSelect.addEventListener('change', function() {
         const selectedOption = this.options[this.selectedIndex];
         if (selectedOption.value) {
             studentNameInput.value = selectedOption.getAttribute('data-name');
+            if (classNameInput) {
+                classNameInput.value = selectedOption.getAttribute('data-class');
+            }
         } else {
             studentNameInput.value = '';
+            if (classNameInput) {
+                classNameInput.value = '';
+            }
         }
     });
 });

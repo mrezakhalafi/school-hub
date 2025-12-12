@@ -15,6 +15,7 @@ class PermissionReport extends Model
         'student_name',
         'permission_date',
         'permission_time',
+        'permission_type',
         'reason',
         'status'
     ];

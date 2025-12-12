@@ -19,8 +19,8 @@
                             <select name="student_id" id="student_id" class="form-select @error('student_id') is-invalid @enderror" required>
                                 <option value="">Select a student</option>
                                 @foreach($students as $student)
-                                    <option value="{{ $student->id }}" 
-                                        data-name="{{ $student->first_name . ' ' . $student->last_name }}" 
+                                    <option value="{{ $student->id }}"
+                                        data-name="{{ $student->first_name . ' ' . $student->last_name }}"
                                         data-class="{{ $student->class ? $student->class->name : 'N/A' }}">
                                         {{ $student->first_name . ' ' . $student->last_name }} ({{ $student->class ? $student->class->name : 'No class' }})
                                     </option>
@@ -31,13 +31,7 @@
                             @enderror
                         </div>
 
-                        <div class="mb-3">
-                            <label for="student_name" class="form-label">Student Name</label>
-                            <input type="text" name="student_name" id="student_name" class="form-control @error('student_name') is-invalid @enderror" value="{{ old('student_name') }}" required>
-                            @error('student_name')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
+                        <input type="hidden" name="student_name" id="student_name" value="{{ old('student_name') }}">
 
                         <div class="row">
                             <div class="col-md-6">
@@ -58,6 +52,20 @@
                                     @enderror
                                 </div>
                             </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="permission_type" class="form-label">Permission Type</label>
+                            <select name="permission_type" id="permission_type" class="form-select @error('permission_type') is-invalid @enderror" required>
+                                <option value="">Select permission type</option>
+                                <option value="sick" {{ old('permission_type') == 'sick' ? 'selected' : '' }}>Sick</option>
+                                <option value="event" {{ old('permission_type') == 'event' ? 'selected' : '' }}>Event</option>
+                                <option value="family" {{ old('permission_type') == 'family' ? 'selected' : '' }}>Family</option>
+                                <option value="other" {{ old('permission_type') == 'other' ? 'selected' : '' }}>Other</option>
+                            </select>
+                            @error('permission_type')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="mb-3">
@@ -83,13 +91,20 @@
 document.addEventListener('DOMContentLoaded', function() {
     const studentSelect = document.getElementById('student_id');
     const studentNameInput = document.getElementById('student_name');
+    const classNameInput = document.getElementById('class_name');
 
     studentSelect.addEventListener('change', function() {
         const selectedOption = this.options[this.selectedIndex];
         if (selectedOption.value) {
             studentNameInput.value = selectedOption.getAttribute('data-name');
+            if (classNameInput) {
+                classNameInput.value = selectedOption.getAttribute('data-class');
+            }
         } else {
             studentNameInput.value = '';
+            if (classNameInput) {
+                classNameInput.value = '';
+            }
         }
     });
 });

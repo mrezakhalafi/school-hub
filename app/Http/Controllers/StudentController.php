@@ -14,10 +14,38 @@ class StudentController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $students = Student::with('class')->paginate(10);
-        return view('students.index', compact('students'));
+        $query = Student::with(['class', 'permissionReports'])->withCount('permissionReports');
+
+        // Search functionality
+        if ($request->search) {
+            $searchTerm = $request->search;
+            $query->where(function($q) use ($searchTerm) {
+                $q->where('first_name', 'LIKE', "%{$searchTerm}%")
+                  ->orWhere('last_name', 'LIKE', "%{$searchTerm}%")
+                  ->orWhere('student_id', 'LIKE', "%{$searchTerm}%")
+                  ->orWhereHas('class', function($q) use ($searchTerm) {
+                      $q->where('name', 'LIKE', "%{$searchTerm}%");
+                  });
+            });
+        }
+
+        // Filter by class
+        if ($request->class_id) {
+            $query->where('class_id', $request->class_id);
+        }
+
+        // Filter by gender
+        if ($request->gender) {
+            $query->where('gender', $request->gender);
+        }
+
+        $students = $query->paginate(10);
+        $classes = ClassModel::all(); // For the filter dropdown
+        $genders = ['male', 'female']; // Available gender options
+
+        return view('students.index', compact('students', 'classes', 'genders'));
     }
 
     /**

@@ -13,10 +13,38 @@ class TeacherController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $teachers = Teacher::paginate(10);
-        return view('teachers.index', compact('teachers'));
+        $query = Teacher::with('class'); // Include class relationship for filtering
+
+        // Search functionality
+        if ($request->search) {
+            $searchTerm = $request->search;
+            $query->where(function($q) use ($searchTerm) {
+                $q->where('first_name', 'LIKE', "%{$searchTerm}%")
+                  ->orWhere('last_name', 'LIKE', "%{$searchTerm}%")
+                  ->orWhere('email', 'LIKE', "%{$searchTerm}%")
+                  ->orWhereHas('class', function($q) use ($searchTerm) {
+                      $q->where('name', 'LIKE', "%{$searchTerm}%");
+                  });
+            });
+        }
+
+        // Filter by gender
+        if ($request->gender) {
+            $query->where('gender', $request->gender);
+        }
+
+        // Filter by class
+        if ($request->class_id) {
+            $query->where('class_id', $request->class_id);
+        }
+
+        $teachers = $query->paginate(10);
+        $classes = \App\Models\ClassModel::all(); // For the filter dropdown
+        $genders = ['male', 'female']; // Available gender options
+
+        return view('teachers.index', compact('teachers', 'classes', 'genders'));
     }
 
     /**

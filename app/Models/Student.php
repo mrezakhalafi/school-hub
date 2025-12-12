@@ -36,6 +36,12 @@ class Student extends Model
         return $this->hasMany(Guardian::class, 'student_id');
     }
 
+    // A student has many permission reports
+    public function permissionReports()
+    {
+        return $this->hasMany(PermissionReport::class, 'student_id');
+    }
+
     // Get full name attribute
     public function getFullNameAttribute()
     {

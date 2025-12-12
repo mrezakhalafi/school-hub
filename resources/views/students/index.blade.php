@@ -8,7 +8,46 @@
                 <h1 class="h3">Students</h1>
                 <a href="{{ route('students.create') }}" class="btn btn-primary">Add New Student</a>
             </div>
-            
+
+            <!-- Search and Filter Form -->
+            <div class="card mb-4">
+                <div class="card-body">
+                    <form method="GET" action="{{ route('students.index') }}">
+                        <div class="row g-3 align-items-end">
+                            <div class="col-md-4">
+                                <label for="search" class="form-label">Search</label>
+                                <input type="text" name="search" id="search" class="form-control" placeholder="Search by name, ID, or class..." value="{{ request('search') }}">
+                            </div>
+                            <div class="col-md-3">
+                                <label for="class_id" class="form-label">Class</label>
+                                <select name="class_id" id="class_id" class="form-select">
+                                    <option value="">All Classes</option>
+                                    @foreach($classes as $class)
+                                        <option value="{{ $class->id }}" {{ request('class_id') == $class->id ? 'selected' : '' }}>
+                                            {{ $class->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="gender" class="form-label">Gender</label>
+                                <select name="gender" id="gender" class="form-select">
+                                    <option value="">All Genders</option>
+                                    @foreach($genders as $genderOption)
+                                        <option value="{{ $genderOption }}" {{ request('gender') == $genderOption ? 'selected' : '' }}>
+                                            {{ ucfirst($genderOption) }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <button type="submit" class="btn btn-primary w-100">Filter</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
             @if(session('success'))
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                     {{ session('success') }}
@@ -26,6 +65,7 @@
                                     <th>Student ID</th>
                                     <th>Name</th>
                                     <th>Class</th>
+                                    <th>Permissions</th>
                                     <th>Gender</th>
                                     <th>QR Code</th>
                                     <th>Actions</th>
@@ -46,10 +86,15 @@
                                         <td>{{ $student->student_id }}</td>
                                         <td>{{ $student->first_name }} {{ $student->last_name }}</td>
                                         <td>{{ $student->class ? $student->class->name : 'N/A' }}</td>
+                                        <td>
+                                            <span class="badge bg-primary">
+                                                {{ $student->permission_reports_count }}
+                                            </span>
+                                        </td>
                                         <td>{{ ucfirst($student->gender) }}</td>
                                         <td>
-                                            <button class="btn btn-sm btn-secondary" 
-                                                    data-bs-toggle="modal" 
+                                            <button class="btn btn-sm btn-secondary"
+                                                    data-bs-toggle="modal"
                                                     data-bs-target="#qrModal"
                                                     data-qrcode="{{ route('students.qr', $student) }}"
                                                     data-name="{{ $student->first_name . ' ' . $student->last_name }}"
@@ -72,7 +117,7 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="7" class="text-center">No students found.</td>
+                                        <td colspan="8" class="text-center">No students found.</td>
                                     </tr>
                                 @endforelse
                             </tbody>
@@ -80,7 +125,7 @@
                     </div>
                     
                     <div class="d-flex justify-content-center">
-                        {{ $students->links() }}
+                        {{ $students->appends(['search' => request('search'), 'class_id' => request('class_id'), 'gender' => request('gender')])->links() }}
                     </div>
                 </div>
             </div>

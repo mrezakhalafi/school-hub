@@ -37,6 +37,14 @@
                                     <td>{{ \Carbon\Carbon::parse($permissionReport->permission_time)->format('H:i') }}</td>
                                 </tr>
                                 <tr>
+                                    <th>Permission Type:</th>
+                                    <td>
+                                        <span class="badge bg-{{ $permissionReport->permission_type === 'sick' ? 'danger' : ($permissionReport->permission_type === 'event' ? 'info' : ($permissionReport->permission_type === 'family' ? 'primary' : 'secondary')) }}">
+                                            {{ ucfirst(__($permissionReport->permission_type)) }}
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
                                     <th>Status:</th>
                                     <td>
                                         <span class="badge bg-{{ $permissionReport->status === 'approved' ? 'success' : ($permissionReport->status === 'rejected' ? 'danger' : 'warning') }}">
@@ -58,7 +66,10 @@
                         @if($permissionReport->student && $permissionReport->student->guardians->count() > 0)
                             @foreach($permissionReport->student->guardians as $guardian)
                                 @if($guardian->phone)
-                                    <a href="https://api.whatsapp.com/send?phone={{ urlencode(str_replace(['+', '-', ' '], '', $guardian->phone)) }}&text={{ urlencode('Pemberitahuan Izin Absensi: Anak Anda ' . $permissionReport->student_name . ' dari kelas ' . ($permissionReport->student->class->name ?? 'N/A') . ' tidak hadir pada tanggal ' . \Carbon\Carbon::parse($permissionReport->permission_date)->format('M d, Y') . ' jam ' . \Carbon\Carbon::parse($permissionReport->permission_time)->format('H:i') . ' dengan alasan: ' . $permissionReport->reason) }}"
+                                    @php
+                                        $typeText = $permissionReport->permission_type === 'sick' ? 'sakit' : ($permissionReport->permission_type === 'event' ? 'acara' : ($permissionReport->permission_type === 'family' ? 'keluarga' : 'lainnya'));
+                                    @endphp
+                                    <a href="https://api.whatsapp.com/send?phone={{ urlencode(str_replace(['+', '-', ' '], '', $guardian->phone)) }}&text={{ urlencode('Pemberitahuan Izin Absensi: Anak Anda ' . $permissionReport->student_name . ' dari kelas ' . ($permissionReport->student->class->name ?? 'N/A') . ' tidak hadir pada tanggal ' . \Carbon\Carbon::parse($permissionReport->permission_date)->format('M d, Y') . ' jam ' . \Carbon\Carbon::parse($permissionReport->permission_time)->format('H:i') . ' karena ' . $typeText . ', dengan alasan: ' . $permissionReport->reason) }}"
                                        target="_blank"
                                        class="btn btn-success btn-sm me-2 mb-2">
                                         <i class="fab fa-whatsapp"></i> Send to {{ $guardian->first_name }}
