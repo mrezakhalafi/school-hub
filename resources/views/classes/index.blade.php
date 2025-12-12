@@ -33,14 +33,14 @@
                             </thead>
                             <tbody>
                                 @forelse($classes as $class)
-                                    <tr>
+                                    <tr onclick="window.location='{{ route('classes.show', $class) }}'" style="cursor: pointer;">
                                         <td>{{ $class->name }}</td>
                                         <td>{{ $class->level }}</td>
                                         <td>{{ $class->major }}</td>
                                         <td>{{ $class->section ?: 'N/A' }}</td>
                                         <td>
                                             @if($class->advisor)
-                                                <a href="{{ route('teachers.show', $class->advisor) }}" class="text-decoration-none">
+                                                <a href="{{ route('teachers.show', $class->advisor) }}" class="text-decoration-none" onclick="event.stopPropagation();">
                                                     {{ $class->advisor->first_name }} {{ $class->advisor->last_name }}
                                                 </a>
                                             @else
@@ -49,13 +49,12 @@
                                         </td>
                                         <td>{{ $class->students->count() }}</td>
                                         <td>
-                                            <a href="{{ route('classes.show', $class) }}" class="btn btn-sm btn-info">View</a>
-                                            <a href="{{ route('classes.edit', $class) }}" class="btn btn-sm btn-warning">Edit</a>
-                                            <form action="{{ route('classes.destroy', $class) }}" method="POST" class="d-inline">
+                                            <a href="{{ route('classes.edit', $class) }}" class="btn btn-sm btn-warning" onclick="event.stopPropagation();">Edit</a>
+                                            <form action="{{ route('classes.destroy', $class) }}" method="POST" class="d-inline" onclick="event.stopPropagation();">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-sm btn-danger" 
-                                                        onclick="return confirm('Are you sure you want to delete this class? All associated students will be affected.')">
+                                                <button type="submit" class="btn btn-sm btn-danger"
+                                                        onclick="event.stopPropagation(); return confirm('Are you sure you want to delete this class? All associated students will be affected.')">
                                                     Delete
                                                 </button>
                                             </form>
