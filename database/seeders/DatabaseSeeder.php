@@ -16,9 +16,14 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // Create a default user for testing
-        User::factory()->create([
-            'name' => 'Admin User',
-            'email' => 'admin@example.com',
+        // User::factory()->create([
+        //     'name' => 'Admin User',
+        //     'email' => 'admin@example.com',
+        // ]);
+
+         User::factory()->create([
+            'name' => 'M Reza Khalafi',
+            'email' => 'mrezakhalafi@gmail.com',
         ]);
 
         // Seed data in the correct order due to relationships
