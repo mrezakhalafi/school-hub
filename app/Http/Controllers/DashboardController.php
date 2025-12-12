@@ -7,6 +7,7 @@ use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\ClassModel;
 use App\Models\SchoolEvent;
+use App\Models\PermissionReport;
 
 class DashboardController extends Controller
 {
@@ -17,11 +18,12 @@ class DashboardController extends Controller
         $teacherCount = Teacher::count();
         $classCount = ClassModel::count();
         $eventCount = SchoolEvent::count();
+        $permissionReportCount = PermissionReport::count();
 
         // Get recent events
         $recentEvents = SchoolEvent::orderBy('start_date', 'desc')->limit(5)->get();
 
         // Pass data to the view
-        return view('dashboard', compact('studentCount', 'teacherCount', 'classCount', 'eventCount', 'recentEvents'));
+        return view('dashboard', compact('studentCount', 'teacherCount', 'classCount', 'eventCount', 'permissionReportCount', 'recentEvents'));
     }
 }

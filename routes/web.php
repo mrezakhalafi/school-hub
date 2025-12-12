@@ -43,6 +43,15 @@ Route::resource('guardians', GuardianController::class)
 Route::resource('events', EventController::class)
     ->middleware(['auth']);
 
+// Permission Report routes
+Route::resource('permission-reports', \App\Http\Controllers\PermissionReportController::class)
+    ->middleware(['auth']);
+
+// Update status route
+Route::post('/permission-reports/{permissionReport}/status', [\App\Http\Controllers\PermissionReportController::class, 'updateStatus'])
+    ->middleware(['auth'])
+    ->name('permission-reports.status.update');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

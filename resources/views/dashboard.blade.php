@@ -65,22 +65,22 @@
             </div>
 
             <div class="col-md-3 mb-3">
-                <a href="{{ route('events.index') }}">
-                    <div class="card text-white bg-warning">
+                <a href="{{ route('permission-reports.index') }}">
+                    <div class="card text-white bg-secondary">
                         <div class="card-body">
                             <div class="d-flex justify-content-between">
                                 <div>
-                                    <h4 class="card-title">{{ $eventCount }}</h4>
-                                    <p class="card-text">Events</p>
+                                    <h4 class="card-title">{{ $permissionReportCount ?? 0 }}</h4>
+                                    <p class="card-text">Permission Reports</p>
                                 </div>
                                 <div class="align-self-center">
-                                    <i class="fas fa-calendar-alt"></i>
+                                    <i class="fas fa-file-alt"></i>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </a>
             </div>
-            </a>
         </div>
 
         <!-- Carousel for Promotions -->
