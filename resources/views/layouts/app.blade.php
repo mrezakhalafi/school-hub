@@ -37,22 +37,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
                         @auth
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('dashboard') }}">Dashboard</a>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                    Data Management
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="{{ route('students.index') }}">Students</a></li>
-                                    <li><a class="dropdown-item" href="{{ route('teachers.index') }}">Teachers</a></li>
-                                    <li><a class="dropdown-item" href="{{ route('classes.index') }}">Classes</a></li>
-                                    <li><a class="dropdown-item" href="{{ route('guardians.index') }}">Guardians</a></li>
-                                    <li><a class="dropdown-item" href="{{ route('events.index') }}">Events</a></li>
-                                </ul>
-                            </li>
+                            <!-- Dashboard and Data Management removed as per requirements -->
                         @endauth
                     </ul>
 

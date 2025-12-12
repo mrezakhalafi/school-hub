@@ -157,7 +157,7 @@
                                     <tbody>
                                         @foreach ($recentEvents as $event)
                                             <tr>
-                                                <td>{{ $event->title }}</td>
+                                                <td><a href="{{ route('events.show', $event) }}" class="text-decoration-none">{{ $event->title }}</a></td>
                                                 <td>{{ $event->start_date->format('M d, Y') }}</td>
                                                 <td>{{ $event->location ?: 'N/A' }}</td>
                                                 <td>
