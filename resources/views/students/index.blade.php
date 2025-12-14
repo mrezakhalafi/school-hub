@@ -6,7 +6,9 @@
         <div class="col-12">
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h1 class="h3">Students</h1>
-                <a href="{{ route('students.create') }}" class="btn btn-primary">Add New Student</a>
+                @if(Auth::user()->isAdmin())
+                    <a href="{{ route('students.create') }}" class="btn btn-primary">Add New Student</a>
+                @endif
             </div>
 
             <!-- Search and Filter Form -->
@@ -104,15 +106,17 @@
                                         </td>
                                         <td>
                                             <a href="{{ route('students.show', $student) }}" class="btn btn-sm btn-info">View</a>
-                                            <a href="{{ route('students.edit', $student) }}" class="btn btn-sm btn-warning">Edit</a>
-                                            <form action="{{ route('students.destroy', $student) }}" method="POST" class="d-inline">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-sm btn-danger" 
-                                                        onclick="return confirm('Are you sure you want to delete this student?')">
-                                                    Delete
-                                                </button>
-                                            </form>
+                                            @if(Auth::user()->isAdmin())
+                                                <a href="{{ route('students.edit', $student) }}" class="btn btn-sm btn-warning">Edit</a>
+                                                <form action="{{ route('students.destroy', $student) }}" method="POST" class="d-inline">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-sm btn-danger"
+                                                            onclick="return confirm('Are you sure you want to delete this student?')">
+                                                        Delete
+                                                    </button>
+                                                </form>
+                                            @endif
                                         </td>
                                     </tr>
                                 @empty

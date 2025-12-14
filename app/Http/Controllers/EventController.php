@@ -4,15 +4,38 @@ namespace App\Http\Controllers;
 
 use App\Models\SchoolEvent;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class EventController extends Controller
 {
+    private function authorizeResource($action = 'read')
+    {
+        $user = Auth::user();
+
+        if (!$user) {
+            abort(403, 'Access denied.');
+        }
+
+        // Admins can perform all actions
+        if ($user->isAdmin()) {
+            return true;
+        }
+
+        // Teachers and students can only read
+        if ($action === 'read') {
+            return true;
+        }
+
+        abort(403, 'Access denied. Only read operations are allowed for your role.');
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
+        $this->authorizeResource('read');
         $events = SchoolEvent::orderBy('start_date', 'desc')->paginate(10);
         return view('events.index', compact('events'));
     }
@@ -22,6 +45,7 @@ class EventController extends Controller
      */
     public function create()
     {
+        $this->authorizeResource('write');
         return view('events.create');
     }
 
@@ -30,6 +54,7 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorizeResource('write');
         $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
@@ -60,6 +85,7 @@ class EventController extends Controller
      */
     public function show(SchoolEvent $event)
     {
+        $this->authorizeResource('read');
         return view('events.show', compact('event'));
     }
 
@@ -68,6 +94,7 @@ class EventController extends Controller
      */
     public function edit(SchoolEvent $event)
     {
+        $this->authorizeResource('write');
         return view('events.edit', compact('event'));
     }
 
@@ -76,6 +103,7 @@ class EventController extends Controller
      */
     public function update(Request $request, SchoolEvent $event)
     {
+        $this->authorizeResource('write');
         $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
@@ -119,6 +147,7 @@ class EventController extends Controller
      */
     public function destroy(SchoolEvent $event)
     {
+        $this->authorizeResource('write');
         // Delete event image if exists
         if ($event->image) {
             Storage::disk('public')->delete($event->image);

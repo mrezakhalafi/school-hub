@@ -8,7 +8,9 @@
                 <h1 class="h3">Student Details</h1>
                 <div>
                     <a href="{{ route('students.index') }}" class="btn btn-secondary">Back to List</a>
-                    <a href="{{ route('students.edit', $student) }}" class="btn btn-warning">Edit</a>
+                    @if(Auth::user()->isAdmin())
+                        <a href="{{ route('students.edit', $student) }}" class="btn btn-warning">Edit</a>
+                    @endif
                 </div>
             </div>
             
@@ -65,9 +67,11 @@
             <div class="card mt-4">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <h5 class="card-title mb-0">Guardians</h5>
-                    <a href="{{ route('guardians.create') }}?student_id={{ $student->id }}" class="btn btn-primary btn-sm">
-                        Add Guardian
-                    </a>
+                    @if(Auth::user()->isAdmin())
+                        <a href="{{ route('guardians.create') }}?student_id={{ $student->id }}" class="btn btn-primary btn-sm">
+                            Add Guardian
+                        </a>
+                    @endif
                 </div>
                 <div class="card-body">
                     @if($student->guardians->count() > 0)
@@ -96,7 +100,9 @@
                                             <td>{{ $guardian->phone ?: 'N/A' }}</td>
                                             <td>
                                                 <a href="{{ route('guardians.show', $guardian) }}" class="btn btn-sm btn-info">View</a>
-                                                <a href="{{ route('guardians.edit', $guardian) }}" class="btn btn-sm btn-warning">Edit</a>
+                                                @if(Auth::user()->isAdmin())
+                                                    <a href="{{ route('guardians.edit', $guardian) }}" class="btn btn-sm btn-warning">Edit</a>
+                                                @endif
                                             </td>
                                         </tr>
                                     @endforeach
@@ -105,24 +111,28 @@
                         </div>
                     @else
                         <p class="text-muted">No guardians registered for this student.</p>
-                        <a href="{{ route('guardians.create') }}?student_id={{ $student->id }}" class="btn btn-primary">
-                            Add Guardian
-                        </a>
+                        @if(Auth::user()->isAdmin())
+                            <a href="{{ route('guardians.create') }}?student_id={{ $student->id }}" class="btn btn-primary">
+                                Add Guardian
+                            </a>
+                        @endif
                     @endif
                 </div>
             </div>
             
             <!-- Delete Button -->
-            <div class="mt-4">
-                <form action="{{ route('students.destroy', $student) }}" method="POST" class="d-inline">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-danger" 
-                            onclick="return confirm('Are you sure you want to delete this student? All associated guardians will also be removed.')">
-                        Delete Student
-                    </button>
-                </form>
-            </div>
+            @if(Auth::user()->isAdmin())
+                <div class="mt-4">
+                    <form action="{{ route('students.destroy', $student) }}" method="POST" class="d-inline">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger"
+                                onclick="return confirm('Are you sure you want to delete this student? All associated guardians will also be removed.')">
+                            Delete Student
+                        </button>
+                    </form>
+                </div>
+            @endif
         </div>
     </div>
 </div>

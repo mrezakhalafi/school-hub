@@ -6,14 +6,37 @@ use App\Models\PermissionReport;
 use App\Models\Student;
 use App\Models\Guardian;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PermissionReportController extends Controller
 {
+    private function authorizeResource($action = 'read')
+    {
+        $user = Auth::user();
+
+        if (!$user) {
+            abort(403, 'Access denied.');
+        }
+
+        // Admins can perform all actions
+        if ($user->isAdmin()) {
+            return true;
+        }
+
+        // Teachers and students can only read
+        if ($action === 'read') {
+            return true;
+        }
+
+        abort(403, 'Access denied. Only read operations are allowed for your role.');
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index(Request $request)
     {
+        $this->authorizeResource('read');
         $query = PermissionReport::with('student');
 
         // Search functionality
@@ -59,6 +82,7 @@ class PermissionReportController extends Controller
      */
     public function create()
     {
+        $this->authorizeResource('write');
         $students = Student::with('class', 'guardians')->get();
         return view('permission-reports.create', compact('students'));
     }
@@ -68,6 +92,7 @@ class PermissionReportController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorizeResource('write');
         $request->validate([
             'student_id' => 'required|exists:students,id',
             'student_name' => 'required|string|max:255',
@@ -109,6 +134,7 @@ class PermissionReportController extends Controller
      */
     public function show(PermissionReport $permissionReport)
     {
+        $this->authorizeResource('read');
         return view('permission-reports.show', compact('permissionReport'));
     }
 
@@ -117,6 +143,7 @@ class PermissionReportController extends Controller
      */
     public function edit(PermissionReport $permissionReport)
     {
+        $this->authorizeResource('write');
         $students = Student::with('class', 'guardians')->get();
         return view('permission-reports.edit', compact('permissionReport', 'students'));
     }
@@ -126,6 +153,7 @@ class PermissionReportController extends Controller
      */
     public function update(Request $request, PermissionReport $permissionReport)
     {
+        $this->authorizeResource('write');
         $request->validate([
             'student_id' => 'required|exists:students,id',
             'student_name' => 'required|string|max:255',
@@ -150,6 +178,7 @@ class PermissionReportController extends Controller
      */
     public function destroy(PermissionReport $permissionReport)
     {
+        $this->authorizeResource('write');
         $permissionReport->delete();
 
         return redirect()->route('permission-reports.index')
@@ -161,6 +190,7 @@ class PermissionReportController extends Controller
      */
     public function updateStatus(Request $request, PermissionReport $permissionReport)
     {
+        $this->authorizeResource('write');
         $request->validate([
             'status' => 'required|in:pending,approved,rejected'
         ]);

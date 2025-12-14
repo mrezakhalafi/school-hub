@@ -5,14 +5,37 @@ namespace App\Http\Controllers;
 use App\Models\Guardian;
 use App\Models\Student;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class GuardianController extends Controller
 {
+    private function authorizeResource($action = 'read')
+    {
+        $user = Auth::user();
+
+        if (!$user) {
+            abort(403, 'Access denied.');
+        }
+
+        // Admins can perform all actions
+        if ($user->isAdmin()) {
+            return true;
+        }
+
+        // Teachers and students can only read
+        if ($action === 'read') {
+            return true;
+        }
+
+        abort(403, 'Access denied. Only read operations are allowed for your role.');
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
+        $this->authorizeResource('read');
         $guardians = Guardian::with('student')->paginate(10);
         return view('guardians.index', compact('guardians'));
     }
@@ -22,6 +45,7 @@ class GuardianController extends Controller
      */
     public function create()
     {
+        $this->authorizeResource('write');
         $students = Student::all();
         return view('guardians.create', compact('students'));
     }
@@ -31,6 +55,7 @@ class GuardianController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorizeResource('write');
         $request->validate([
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
@@ -51,6 +76,7 @@ class GuardianController extends Controller
      */
     public function show(Guardian $guardian)
     {
+        $this->authorizeResource('read');
         return view('guardians.show', compact('guardian'));
     }
 
@@ -59,6 +85,7 @@ class GuardianController extends Controller
      */
     public function edit(Guardian $guardian)
     {
+        $this->authorizeResource('write');
         $students = Student::all();
         return view('guardians.edit', compact('guardian', 'students'));
     }
@@ -68,6 +95,7 @@ class GuardianController extends Controller
      */
     public function update(Request $request, Guardian $guardian)
     {
+        $this->authorizeResource('write');
         $request->validate([
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
@@ -88,6 +116,7 @@ class GuardianController extends Controller
      */
     public function destroy(Guardian $guardian)
     {
+        $this->authorizeResource('write');
         $guardian->delete();
 
         return redirect()->route('guardians.index')->with('success', 'Guardian deleted successfully.');

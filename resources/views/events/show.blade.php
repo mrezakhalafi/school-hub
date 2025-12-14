@@ -8,7 +8,9 @@
                 <h1 class="h3">Event Details</h1>
                 <div>
                     <a href="{{ route('events.index') }}" class="btn btn-secondary">Back to List</a>
-                    <a href="{{ route('events.edit', $event) }}" class="btn btn-warning">Edit</a>
+                    @if(Auth::user()->isAdmin())
+                        <a href="{{ route('events.edit', $event) }}" class="btn btn-warning">Edit</a>
+                    @endif
                 </div>
             </div>
             
@@ -60,16 +62,18 @@
             </div>
             
             <!-- Delete Button -->
-            <div class="mt-4">
-                <form action="{{ route('events.destroy', $event) }}" method="POST" class="d-inline">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-danger" 
-                            onclick="return confirm('Are you sure you want to delete this event?')">
-                        Delete Event
-                    </button>
-                </form>
-            </div>
+            @if(Auth::user()->isAdmin())
+                <div class="mt-4">
+                    <form action="{{ route('events.destroy', $event) }}" method="POST" class="d-inline">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger"
+                                onclick="return confirm('Are you sure you want to delete this event?')">
+                            Delete Event
+                        </button>
+                    </form>
+                </div>
+            @endif
         </div>
     </div>
 </div>

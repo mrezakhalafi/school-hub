@@ -6,7 +6,9 @@
         <div class="col-12">
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h1 class="h3">Events</h1>
-                <a href="{{ route('events.create') }}" class="btn btn-primary">Add New Event</a>
+                @if(Auth::user()->isAdmin())
+                    <a href="{{ route('events.create') }}" class="btn btn-primary">Add New Event</a>
+                @endif
             </div>
             
             @if(session('success'))
@@ -65,15 +67,17 @@
                                         </td>
                                         <td>
                                             <a href="{{ route('events.show', $event) }}" class="btn btn-sm btn-info">View</a>
-                                            <a href="{{ route('events.edit', $event) }}" class="btn btn-sm btn-warning">Edit</a>
-                                            <form action="{{ route('events.destroy', $event) }}" method="POST" class="d-inline">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-sm btn-danger" 
-                                                        onclick="return confirm('Are you sure you want to delete this event?')">
-                                                    Delete
-                                                </button>
-                                            </form>
+                                            @if(Auth::user()->isAdmin())
+                                                <a href="{{ route('events.edit', $event) }}" class="btn btn-sm btn-warning">Edit</a>
+                                                <form action="{{ route('events.destroy', $event) }}" method="POST" class="d-inline">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-sm btn-danger"
+                                                            onclick="return confirm('Are you sure you want to delete this event?')">
+                                                        Delete
+                                                    </button>
+                                                </form>
+                                            @endif
                                         </td>
                                     </tr>
                                 @empty

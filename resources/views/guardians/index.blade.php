@@ -6,7 +6,9 @@
         <div class="col-12">
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h1 class="h3">Guardians</h1>
-                <a href="{{ route('guardians.create') }}" class="btn btn-primary">Add New Guardian</a>
+                @if(Auth::user()->isAdmin())
+                    <a href="{{ route('guardians.create') }}" class="btn btn-primary">Add New Guardian</a>
+                @endif
             </div>
             
             @if(session('success'))
@@ -49,15 +51,17 @@
                                         </td>
                                         <td>
                                             <a href="{{ route('guardians.show', $guardian) }}" class="btn btn-sm btn-info">View</a>
-                                            <a href="{{ route('guardians.edit', $guardian) }}" class="btn btn-sm btn-warning">Edit</a>
-                                            <form action="{{ route('guardians.destroy', $guardian) }}" method="POST" class="d-inline">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-sm btn-danger" 
-                                                        onclick="return confirm('Are you sure you want to delete this guardian?')">
-                                                    Delete
-                                                </button>
-                                            </form>
+                                            @if(Auth::user()->isAdmin())
+                                                <a href="{{ route('guardians.edit', $guardian) }}" class="btn btn-sm btn-warning">Edit</a>
+                                                <form action="{{ route('guardians.destroy', $guardian) }}" method="POST" class="d-inline">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-sm btn-danger"
+                                                            onclick="return confirm('Are you sure you want to delete this guardian?')">
+                                                        Delete
+                                                    </button>
+                                                </form>
+                                            @endif
                                         </td>
                                     </tr>
                                 @empty

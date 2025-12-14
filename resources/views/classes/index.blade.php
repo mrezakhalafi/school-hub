@@ -6,7 +6,9 @@
         <div class="col-12">
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h1 class="h3">Classes</h1>
-                <a href="{{ route('classes.create') }}" class="btn btn-primary">Add New Class</a>
+                @if(Auth::user()->isAdmin())
+                    <a href="{{ route('classes.create') }}" class="btn btn-primary">Add New Class</a>
+                @endif
             </div>
             
             @if(session('success'))
@@ -49,15 +51,17 @@
                                         </td>
                                         <td>{{ $class->students->count() }}</td>
                                         <td>
-                                            <a href="{{ route('classes.edit', $class) }}" class="btn btn-sm btn-warning" onclick="event.stopPropagation();">Edit</a>
-                                            <form action="{{ route('classes.destroy', $class) }}" method="POST" class="d-inline" onclick="event.stopPropagation();">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-sm btn-danger"
-                                                        onclick="event.stopPropagation(); return confirm('Are you sure you want to delete this class? All associated students will be affected.')">
-                                                    Delete
-                                                </button>
-                                            </form>
+                                            @if(Auth::user()->isAdmin())
+                                                <a href="{{ route('classes.edit', $class) }}" class="btn btn-sm btn-warning" onclick="event.stopPropagation();">Edit</a>
+                                                <form action="{{ route('classes.destroy', $class) }}" method="POST" class="d-inline" onclick="event.stopPropagation();">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-sm btn-danger"
+                                                            onclick="event.stopPropagation(); return confirm('Are you sure you want to delete this class? All associated students will be affected.')">
+                                                        Delete
+                                                    </button>
+                                                </form>
+                                            @endif
                                         </td>
                                     </tr>
                                 @empty

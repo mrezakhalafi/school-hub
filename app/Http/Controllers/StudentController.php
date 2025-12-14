@@ -5,17 +5,41 @@ namespace App\Http\Controllers;
 use App\Models\Student;
 use App\Models\ClassModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Response;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class StudentController extends Controller
 {
+    private function authorizeResource($action = 'read')
+    {
+        $user = Auth::user();
+
+        if (!$user) {
+            abort(403, 'Access denied.');
+        }
+
+        // Admins can perform all actions
+        if ($user->isAdmin()) {
+            return true;
+        }
+
+        // Teachers and students can only read
+        if ($action === 'read') {
+            return true;
+        }
+
+        abort(403, 'Access denied. Only read operations are allowed for your role.');
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index(Request $request)
     {
+        $this->authorizeResource('read');
+
         $query = Student::with(['class', 'permissionReports'])->withCount('permissionReports');
 
         // Search functionality
@@ -53,6 +77,7 @@ class StudentController extends Controller
      */
     public function create()
     {
+        $this->authorizeResource('write');
         $classes = ClassModel::all();
         return view('students.create', compact('classes'));
     }
@@ -62,6 +87,7 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorizeResource('write');
         $request->validate([
             'student_id' => 'required|unique:students,student_id',
             'first_name' => 'required|string|max:255',
@@ -91,6 +117,7 @@ class StudentController extends Controller
      */
     public function show(Student $student)
     {
+        $this->authorizeResource('read');
         $student->load('class', 'guardians');
         return view('students.show', compact('student'));
     }
@@ -100,6 +127,7 @@ class StudentController extends Controller
      */
     public function edit(Student $student)
     {
+        $this->authorizeResource('write');
         $classes = ClassModel::all();
         return view('students.edit', compact('student', 'classes'));
     }
@@ -109,6 +137,7 @@ class StudentController extends Controller
      */
     public function update(Request $request, Student $student)
     {
+        $this->authorizeResource('write');
         $request->validate([
             'student_id' => 'required|unique:students,student_id,' . $student->id,
             'first_name' => 'required|string|max:255',
@@ -151,6 +180,7 @@ class StudentController extends Controller
      */
     public function destroy(Student $student)
     {
+        $this->authorizeResource('write');
         // Delete profile image if exists
         if ($student->profile_image) {
             Storage::disk('public')->delete($student->profile_image);

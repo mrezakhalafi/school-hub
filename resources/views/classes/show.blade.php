@@ -8,7 +8,9 @@
                 <h1 class="h3">Class Details</h1>
                 <div>
                     <a href="{{ route('classes.index') }}" class="btn btn-secondary">Back to List</a>
-                    <a href="{{ route('classes.edit', $class) }}" class="btn btn-warning">Edit</a>
+                    @if(Auth::user()->isAdmin())
+                        <a href="{{ route('classes.edit', $class) }}" class="btn btn-warning">Edit</a>
+                    @endif
                 </div>
             </div>
             
@@ -62,9 +64,11 @@
             <div class="card mt-4">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <h5 class="card-title mb-0">Students in this Class</h5>
-                    <a href="{{ route('students.create') }}?class_id={{ $class->id }}" class="btn btn-primary btn-sm">
-                        Add Student
-                    </a>
+                    @if(Auth::user()->isAdmin())
+                        <a href="{{ route('students.create') }}?class_id={{ $class->id }}" class="btn btn-primary btn-sm">
+                            Add Student
+                        </a>
+                    @endif
                 </div>
                 <div class="card-body">
                     @if($class->students->count() > 0)
@@ -86,7 +90,9 @@
                                             <td>{{ ucfirst($student->gender) }}</td>
                                             <td>
                                                 <a href="{{ route('students.show', $student) }}" class="btn btn-sm btn-info">View</a>
-                                                <a href="{{ route('students.edit', $student) }}" class="btn btn-sm btn-warning">Edit</a>
+                                                @if(Auth::user()->isAdmin())
+                                                    <a href="{{ route('students.edit', $student) }}" class="btn btn-sm btn-warning">Edit</a>
+                                                @endif
                                             </td>
                                         </tr>
                                     @endforeach
@@ -95,24 +101,28 @@
                         </div>
                     @else
                         <p class="text-muted">No students registered in this class.</p>
-                        <a href="{{ route('students.create') }}?class_id={{ $class->id }}" class="btn btn-primary">
-                            Add Student
-                        </a>
+                        @if(Auth::user()->isAdmin())
+                            <a href="{{ route('students.create') }}?class_id={{ $class->id }}" class="btn btn-primary">
+                                Add Student
+                            </a>
+                        @endif
                     @endif
                 </div>
             </div>
             
             <!-- Delete Button -->
-            <div class="mt-4">
-                <form action="{{ route('classes.destroy', $class) }}" method="POST" class="d-inline">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-danger" 
-                            onclick="return confirm('Are you sure you want to delete this class? All associated students will be affected.')">
-                        Delete Class
-                    </button>
-                </form>
-            </div>
+            @if(Auth::user()->isAdmin())
+                <div class="mt-4">
+                    <form action="{{ route('classes.destroy', $class) }}" method="POST" class="d-inline">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger"
+                                onclick="return confirm('Are you sure you want to delete this class? All associated students will be affected.')">
+                            Delete Class
+                        </button>
+                    </form>
+                </div>
+            @endif
         </div>
     </div>
 </div>

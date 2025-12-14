@@ -4,17 +4,40 @@ namespace App\Http\Controllers;
 
 use App\Models\Teacher;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Response;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class TeacherController extends Controller
 {
+    private function authorizeResource($action = 'read')
+    {
+        $user = Auth::user();
+
+        if (!$user) {
+            abort(403, 'Access denied.');
+        }
+
+        // Admins can perform all actions
+        if ($user->isAdmin()) {
+            return true;
+        }
+
+        // Teachers and students can only read
+        if ($action === 'read') {
+            return true;
+        }
+
+        abort(403, 'Access denied. Only read operations are allowed for your role.');
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index(Request $request)
     {
+        $this->authorizeResource('read');
         $query = Teacher::with('class'); // Include class relationship for filtering
 
         // Search functionality
@@ -52,6 +75,7 @@ class TeacherController extends Controller
      */
     public function create()
     {
+        $this->authorizeResource('write');
         return view('teachers.create');
     }
 
@@ -60,6 +84,7 @@ class TeacherController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorizeResource('write');
         $request->validate([
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
@@ -89,6 +114,7 @@ class TeacherController extends Controller
      */
     public function show(Teacher $teacher)
     {
+        $this->authorizeResource('read');
         // Load relationships if needed
         $teacher->load('class');
         return view('teachers.show', compact('teacher'));
@@ -99,6 +125,7 @@ class TeacherController extends Controller
      */
     public function edit(Teacher $teacher)
     {
+        $this->authorizeResource('write');
         return view('teachers.edit', compact('teacher'));
     }
 
@@ -107,6 +134,7 @@ class TeacherController extends Controller
      */
     public function update(Request $request, Teacher $teacher)
     {
+        $this->authorizeResource('write');
         $request->validate([
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
@@ -149,6 +177,7 @@ class TeacherController extends Controller
      */
     public function destroy(Teacher $teacher)
     {
+        $this->authorizeResource('write');
         // Delete profile image if exists
         if ($teacher->profile_image) {
             Storage::disk('public')->delete($teacher->profile_image);
