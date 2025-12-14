@@ -46,11 +46,35 @@ class DashboardController extends Controller
                 'recentAttendances'
             ));
         }
-        // If user is teacher or student, show simplified dashboard with only attendance button
+        // If user is teacher, show dashboard with events and access to teachers/students
+        elseif ($user->isTeacher()) {
+            // Get recent events for teacher
+            $recentEvents = SchoolEvent::orderBy('start_date', 'desc')->limit(5)->get();
+
+            // Get all teachers for teacher to view
+            $teachers = Teacher::all();
+
+            // Get all students for teacher to view
+            $students = Student::all();
+
+            return view('dashboard.teacher', compact(
+                'recentEvents',
+                'teachers',
+                'students'
+            ));
+        }
+        // If user is student, show dashboard with events and access to teachers
         else {
-            return view('dashboard.attendance-only', [
-                'user' => $user,
-            ]);
+            // Get recent events for student
+            $recentEvents = SchoolEvent::orderBy('start_date', 'desc')->limit(5)->get();
+
+            // Get all teachers for student to view
+            $teachers = Teacher::all();
+
+            return view('dashboard.student', compact(
+                'recentEvents',
+                'teachers'
+            ));
         }
     }
 }
