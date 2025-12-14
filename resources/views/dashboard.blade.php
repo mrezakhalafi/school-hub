@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@use('Illuminate\Support\Str')
+
 @section('content')
     <div class="container">
         <div class="row">
@@ -135,9 +137,9 @@
             </div>
         </div>
 
-        <!-- Recent Events -->
+        <!-- Recent Events and Attendance Records -->
         <div class="row">
-            <div class="col-12">
+            <div class="col-md-6">
                 <div class="card">
                     <div class="card-header">
                         <h5 class="card-title mb-0">Recent Events</h5>
@@ -181,6 +183,51 @@
                             </div>
                         @else
                             <p class="text-muted">No recent events available.</p>
+                        @endif
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Attendance Records for Admins -->
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">Recent Attendance</h5>
+                    </div>
+                    <div class="card-body">
+                        @if (isset($recentAttendances) && $recentAttendances->count() > 0)
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>User</th>
+                                            <th>Status</th>
+                                            <th>Date</th>
+                                            <th>Note</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($recentAttendances as $attendance)
+                                            <tr>
+                                                <td>{{ $attendance->user->name }}</td>
+                                                <td>
+                                                    <span class="badge
+                                                        @if($attendance->status == 'present') bg-success
+                                                        @elseif($attendance->status == 'absent') bg-danger
+                                                        @elseif($attendance->status == 'late') bg-warning
+                                                        @endif">
+                                                        {{ ucfirst($attendance->status) }}
+                                                    </span>
+                                                </td>
+                                                <td>{{ $attendance->date->format('M d, Y') }}</td>
+                                                <td>{{ Str::limit($attendance->note, 30, '...') ?: '-' }}</td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        @else
+                            <p class="text-muted">No recent attendance records available.</p>
                         @endif
                     </div>
                 </div>

@@ -8,22 +8,49 @@ use App\Models\Teacher;
 use App\Models\ClassModel;
 use App\Models\SchoolEvent;
 use App\Models\PermissionReport;
+use App\Models\Attendance;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
     public function index()
     {
-        // Get summary data for the dashboard
-        $studentCount = Student::count();
-        $teacherCount = Teacher::count();
-        $classCount = ClassModel::count();
-        $eventCount = SchoolEvent::count();
-        $permissionReportCount = PermissionReport::count();
+        $user = Auth::user();
 
-        // Get recent events
-        $recentEvents = SchoolEvent::orderBy('start_date', 'desc')->limit(5)->get();
+        // If user is admin, show full dashboard
+        if ($user->isAdmin()) {
+            // Get summary data for the dashboard
+            $studentCount = Student::count();
+            $teacherCount = Teacher::count();
+            $classCount = ClassModel::count();
+            $eventCount = SchoolEvent::count();
+            $permissionReportCount = PermissionReport::count();
 
-        // Pass data to the view
-        return view('dashboard', compact('studentCount', 'teacherCount', 'classCount', 'eventCount', 'permissionReportCount', 'recentEvents'));
+            // Get recent attendances for admin
+            $recentAttendances = Attendance::with('user')
+                ->orderBy('date', 'desc')
+                ->limit(10)
+                ->get();
+
+            // Get recent events
+            $recentEvents = SchoolEvent::orderBy('start_date', 'desc')->limit(5)->get();
+
+            // Pass data to the view
+            return view('dashboard', compact(
+                'studentCount',
+                'teacherCount',
+                'classCount',
+                'eventCount',
+                'permissionReportCount',
+                'recentEvents',
+                'recentAttendances'
+            ));
+        }
+        // If user is teacher or student, show simplified dashboard with only attendance button
+        else {
+            return view('dashboard.attendance-only', [
+                'user' => $user,
+            ]);
+        }
     }
 }
