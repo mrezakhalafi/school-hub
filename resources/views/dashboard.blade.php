@@ -10,9 +10,9 @@
             </div>
         </div>
 
-        <!-- Summary Cards -->
+        <!-- Summary Cards - Row 1 (3 cards) -->
         <div class="row mb-4">
-            <div class="col-md-2 mb-3">
+            <div class="col-md-4 mb-3">
                 <a href="{{ route('students.index') }}">
                     <div class="card text-white bg-primary">
                         <div class="card-body">
@@ -30,7 +30,7 @@
                 </a>
             </div>
 
-            <div class="col-md-2 mb-3">
+            <div class="col-md-4 mb-3">
                 <a href="{{ route('teachers.index') }}">
                     <div class="card text-white bg-success">
                         <div class="card-body">
@@ -48,7 +48,7 @@
                 </a>
             </div>
 
-            <div class="col-md-2 mb-3">
+            <div class="col-md-4 mb-3">
                 <a href="{{ route('classes.index') }}">
                     <div class="card text-white bg-info">
                         <div class="card-body">
@@ -65,8 +65,11 @@
                     </div>
                 </a>
             </div>
+        </div>
 
-            <div class="col-md-2 mb-3">
+        <!-- Summary Cards - Row 2 (4 cards) -->
+        <div class="row mb-4">
+            <div class="col-md-3 mb-3">
                 <a href="{{ route('permission-reports.index') }}">
                     <div class="card text-white bg-secondary">
                         <div class="card-body">
@@ -85,7 +88,7 @@
             </div>
 
             @if(Auth::user()->isAdmin())
-            <div class="col-md-2 mb-3">
+            <div class="col-md-3 mb-3">
                 <a href="{{ route('security-guards.index') }}">
                     <div class="card text-white bg-warning">
                         <div class="card-body">
@@ -103,7 +106,7 @@
                 </a>
             </div>
 
-            <div class="col-md-2 mb-3">
+            <div class="col-md-3 mb-3">
                 <a href="{{ route('office-boys.index') }}">
                     <div class="card text-white bg-danger">
                         <div class="card-body">
@@ -114,6 +117,24 @@
                                 </div>
                                 <div class="align-self-center">
                                     <i class="fas fa-user-tie"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-md-3 mb-3">
+                <a href="{{ route('events.index') }}">
+                    <div class="card text-white bg-dark">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <h4 class="card-title">{{ $eventCount ?? 0 }}</h4>
+                                    <p class="card-text">Events</p>
+                                </div>
+                                <div class="align-self-center">
+                                    <i class="fas fa-calendar-alt"></i>
                                 </div>
                             </div>
                         </div>
