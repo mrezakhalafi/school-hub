@@ -110,6 +110,83 @@
                 </div>
             </div>
             
+            <!-- Schedule Section -->
+            <div class="card mt-4">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="card-title mb-0">Class Schedule</h5>
+                    @if(Auth::user()->isAdmin())
+                        <a href="{{ route('schedules.index', $class->id) }}" class="btn btn-primary btn-sm">
+                            Manage Schedule
+                        </a>
+                    @endif
+                </div>
+                <div class="card-body">
+                    @php
+                        $schedules = $class->schedules()->orderBy('day')->orderBy('hour')->get();
+                        $hasSchedules = $schedules->count() > 0;
+                    @endphp
+
+                    @if($hasSchedules)
+                        <div class="table-responsive">
+                            <table class="table table-sm">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Day</th>
+                                        <th>Hour</th>
+                                        <th>Subject</th>
+                                        <th>Teacher</th>
+                                        @if(Auth::user()->isAdmin())
+                                        <th>Actions</th>
+                                        @endif
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($schedules as $schedule)
+                                    <tr>
+                                        <td>{{ $schedule->day }}</td>
+                                        <td>{{ $schedule->hour }}:00</td>
+                                        <td>{{ $schedule->subject }}</td>
+                                        <td>
+                                            @if($schedule->teacher)
+                                                {{ $schedule->teacher->first_name }} {{ $schedule->teacher->last_name }}
+                                            @else
+                                                <span class="text-muted">No Teacher</span>
+                                            @endif
+                                        </td>
+                                        @if(Auth::user()->isAdmin())
+                                        <td>
+                                            <a href="{{ route('schedules.edit', [$class->id, $schedule->id]) }}"
+                                               class="btn btn-sm btn-warning">Edit</a>
+                                            <form action="{{ route('schedules.destroy', [$class->id, $schedule->id]) }}"
+                                                  method="POST" class="d-inline">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-sm btn-danger"
+                                                        onclick="return confirm('Are you sure you want to delete this schedule?')">
+                                                    Delete
+                                                </button>
+                                            </form>
+                                        </td>
+                                        @endif
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                        <a href="{{ route('schedules.index', $class->id) }}" class="btn btn-outline-primary">
+                            View Full Schedule Table
+                        </a>
+                    @else
+                        <p class="text-muted">No schedule set for this class.</p>
+                        @if(Auth::user()->isAdmin())
+                            <a href="{{ route('schedules.index', $class->id) }}" class="btn btn-primary">
+                                Create Schedule
+                            </a>
+                        @endif
+                    @endif
+                </div>
+            </div>
+
             <!-- Delete Button -->
             @if(Auth::user()->isAdmin())
                 <div class="mt-4">
@@ -117,7 +194,7 @@
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger"
-                                onclick="return confirm('Are you sure you want to delete this class? All associated students will be affected.')">
+                                onclick="return confirm('Are you sure you want to delete this class? All associated students and schedules will be affected.')">
                             Delete Class
                         </button>
                     </form>

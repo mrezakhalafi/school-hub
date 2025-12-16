@@ -10,6 +10,7 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\SecurityGuardController;
 use App\Http\Controllers\OfficeBoyController;
+use App\Http\Controllers\ScheduleController;
 use Illuminate\Support\Facades\Route;
 
 // Welcome page
@@ -42,6 +43,16 @@ Route::resource('office-boys', OfficeBoyController::class)
     ->middleware(['auth']);
 
 Route::get('office-boys/{officeBoy}/qr', [OfficeBoyController::class, 'generateOfficeBoyQR'])->name('office-boys.qr');
+
+// Schedule routes - nested under classes
+Route::prefix('classes/{classId}')->name('schedules.')->middleware(['auth'])->group(function () {
+    Route::get('/schedules', [ScheduleController::class, 'index'])->name('index');
+    Route::get('/schedules/create', [ScheduleController::class, 'create'])->name('create');
+    Route::post('/schedules', [ScheduleController::class, 'store'])->name('store');
+    Route::get('/schedules/{schedule}/edit', [ScheduleController::class, 'edit'])->name('edit');
+    Route::put('/schedules/{schedule}', [ScheduleController::class, 'update'])->name('update');
+    Route::delete('/schedules/{schedule}', [ScheduleController::class, 'destroy'])->name('destroy');
+});
 
 // Student routes
 Route::resource('students', StudentController::class)

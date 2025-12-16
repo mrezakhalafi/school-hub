@@ -35,6 +35,7 @@ class DatabaseSeeder extends Seeder
             EventSeeder::class,
             SecurityGuardSeeder::class,
             OfficeBoySeeder::class,
+            ScheduleSeeder::class,
         ]);
     }
 }
