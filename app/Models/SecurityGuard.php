@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Teacher extends Model
+class SecurityGuard extends Model
 {
     use HasFactory;
 
@@ -18,27 +18,19 @@ class Teacher extends Model
         'gender',
         'address',
         'profile_image',
+        'badge_number',
+        'shift',
+        'hire_date',
     ];
 
     protected $casts = [
         'birth_date' => 'date',
+        'hire_date' => 'date',
     ];
-
-    // A teacher can be a class advisor for one class
-    public function class()
-    {
-        return $this->hasOne(ClassModel::class, 'teacher_id');
-    }
 
     // Get full name attribute
     public function getFullNameAttribute()
     {
         return $this->first_name . ' ' . $this->last_name;
-    }
-
-    // Get formatted ID attribute
-    public function getFormattedIdAttribute()
-    {
-        return 'TEA' . str_pad($this->id, 4, '0', STR_PAD_LEFT);
     }
 }

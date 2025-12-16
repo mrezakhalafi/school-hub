@@ -33,6 +33,8 @@ class DatabaseSeeder extends Seeder
             StudentSeeder::class,
             GuardianSeeder::class,
             EventSeeder::class,
+            SecurityGuardSeeder::class,
+            OfficeBoySeeder::class,
         ]);
     }
 }

@@ -64,6 +64,7 @@
                             <thead>
                                 <tr>
                                     <th>Photo</th>
+                                    <th>Teacher ID</th>
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Gender</th>
@@ -84,6 +85,7 @@
                                                      alt="Profile" class="rounded-circle" width="40" height="40">
                                             @endif
                                         </td>
+                                        <td>{{ $teacher->formatted_id }}</td>
                                         <td>{{ $teacher->first_name }} {{ $teacher->last_name }}</td>
                                         <td>{{ $teacher->email }}</td>
                                         <td>{{ ucfirst($teacher->gender) }}</td>
@@ -97,8 +99,8 @@
                                             @endif
                                         </td>
                                         <td>
-                                            <button class="btn btn-sm btn-secondary" 
-                                                    data-bs-toggle="modal" 
+                                            <button class="btn btn-sm btn-secondary"
+                                                    data-bs-toggle="modal"
                                                     data-bs-target="#qrModal"
                                                     data-qrcode="{{ route('teachers.qr', $teacher) }}"
                                                     data-name="{{ $teacher->first_name . ' ' . $teacher->last_name }}"
@@ -123,7 +125,7 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="7" class="text-center">No teachers found.</td>
+                                        <td colspan="8" class="text-center">No teachers found.</td>
                                     </tr>
                                 @endforelse
                             </tbody>

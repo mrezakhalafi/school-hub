@@ -37,7 +37,28 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
                         @auth
-                            <!-- Dashboard and Data Management removed as per requirements -->
+                            @if(Auth::user()->isAdmin())
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('dashboard') }}">{{ __('Dashboard') }}</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('students.index') }}">{{ __('Students') }}</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('teachers.index') }}">{{ __('Teachers') }}</a>
+                                </li>
+                            @elseif(Auth::user()->isTeacher())
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('students.index') }}">{{ __('Students') }}</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('teachers.index') }}">{{ __('Teachers') }}</a>
+                                </li>
+                            @elseif(Auth::user()->isStudent())
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('teachers.index') }}">{{ __('Teachers') }}</a>
+                                </li>
+                            @endif
                         @endauth
                     </ul>
 

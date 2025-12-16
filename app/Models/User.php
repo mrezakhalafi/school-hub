@@ -12,6 +12,8 @@ class User extends Authenticatable
     const ROLE_ADMIN = 'admin';
     const ROLE_TEACHER = 'teacher';
     const ROLE_STUDENT = 'student';
+    const ROLE_SECURITY_GUARD = 'security_guard';
+    const ROLE_OFFICE_BOY = 'office_boy';
 
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
@@ -73,5 +75,21 @@ class User extends Authenticatable
     public function isStudent(): bool
     {
         return $this->role === self::ROLE_STUDENT;
+    }
+
+    /**
+     * Check if user has security guard role
+     */
+    public function isSecurityGuard(): bool
+    {
+        return $this->role === self::ROLE_SECURITY_GUARD;
+    }
+
+    /**
+     * Check if user has office boy role
+     */
+    public function isOfficeBoy(): bool
+    {
+        return $this->role === self::ROLE_OFFICE_BOY;
     }
 }

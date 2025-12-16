@@ -8,6 +8,8 @@ use App\Http\Controllers\ClassController;
 use App\Http\Controllers\GuardianController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\AttendanceController;
+use App\Http\Controllers\SecurityGuardController;
+use App\Http\Controllers\OfficeBoyController;
 use Illuminate\Support\Facades\Route;
 
 // Welcome page
@@ -28,6 +30,18 @@ Route::post('/attendance', [AttendanceController::class, 'store'])
 Route::get('/api/user/{user}/attendances', [AttendanceController::class, 'getUserAttendance'])
     ->middleware(['auth'])
     ->name('user.attendances.api');
+
+// Security Guard routes
+Route::resource('security-guards', SecurityGuardController::class)
+    ->middleware(['auth']);
+
+Route::get('security-guards/{securityGuard}/qr', [SecurityGuardController::class, 'generateSecurityGuardQR'])->name('security-guards.qr');
+
+// Office Boy routes
+Route::resource('office-boys', OfficeBoyController::class)
+    ->middleware(['auth']);
+
+Route::get('office-boys/{officeBoy}/qr', [OfficeBoyController::class, 'generateOfficeBoyQR'])->name('office-boys.qr');
 
 // Student routes
 Route::resource('students', StudentController::class)
