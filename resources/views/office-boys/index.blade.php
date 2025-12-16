@@ -79,9 +79,7 @@
                                         @if($boy->profile_image)
                                             <img src="{{ asset('storage/' . $boy->profile_image) }}" alt="Profile" width="50" height="50" class="rounded-circle">
                                         @else
-                                            <div class="bg-secondary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
-                                                {{ strtoupper(substr($boy->first_name, 0, 1)) }}
-                                            </div>
+                                            <img src="https://picsum.photos/100/100?random={{ $boy->id }}" alt="Profile" width="50" height="50" class="rounded-circle">
                                         @endif
                                     </td>
                                     <td>{{ $boy->first_name }} {{ $boy->last_name }}</td>

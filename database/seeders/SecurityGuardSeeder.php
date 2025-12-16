@@ -13,6 +13,6 @@ class SecurityGuardSeeder extends Seeder
      */
     public function run(): void
     {
-        SecurityGuard::factory()->count(10)->create();
+        SecurityGuard::factory()->count(6)->create();
     }
 }

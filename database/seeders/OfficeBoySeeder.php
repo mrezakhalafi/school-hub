@@ -13,6 +13,6 @@ class OfficeBoySeeder extends Seeder
      */
     public function run(): void
     {
-        OfficeBoy::factory()->count(10)->create();
+        OfficeBoy::factory()->count(7)->create();
     }
 }

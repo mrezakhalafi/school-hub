@@ -15,9 +15,7 @@
                     @if($securityGuard->profile_image)
                         <img src="{{ asset('storage/' . $securityGuard->profile_image) }}" alt="Profile" class="img-fluid rounded-circle mb-3" style="width: 200px; height: 200px; object-fit: cover;">
                     @else
-                        <div class="bg-secondary text-white rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 200px; height: 200px;">
-                            <span class="display-4">{{ ucfirst(substr($securityGuard->first_name, 0, 1)) }}</span>
-                        </div>
+                        <img src="https://picsum.photos/400/400?random={{ $securityGuard->id }}" alt="Profile" class="img-fluid rounded-circle mb-3" style="width: 200px; height: 200px; object-fit: cover;">
                     @endif
                     <h4>{{ $securityGuard->getFullNameAttribute() }}</h4>
                     <p class="text-muted">{{ $securityGuard->badge_number }}</p>

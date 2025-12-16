@@ -127,6 +127,10 @@
                                                 </label>
                                             </div>
                                         </div>
+                                    @else
+                                        <div class="mt-2">
+                                            <img src="https://picsum.photos/200/200?random={{ $officeBoy->id }}" alt="Current Profile" width="100" class="rounded">
+                                        </div>
                                     @endif
                                 </div>
                             </div>
