@@ -36,30 +36,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-                        @auth
-                            @if(Auth::user()->isAdmin())
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('dashboard') }}">{{ __('Dashboard') }}</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('students.index') }}">{{ __('Students') }}</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('teachers.index') }}">{{ __('Teachers') }}</a>
-                                </li>
-                            @elseif(Auth::user()->isTeacher())
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('students.index') }}">{{ __('Students') }}</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('teachers.index') }}">{{ __('Teachers') }}</a>
-                                </li>
-                            @elseif(Auth::user()->isStudent())
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('teachers.index') }}">{{ __('Teachers') }}</a>
-                                </li>
-                            @endif
-                        @endauth
+                        <!-- Only show logo, no menu items -->
                     </ul>
 
                     <!-- Right Side Of Navbar -->
