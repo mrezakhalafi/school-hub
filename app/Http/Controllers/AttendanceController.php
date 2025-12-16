@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 use App\Models\Attendance;
 use Illuminate\Support\Facades\Auth;
 
@@ -32,13 +33,48 @@ class AttendanceController extends Controller
             return redirect()->back()->withErrors(['error' => 'Attendance already submitted for this date.']);
         }
 
-        Attendance::create([
+        $attendance = Attendance::create([
             'user_id' => $user->id,
             'status' => $request->status,
             'note' => $request->note,
             'date' => $request->date,
         ]);
 
+        // Return JSON response if AJAX request, otherwise redirect
+        if ($request->ajax() || $request->expectsJson()) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Attendance submitted successfully!',
+                'attendance' => $attendance
+            ]);
+        }
+
         return redirect()->back()->with('success', 'Attendance submitted successfully!');
+    }
+
+    /**
+     * Get attendance records for a specific user
+     */
+    public function getUserAttendance($userId)
+    {
+        $authenticatedUser = Auth::user();
+
+        // Check if the authenticated user is requesting their own data or is an admin
+        if ($authenticatedUser->id != $userId && !$authenticatedUser->isAdmin()) {
+            return response()->json(['error' => 'Unauthorized'], 403);
+        }
+
+        $attendances = Attendance::where('user_id', $userId)->get();
+
+        // Format the response as an associative array with date as key
+        $result = [];
+        foreach ($attendances as $attendance) {
+            $result[$attendance->date->toDateString()] = [
+                'status' => $attendance->status,
+                'note' => $attendance->note
+            ];
+        }
+
+        return response()->json($result);
     }
 }

@@ -20,10 +20,14 @@ Route::get('/dashboard', [DashboardController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
-// Attendance route
+// Attendance routes
 Route::post('/attendance', [AttendanceController::class, 'store'])
     ->middleware(['auth'])
     ->name('attendance.store');
+
+Route::get('/api/user/{user}/attendances', [AttendanceController::class, 'getUserAttendance'])
+    ->middleware(['auth'])
+    ->name('user.attendances.api');
 
 // Student routes
 Route::resource('students', StudentController::class)
