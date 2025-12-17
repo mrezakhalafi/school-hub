@@ -90,16 +90,16 @@
                                     <td>{{ $boy->hire_date ? $boy->hire_date->format('d M Y') : 'N/A' }}</td>
                                     <td>
                                         <a href="{{ route('office-boys.show', $boy) }}" class="btn btn-sm btn-info" title="View">
-                                            <i class="fas fa-eye"></i>
+                                            <i class="fas fa-eye"></i> View
                                         </a>
                                         <a href="{{ route('office-boys.edit', $boy) }}" class="btn btn-sm btn-warning" title="Edit">
-                                            <i class="fas fa-edit"></i>
+                                            <i class="fas fa-edit"></i> Edit
                                         </a>
                                         <a href="{{ route('office-boys.qr', $boy) }}" class="btn btn-sm btn-primary" title="QR Code">
-                                            <i class="fas fa-qrcode"></i>
+                                            <i class="fas fa-qrcode"></i> QR
                                         </a>
                                         <button type="button" class="btn btn-sm btn-danger" onclick="deleteBoy({{ $boy->id }})" title="Delete">
-                                            <i class="fas fa-trash"></i>
+                                            <i class="fas fa-trash"></i> Delete
                                         </button>
                                     </td>
                                 </tr>

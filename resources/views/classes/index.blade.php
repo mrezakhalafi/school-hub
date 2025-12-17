@@ -52,13 +52,15 @@
                                         <td>{{ $class->students->count() }}</td>
                                         <td>
                                             @if(Auth::user()->isAdmin())
-                                                <a href="{{ route('classes.edit', $class) }}" class="btn btn-sm btn-warning" onclick="event.stopPropagation();">Edit</a>
+                                                <a href="{{ route('classes.edit', $class) }}" class="btn btn-sm btn-warning" onclick="event.stopPropagation();">
+                                                    <i class="fas fa-edit"></i> Edit
+                                                </a>
                                                 <form action="{{ route('classes.destroy', $class) }}" method="POST" class="d-inline" onclick="event.stopPropagation();">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-sm btn-danger"
                                                             onclick="event.stopPropagation(); return confirm('Are you sure you want to delete this class? All associated students will be affected.')">
-                                                        Delete
+                                                        <i class="fas fa-trash"></i> Delete
                                                     </button>
                                                 </form>
                                             @endif

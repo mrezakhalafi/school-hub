@@ -33,11 +33,37 @@ class EventController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $this->authorizeResource('read');
-        $events = SchoolEvent::orderBy('start_date', 'desc')->paginate(10);
-        return view('events.index', compact('events'));
+
+        $query = SchoolEvent::query();
+
+        // Search functionality
+        if ($request->filled('search')) {
+            $search = $request->search;
+            $query->where(function($q) use ($search) {
+                $q->where('title', 'like', "%{$search}%")
+                  ->orWhere('location', 'like', "%{$search}%")
+                  ->orWhere('description', 'like', "%{$search}%");
+            });
+        }
+
+        // Filter by event type
+        if ($request->filled('event_type')) {
+            $query->where('event_type', $request->event_type);
+        }
+
+        // Filter by status
+        if ($request->filled('status')) {
+            $query->where('is_published', $request->status === 'published' ? true : false);
+        }
+
+        $events = $query->orderBy('start_date', 'desc')->paginate(10);
+        $eventTypes = ['academic', 'sports', 'arts', 'extracurricular', 'other'];
+        $statuses = ['published', 'draft'];
+
+        return view('events.index', compact('events', 'eventTypes', 'statuses'));
     }
 
     /**

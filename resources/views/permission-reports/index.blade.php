@@ -108,24 +108,32 @@
                                                     @csrf
                                                     @method('POST')
                                                     <input type="hidden" name="status" value="approved">
-                                                    <button type="submit" class="btn btn-sm btn-success" onclick="return confirm('Are you sure you want to approve this permission?')">Approve</button>
+                                                    <button type="submit" class="btn btn-sm btn-success" onclick="return confirm('Are you sure you want to approve this permission?')">
+                                                        <i class="fas fa-check"></i> Approve
+                                                    </button>
                                                 </form>
                                                 <form method="POST" action="{{ route('permission-reports.status.update', $report) }}" class="d-inline">
                                                     @csrf
                                                     @method('POST')
                                                     <input type="hidden" name="status" value="rejected">
-                                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to reject this permission?')">Reject</button>
+                                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to reject this permission?')">
+                                                        <i class="fas fa-times"></i> Reject
+                                                    </button>
                                                 </form>
                                             @endif
-                                            <a href="{{ route('permission-reports.show', $report) }}" class="btn btn-sm btn-info">View</a>
+                                            <a href="{{ route('permission-reports.show', $report) }}" class="btn btn-sm btn-info">
+                                                <i class="fas fa-eye"></i> View
+                                            </a>
                                             @if(Auth::user()->isAdmin())
-                                                <a href="{{ route('permission-reports.edit', $report) }}" class="btn btn-sm btn-warning">Edit</a>
+                                                <a href="{{ route('permission-reports.edit', $report) }}" class="btn btn-sm btn-warning">
+                                                    <i class="fas fa-edit"></i> Edit
+                                                </a>
                                                 <form action="{{ route('permission-reports.destroy', $report) }}" method="POST" class="d-inline">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-sm btn-danger"
                                                             onclick="return confirm('Are you sure you want to delete this permission report?')">
-                                                        Delete
+                                                        <i class="fas fa-trash"></i> Delete
                                                     </button>
                                                 </form>
                                             @endif

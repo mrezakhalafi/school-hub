@@ -105,19 +105,23 @@
                                                     data-qrcode="{{ route('teachers.qr', $teacher) }}"
                                                     data-name="{{ $teacher->first_name . ' ' . $teacher->last_name }}"
                                                     data-type="Teacher">
-                                                Tampilkan QR
+                                                <i class="fas fa-qrcode"></i> QR
                                             </button>
                                         </td>
                                         <td>
-                                            <a href="{{ route('teachers.show', $teacher) }}" class="btn btn-sm btn-info">View</a>
+                                            <a href="{{ route('teachers.show', $teacher) }}" class="btn btn-sm btn-info">
+                                                <i class="fas fa-eye"></i> View
+                                            </a>
                                             @if(Auth::user()->isAdmin())
-                                                <a href="{{ route('teachers.edit', $teacher) }}" class="btn btn-sm btn-warning">Edit</a>
+                                                <a href="{{ route('teachers.edit', $teacher) }}" class="btn btn-sm btn-warning">
+                                                    <i class="fas fa-edit"></i> Edit
+                                                </a>
                                                 <form action="{{ route('teachers.destroy', $teacher) }}" method="POST" class="d-inline">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-sm btn-danger"
                                                             onclick="return confirm('Are you sure you want to delete this teacher?')">
-                                                        Delete
+                                                        <i class="fas fa-trash"></i> Delete
                                                     </button>
                                                 </form>
                                             @endif

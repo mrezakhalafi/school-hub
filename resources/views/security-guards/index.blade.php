@@ -97,16 +97,16 @@
                                     <td>{{ $guard->hire_date ? $guard->hire_date->format('d M Y') : 'N/A' }}</td>
                                     <td>
                                         <a href="{{ route('security-guards.show', $guard) }}" class="btn btn-sm btn-info" title="View">
-                                            <i class="fas fa-eye"></i>
+                                            <i class="fas fa-eye"></i> View
                                         </a>
                                         <a href="{{ route('security-guards.edit', $guard) }}" class="btn btn-sm btn-warning" title="Edit">
-                                            <i class="fas fa-edit"></i>
+                                            <i class="fas fa-edit"></i> Edit
                                         </a>
                                         <a href="{{ route('security-guards.qr', $guard) }}" class="btn btn-sm btn-primary" title="QR Code">
-                                            <i class="fas fa-qrcode"></i>
+                                            <i class="fas fa-qrcode"></i> QR
                                         </a>
                                         <button type="button" class="btn btn-sm btn-danger" onclick="deleteGuard({{ $guard->id }})" title="Delete">
-                                            <i class="fas fa-trash"></i>
+                                            <i class="fas fa-trash"></i> Delete
                                         </button>
                                     </td>
                                 </tr>
