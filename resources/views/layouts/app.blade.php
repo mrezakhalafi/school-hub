@@ -19,13 +19,13 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="bg-light">
+<body class="bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 min-h-screen">
     <div id="app">
         <!-- Navigation -->
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm" style="background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'School-Hub') }}
+                <a class="navbar-brand fw-bold fs-4" href="{{ url('/') }}">
+                    <span class="text-primary">{{ config('app.name', 'School-Hub') }}</span>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -36,7 +36,82 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-                        <!-- Only show logo, no menu items -->
+                        @auth
+                            @if(Auth::user()->isAdmin())
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('dashboard') }}">
+                                        <i class="fas fa-home me-1"></i> Dashboard
+                                    </a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="fas fa-users me-1"></i> Manage
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="{{ route('teachers.index') }}">Teachers</a></li>
+                                        <li><a class="dropdown-item" href="{{ route('students.index') }}">Students</a></li>
+                                        <li><a class="dropdown-item" href="{{ route('guardians.index') }}">Guardians</a></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item" href="{{ route('classes.index') }}">Classes</a></li>
+                                        <li><a class="dropdown-item" href="{{ route('events.index') }}">Events</a></li>
+                                        <li><a class="dropdown-item" href="{{ route('permission-reports.index') }}">Permission Reports</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="fas fa-shield-alt me-1"></i> Staff
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="{{ route('security-guards.index') }}">Security Guards</a></li>
+                                        <li><a class="dropdown-item" href="{{ route('office-boys.index') }}">Office Boys</a></li>
+                                    </ul>
+                                </li>
+                            @elseif(Auth::user()->isTeacher())
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('dashboard.teacher') }}">
+                                        <i class="fas fa-home me-1"></i> Dashboard
+                                    </a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="fas fa-users me-1"></i> Students
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="{{ route('students.index') }}">All Students</a></li>
+                                        @php
+                                            $teacher = \App\Models\Teacher::where('email', Auth::user()->email)->first();
+                                            $assignedClass = $teacher ? $teacher->class : null;
+                                        @endphp
+                                        @if($assignedClass)
+                                            <li><a class="dropdown-item" href="{{ route('classes.show', $assignedClass) }}">My Class ({{ $assignedClass->name }})</a></li>
+                                        @else
+                                            <li><span class="dropdown-item-text text-muted">No assigned class</span></li>
+                                        @endif
+                                    </ul>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('events.index') }}">
+                                        <i class="fas fa-calendar me-1"></i> Events
+                                    </a>
+                                </li>
+                            @elseif(Auth::user()->isStudent())
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('dashboard.student') }}">
+                                        <i class="fas fa-home me-1"></i> Dashboard
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('permission-reports.create') }}">
+                                        <i class="fas fa-file-alt me-1"></i> Request Permission
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('events.index') }}">
+                                        <i class="fas fa-calendar me-1"></i> Events
+                                    </a>
+                                </li>
+                            @endif
+                        @endauth
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -56,20 +131,27 @@
                             @endif
                         @else
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button"
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
+                                    <img src="https://ui-avatars.com/api/?name={{ urlencode(Auth::user()->name) }}&background=3b82f6&color=fff"
+                                         class="rounded-circle me-2" width="30" height="30" alt="Profile">
+                                    <span class="d-none d-md-inline">{{ Auth::user()->name }}</span>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('profile.edit') }}">
-                                        {{ __('Profile') }}
+                                        <i class="fas fa-user me-2"></i> {{ __('Profile') }}
                                     </a>
-
+                                    @if(Auth::user()->isAdmin())
+                                        <a class="dropdown-item" href="{{ route('dashboard') }}">
+                                            <i class="fas fa-tachometer-alt me-2"></i> {{ __('Admin Dashboard') }}
+                                        </a>
+                                    @endif
+                                    <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        <i class="fas fa-sign-out-alt me-2"></i> {{ __('Logout') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -84,8 +166,10 @@
         </nav>
 
         <!-- Main Content -->
-        <main class="py-4">
-            @yield('content')
+        <main class="py-5">
+            <div class="container">
+                @yield('content')
+            </div>
         </main>
     </div>
 </body>

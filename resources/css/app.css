@@ -10,3 +10,101 @@ svg {
     width: 20px;
     height: 20px;
 }
+
+/* Modern Input Fields */
+.form-control {
+    transition: all 0.3s ease;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px !important;
+    padding: 12px 16px;
+}
+
+.form-control:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 0.2rem rgba(59, 130, 246, 0.25);
+    background-color: #ffffff;
+}
+
+.form-control-lg {
+    padding: 14px 18px;
+    font-size: 1.1rem;
+}
+
+/* Modern Buttons */
+.btn {
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+    border: none;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+    border: none;
+}
+
+.btn-outline-light {
+    border: 1px solid #e2e8f0;
+    background: white;
+    transition: all 0.3s ease;
+}
+
+.btn-outline-light:hover {
+    background: #f8fafc;
+    border-color: #cbd5e1;
+}
+
+/* Modern Cards */
+.card {
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Input Group */
+.input-group {
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.input-group-text {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-right: none;
+    border-radius: 12px 0 0 12px;
+    color: #64748b;
+}
+
+.input-group .form-control {
+    border-radius: 0 12px 12px 0 !important;
+    border-left: none;
+    border-right: 1px solid #e2e8f0;
+}
+
+/* Custom gradients */
+.bg-gradient-primary {
+    background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+}
+
+.bg-gradient-success {
+    background: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);
+}

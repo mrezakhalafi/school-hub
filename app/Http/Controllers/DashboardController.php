@@ -19,44 +19,67 @@ class DashboardController extends Controller
 
         // If user is admin, show full dashboard
         if ($user->isAdmin()) {
-            // Get summary data for the dashboard
-            $studentCount = Student::count();
-            $teacherCount = Teacher::count();
-            $classCount = ClassModel::count();
-            $eventCount = SchoolEvent::count();
-            $permissionReportCount = PermissionReport::count();
-            $securityGuardCount = \App\Models\SecurityGuard::count();
-            $officeBoyCount = \App\Models\OfficeBoy::count();
-
-            // Get recent attendances for admin
-            $recentAttendances = Attendance::with('user')
-                ->orderBy('date', 'desc')
-                ->limit(10)
-                ->get();
-
-            // Get recent events
-            $recentEvents = SchoolEvent::orderBy('start_date', 'desc')->limit(5)->get();
-
-            // Pass data to the view
-            return view('dashboard', compact(
-                'studentCount',
-                'teacherCount',
-                'classCount',
-                'eventCount',
-                'permissionReportCount',
-                'securityGuardCount',
-                'officeBoyCount',
-                'recentEvents',
-                'recentAttendances'
-            ));
+            return $this->adminDashboard();
         }
-        // If user is teacher, show dashboard with events and access to teachers/students
+        // If user is teacher, show teacher dashboard
         elseif ($user->isTeacher()) {
-            return view('dashboard.teacher');
+            return $this->teacherDashboard();
         }
-        // If user is student, show dashboard with events and access to teachers
+        // If user is student, show student dashboard
         else {
-            return view('dashboard.student');
+            return $this->studentDashboard();
         }
+    }
+
+    public function adminDashboard()
+    {
+        // Get summary data for the dashboard
+        $studentCount = Student::count();
+        $teacherCount = Teacher::count();
+        $classCount = ClassModel::count();
+        $eventCount = SchoolEvent::count();
+        $permissionReportCount = PermissionReport::count();
+        $securityGuardCount = \App\Models\SecurityGuard::count();
+        $officeBoyCount = \App\Models\OfficeBoy::count();
+        $guardianCount = \App\Models\Guardian::count();
+
+        // Get recent attendances for admin
+        $recentAttendances = Attendance::with('user')
+            ->orderBy('date', 'desc')
+            ->limit(10)
+            ->get();
+
+        // Get recent events
+        $recentEvents = SchoolEvent::orderBy('start_date', 'desc')->limit(5)->get();
+
+        // Pass data to the view
+        return view('dashboard', compact(
+            'studentCount',
+            'teacherCount',
+            'classCount',
+            'eventCount',
+            'permissionReportCount',
+            'securityGuardCount',
+            'officeBoyCount',
+            'guardianCount',
+            'recentEvents',
+            'recentAttendances'
+        ));
+    }
+
+    public function teacherDashboard()
+    {
+        // Get recent events for teacher
+        $recentEvents = SchoolEvent::orderBy('start_date', 'desc')->limit(5)->get();
+
+        return view('dashboard.teacher', compact('recentEvents'));
+    }
+
+    public function studentDashboard()
+    {
+        // Get recent events for student
+        $recentEvents = SchoolEvent::orderBy('start_date', 'desc')->limit(5)->get();
+
+        return view('dashboard.student', compact('recentEvents'));
     }
 }

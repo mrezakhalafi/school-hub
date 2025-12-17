@@ -18,10 +18,31 @@ Route::get('/', function () {
     return view('welcome_custom');
 });
 
-// Dashboard after login
-Route::get('/dashboard', [DashboardController::class, 'index'])
+// Dashboard after login - redirects based on user role
+Route::get('/dashboard', function () {
+    $user = auth()->user();
+
+    if ($user->isAdmin()) {
+        return redirect()->route('dashboard.admin');
+    } elseif ($user->isTeacher()) {
+        return redirect()->route('dashboard.teacher');
+    } else {
+        return redirect()->route('dashboard.student');
+    }
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+// Role-based dashboard routes
+Route::get('/dashboard/admin', [DashboardController::class, 'adminDashboard'])
     ->middleware(['auth', 'verified'])
-    ->name('dashboard');
+    ->name('dashboard.admin');
+
+Route::get('/dashboard/teacher', [DashboardController::class, 'teacherDashboard'])
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard.teacher');
+
+Route::get('/dashboard/student', [DashboardController::class, 'studentDashboard'])
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard.student');
 
 // Attendance routes
 Route::post('/attendance', [AttendanceController::class, 'store'])

@@ -4,290 +4,271 @@
 
 @section('content')
     <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <h1 class="h3 mb-4">Dashboard</h1>
-            </div>
-        </div>
-
-        <!-- Summary Cards - Row 1 (3 cards) -->
-        <div class="row mb-4">
-            <div class="col-md-4 mb-3">
-                <a href="{{ route('students.index') }}">
-                    <div class="card text-white bg-primary">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between">
-                                <div>
-                                    <h4 class="card-title">{{ $studentCount }}</h4>
-                                    <p class="card-text">Students</p>
-                                </div>
-                                <div class="align-self-center">
-                                    <i class="fas fa-users"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-
-            <div class="col-md-4 mb-3">
-                <a href="{{ route('teachers.index') }}">
-                    <div class="card text-white bg-success">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between">
-                                <div>
-                                    <h4 class="card-title">{{ $teacherCount }}</h4>
-                                    <p class="card-text">Teachers</p>
-                                </div>
-                                <div class="align-self-center">
-                                    <i class="fas fa-chalkboard-teacher"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-
-            <div class="col-md-4 mb-3">
-                <a href="{{ route('classes.index') }}">
-                    <div class="card text-white bg-info">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between">
-                                <div>
-                                    <h4 class="card-title">{{ $classCount }}</h4>
-                                    <p class="card-text">Classes</p>
-                                </div>
-                                <div class="align-self-center">
-                                    <i class="fas fa-school"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </div>
-
-        <!-- Summary Cards - Row 2 (4 cards) -->
-        <div class="row mb-4">
-            <div class="col-md-3 mb-3">
-                <a href="{{ route('permission-reports.index') }}">
-                    <div class="card text-white bg-secondary">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between">
-                                <div>
-                                    <h4 class="card-title">{{ $permissionReportCount ?? 0 }}</h4>
-                                    <p class="card-text">Permission Reports</p>
-                                </div>
-                                <div class="align-self-center">
-                                    <i class="fas fa-file-alt"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-
-            @if(Auth::user()->isAdmin())
-            <div class="col-md-3 mb-3">
-                <a href="{{ route('security-guards.index') }}">
-                    <div class="card text-white bg-warning">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between">
-                                <div>
-                                    <h4 class="card-title">{{ $securityGuardCount ?? 0 }}</h4>
-                                    <p class="card-text">Security Guards</p>
-                                </div>
-                                <div class="align-self-center">
-                                    <i class="fas fa-shield-alt"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-
-            <div class="col-md-3 mb-3">
-                <a href="{{ route('office-boys.index') }}">
-                    <div class="card text-white bg-danger">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between">
-                                <div>
-                                    <h4 class="card-title">{{ $officeBoyCount ?? 0 }}</h4>
-                                    <p class="card-text">Office Boys</p>
-                                </div>
-                                <div class="align-self-center">
-                                    <i class="fas fa-user-tie"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-
-            <div class="col-md-3 mb-3">
-                <a href="{{ route('events.index') }}">
-                    <div class="card text-white bg-dark">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between">
-                                <div>
-                                    <h4 class="card-title">{{ $eventCount ?? 0 }}</h4>
-                                    <p class="card-text">Events</p>
-                                </div>
-                                <div class="align-self-center">
-                                    <i class="fas fa-calendar-alt"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            @endif
-        </div>
-
-        <!-- Carousel for Promotions -->
-        <div class="row mb-4">
-            <div class="col-12">
-                <div id="schoolPromoCarousel" class="carousel slide" data-bs-ride="carousel">
-                    <div class="carousel-indicators">
-                        <button type="button" data-bs-target="#schoolPromoCarousel" data-bs-slide-to="0" class="active"
-                            aria-current="true" aria-label="Slide 1"></button>
-                        <button type="button" data-bs-target="#schoolPromoCarousel" data-bs-slide-to="1"
-                            aria-label="Slide 2"></button>
-                        <button type="button" data-bs-target="#schoolPromoCarousel" data-bs-slide-to="2"
-                            aria-label="Slide 3"></button>
-                    </div>
-                    <div class="carousel-inner rounded">
-                        <div class="carousel-item active">
-                            <img src="https://picsum.photos/1200/400?random=1"
-                                class="d-block w-100" alt="School Promotion">
-                            <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded p-3">
-                                <h5>Welcome to SchoolHub</h5>
-                                <p>Your comprehensive school management platform</p>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <img src="https://picsum.photos/1200/400?random=2"
-                                class="d-block w-100" alt="Events">
-                            <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded p-3">
-                                <h5>School Events and Activities</h5>
-                                <p>Stay updated with the latest school happenings</p>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <img src="https://picsum.photos/1200/400?random=3"
-                                class="d-block w-100" alt="Management">
-                            <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded p-3">
-                                <h5>Student and Teacher Management</h5>
-                                <p>Manage all school personnel efficiently</p>
-                            </div>
-                        </div>
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#schoolPromoCarousel"
-                        data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#schoolPromoCarousel"
-                        data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
+        <div class="mb-5">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div>
+                    <h1 class="display-6 fw-bold text-primary">Welcome back, {{ Auth::user()->name }}!</h1>
+                    <p class="text-muted">Here's what's happening with your school today.</p>
+                </div>
+                <div class="d-flex gap-2">
+                    <a href="{{ route('profile.edit') }}" class="btn btn-outline-primary">
+                        <i class="fas fa-user me-2"></i> Profile
+                    </a>
+                    @if (Auth::user()->isAdmin())
+                        <a href="{{ route('dashboard') }}" class="btn btn-primary">
+                            <i class="fas fa-tachometer-alt me-2"></i> Admin Dashboard
+                        </a>
+                    @endif
                 </div>
             </div>
-        </div>
 
-        <!-- Recent Events and Attendance Records -->
-        <div class="row">
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header">
-                        <h5 class="card-title mb-0">Recent Events</h5>
+            <!-- Summary Cards Row -->
+            <div class="row g-4 mb-5">
+                <div class="col-xl-3 col-md-6">
+                    <div class="card h-100 shadow-sm border-0 bg-gradient-to-br from-blue-50 to-indigo-50">
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <p class="text-muted mb-1">Students</p>
+                                    <h3 class="fw-bold mb-0">{{ $studentCount }}</h3>
+                                </div>
+                                <div class="p-3 rounded-circle bg-blue-100">
+                                    <i class="fas fa-users text-primary" style="font-size: 1.5rem;"></i>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        @if ($recentEvents->count() > 0)
-                            <div class="table-responsive">
-                                <table class="table table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th>Title</th>
-                                            <th>Date</th>
-                                            <th>Location</th>
-                                            <th>Type</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($recentEvents as $event)
+                </div>
+
+                <div class="col-xl-3 col-md-6">
+                    <div class="card h-100 shadow-sm border-0 bg-gradient-to-br from-green-50 to-emerald-50">
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <p class="text-muted mb-1">Teachers</p>
+                                    <h3 class="fw-bold mb-0">{{ $teacherCount }}</h3>
+                                </div>
+                                <div class="p-3 rounded-circle bg-green-100">
+                                    <i class="fas fa-chalkboard-teacher text-success" style="font-size: 1.5rem;"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-md-6">
+                    <div class="card h-100 shadow-sm border-0 bg-gradient-to-br from-indigo-50 to-purple-50">
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <p class="text-muted mb-1">Classes</p>
+                                    <h3 class="fw-bold mb-0">{{ $classCount }}</h3>
+                                </div>
+                                <div class="p-3 rounded-circle bg-indigo-100">
+                                    <i class="fas fa-school text-indigo" style="font-size: 1.5rem;"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-md-6">
+                    <div class="card h-100 shadow-sm border-0 bg-gradient-to-br from-orange-50 to-amber-50">
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <p class="text-muted mb-1">Permissions</p>
+                                    <h3 class="fw-bold mb-0">{{ $permissionReportCount ?? 0 }}</h3>
+                                </div>
+                                <div class="p-3 rounded-circle bg-orange-100">
+                                    <i class="fas fa-file-alt text-warning" style="font-size: 1.5rem;"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                @if(Auth::user()->isAdmin())
+                <div class="col-xl-3 col-md-6">
+                    <div class="card h-100 shadow-sm border-0 bg-gradient-to-br from-red-50 to-pink-50">
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <p class="text-muted mb-1">Security</p>
+                                    <h3 class="fw-bold mb-0">{{ $securityGuardCount ?? 0 }}</h3>
+                                </div>
+                                <div class="p-3 rounded-circle bg-red-100">
+                                    <i class="fas fa-shield-alt text-danger" style="font-size: 1.5rem;"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-md-6">
+                    <div class="card h-100 shadow-sm border-0 bg-gradient-to-br from-teal-50 to-cyan-50">
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <p class="text-muted mb-1">Office Staff</p>
+                                    <h3 class="fw-bold mb-0">{{ $officeBoyCount ?? 0 }}</h3>
+                                </div>
+                                <div class="p-3 rounded-circle bg-teal-100">
+                                    <i class="fas fa-user-tie text-teal" style="font-size: 1.5rem;"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-md-6">
+                    <div class="card h-100 shadow-sm border-0 bg-gradient-to-br from-violet-50 to-purple-50">
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <p class="text-muted mb-1">Events</p>
+                                    <h3 class="fw-bold mb-0">{{ $eventCount ?? 0 }}</h3>
+                                </div>
+                                <div class="p-3 rounded-circle bg-violet-100">
+                                    <i class="fas fa-calendar-alt text-purple" style="font-size: 1.5rem;"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-md-6">
+                    <div class="card h-100 shadow-sm border-0 bg-gradient-to-br from-slate-50 to-gray-50">
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <p class="text-muted mb-1">Guardians</p>
+                                    <h3 class="fw-bold mb-0">{{ $guardianCount ?? 0 }}</h3>
+                                </div>
+                                <div class="p-3 rounded-circle bg-gray-100">
+                                    <i class="fas fa-user-friends text-muted" style="font-size: 1.5rem;"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endif
+            </div>
+
+            <!-- Main Content Grid -->
+            <div class="row g-4">
+                <!-- Recent Events -->
+                <div class="col-xl-6">
+                    <div class="card shadow-sm border-0 h-100">
+                        <div class="card-header bg-white border-0 py-4 px-4">
+                            <h5 class="card-title mb-0 fw-bold">
+                                <i class="fas fa-calendar-alt text-primary me-2"></i>
+                                Recent Events
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            @if ($recentEvents->count() > 0)
+                                <div class="table-responsive">
+                                    <table class="table table-hover">
+                                        <thead>
                                             <tr>
-                                                <td><a href="{{ route('events.show', $event) }}" class="text-decoration-none">{{ $event->title }}</a></td>
-                                                <td>{{ $event->start_date->format('M d, Y') }}</td>
-                                                <td>{{ $event->location ?: 'N/A' }}</td>
-                                                <td>
-                                                    <span
-                                                        class="badge bg-{{ $event->event_type === 'academic'
+                                                <th>Title</th>
+                                                <th>Date</th>
+                                                <th>Type</th>
+                                                <th>Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($recentEvents as $event)
+                                                <tr>
+                                                    <td>
+                                                        <a href="{{ route('events.show', $event) }}" class="text-decoration-none fw-medium">
+                                                            {{ Str::limit($event->title, 30) }}
+                                                        </a>
+                                                    </td>
+                                                    <td>{{ $event->start_date->format('M d, Y') }}</td>
+                                                    <td>
+                                                        <span class="badge bg-{{ $event->event_type === 'academic'
                                                             ? 'primary'
                                                             : ($event->event_type === 'sports'
                                                                 ? 'success'
                                                                 : ($event->event_type === 'arts'
                                                                     ? 'info'
                                                                     : ($event->event_type === 'extracurricular'
-                                                                        ? 'warning'
-                                                                        : 'secondary'))) }}">
-                                                        {{ ucfirst($event->event_type) }}
-                                                    </span>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
-                        @else
-                            <p class="text-muted">No recent events available.</p>
-                        @endif
+                                                                        ? 'warning text-dark'
+                                                                        : 'secondary'))) }} rounded-pill px-3 py-2">
+                                                            {{ ucfirst($event->event_type) }}
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <span class="badge bg-{{ $event->is_published ? 'success' : 'secondary' }} rounded-pill px-3 py-2">
+                                                            {{ $event->is_published ? 'Published' : 'Draft' }}
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            @else
+                                <div class="text-center py-5">
+                                    <i class="fas fa-calendar-alt text-muted mb-3" style="font-size: 3rem;"></i>
+                                    <p class="text-muted">No recent events available.</p>
+                                </div>
+                            @endif
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Recent Attendance Records for Admins -->
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header">
-                        <h5 class="card-title mb-0">Recent Attendance</h5>
-                    </div>
-                    <div class="card-body">
-                        @if (isset($recentAttendances) && $recentAttendances->count() > 0)
-                            <div class="table-responsive">
-                                <table class="table table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th>User</th>
-                                            <th>Status</th>
-                                            <th>Date</th>
-                                            <th>Note</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($recentAttendances as $attendance)
+                <!-- Recent Attendance -->
+                <div class="col-xl-6">
+                    <div class="card shadow-sm border-0 h-100">
+                        <div class="card-header bg-white border-0 py-4 px-4">
+                            <h5 class="card-title mb-0 fw-bold">
+                                <i class="fas fa-user-check text-success me-2"></i>
+                                Recent Attendance
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            @if (isset($recentAttendances) && $recentAttendances->count() > 0)
+                                <div class="table-responsive">
+                                    <table class="table table-hover">
+                                        <thead>
                                             <tr>
-                                                <td>{{ $attendance->user->name }}</td>
-                                                <td>
-                                                    <span class="badge
-                                                        @if($attendance->status == 'present') bg-success
-                                                        @elseif($attendance->status == 'absent') bg-danger
-                                                        @elseif($attendance->status == 'late') bg-warning
-                                                        @endif">
-                                                        {{ ucfirst($attendance->status) }}
-                                                    </span>
-                                                </td>
-                                                <td>{{ $attendance->date->format('M d, Y') }}</td>
-                                                <td>{{ Str::limit($attendance->note, 30, '...') ?: '-' }}</td>
+                                                <th>User</th>
+                                                <th>Status</th>
+                                                <th>Date</th>
+                                                <th>Note</th>
                                             </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
-                        @else
-                            <p class="text-muted">No recent attendance records available.</p>
-                        @endif
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($recentAttendances as $attendance)
+                                                <tr>
+                                                    <td>{{ $attendance->user->name }}</td>
+                                                    <td>
+                                                        <span class="badge
+                                                            @if($attendance->status == 'present') bg-success
+                                                            @elseif($attendance->status == 'absent') bg-danger
+                                                            @elseif($attendance->status == 'late') bg-warning text-dark
+                                                            @else bg-secondary
+                                                            @endif rounded-pill px-3 py-2">
+                                                            {{ ucfirst($attendance->status) }}
+                                                        </span>
+                                                    </td>
+                                                    <td>{{ $attendance->date->format('M d, Y') }}</td>
+                                                    <td>{{ Str::limit($attendance->note, 20, '...') ?: '-' }}</td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            @else
+                                <div class="text-center py-5">
+                                    <i class="fas fa-user-check text-muted mb-3" style="font-size: 3rem;"></i>
+                                    <p class="text-muted">No recent attendance records available.</p>
+                                </div>
+                            @endif
+                        </div>
                     </div>
                 </div>
             </div>
