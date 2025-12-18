@@ -20,7 +20,7 @@
 
             <!-- Menu Cards Row -->
             <div class="row g-4 mb-5">
-                <div class="col-xl-6 col-md-6">
+                <div class="col-xl-4 col-md-6">
                     <a href="{{ route('events.index') }}" class="text-decoration-none">
                         <div class="card h-100 shadow-sm border-0 bg-gradient-to-br from-blue-50 to-indigo-50">
                             <div class="card-body p-4">
@@ -38,7 +38,7 @@
                     </a>
                 </div>
 
-                <div class="col-xl-6 col-md-6">
+                <div class="col-xl-4 col-md-6">
                     <a href="{{ route('teachers.index') }}" class="text-decoration-none">
                         <div class="card h-100 shadow-sm border-0 bg-gradient-to-br from-green-50 to-emerald-50">
                             <div class="card-body p-4">
@@ -56,25 +56,8 @@
                     </a>
                 </div>
 
-                <div class="col-xl-6 col-md-6">
-                    <a href="{{ route('permission-reports.create') }}" class="text-decoration-none">
-                        <div class="card h-100 shadow-sm border-0 bg-gradient-to-br from-orange-50 to-amber-50">
-                            <div class="card-body p-4">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div>
-                                        <h3 class="fw-bold mb-1 text-warning">Request Permission</h3>
-                                        <p class="text-muted mb-0">Submit permission and leave requests</p>
-                                    </div>
-                                    <div class="p-3 rounded-circle bg-orange-100">
-                                        <i class="fas fa-file-alt text-warning" style="font-size: 1.5rem;"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
 
-                <div class="col-xl-6 col-md-6">
+                <div class="col-xl-4 col-md-6">
                     <a href="{{ route('students.index') }}" class="text-decoration-none">
                         <div class="card h-100 shadow-sm border-0 bg-gradient-to-br from-purple-50 to-violet-50">
                             <div class="card-body p-4">

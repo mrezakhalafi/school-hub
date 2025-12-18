@@ -63,18 +63,18 @@
                 </div>
             </div>
             
-            <!-- Guardians Section -->
+            <!-- Parents Section -->
             <div class="card mt-4">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <h5 class="card-title mb-0">Guardians</h5>
+                    <h5 class="card-title mb-0">Parents</h5>
                     @if(Auth::user()->isAdmin())
-                        <a href="{{ route('guardians.create') }}?student_id={{ $student->id }}" class="btn btn-primary btn-sm">
-                            Add Guardian
+                        <a href="{{ route('parents.create') }}?student_id={{ $student->id }}" class="btn btn-primary btn-sm">
+                            Add Parent
                         </a>
                     @endif
                 </div>
                 <div class="card-body">
-                    @if($student->guardians->count() > 0)
+                    @if($student->parents->count() > 0)
                         <div class="table-responsive">
                             <table class="table">
                                 <thead>
@@ -87,21 +87,21 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($student->guardians as $guardian)
+                                    @foreach($student->parents as $parent)
                                         <tr>
-                                            <td>{{ $guardian->first_name }} {{ $guardian->last_name }}</td>
+                                            <td>{{ $parent->first_name }} {{ $parent->last_name }}</td>
                                             <td>
-                                                <span class="badge bg-{{ $guardian->relationship === 'father' ? 'primary' : 
-                                                       ($guardian->relationship === 'mother' ? 'info' : 'secondary') }}">
-                                                    {{ ucfirst($guardian->relationship) }}
+                                                <span class="badge bg-{{ $parent->relationship === 'father' ? 'primary' :
+                                                       ($parent->relationship === 'mother' ? 'info' : 'secondary') }}">
+                                                    {{ ucfirst($parent->relationship) }}
                                                 </span>
                                             </td>
-                                            <td>{{ $guardian->email ?: 'N/A' }}</td>
-                                            <td>{{ $guardian->phone ?: 'N/A' }}</td>
+                                            <td>{{ $parent->email ?: 'N/A' }}</td>
+                                            <td>{{ $parent->phone ?: 'N/A' }}</td>
                                             <td>
-                                                <a href="{{ route('guardians.show', $guardian) }}" class="btn btn-sm btn-info">View</a>
+                                                <a href="{{ route('parents.show', $parent) }}" class="btn btn-sm btn-info">View</a>
                                                 @if(Auth::user()->isAdmin())
-                                                    <a href="{{ route('guardians.edit', $guardian) }}" class="btn btn-sm btn-warning">Edit</a>
+                                                    <a href="{{ route('parents.edit', $parent) }}" class="btn btn-sm btn-warning">Edit</a>
                                                 @endif
                                             </td>
                                         </tr>
@@ -110,10 +110,10 @@
                             </table>
                         </div>
                     @else
-                        <p class="text-muted">No guardians registered for this student.</p>
+                        <p class="text-muted">No parents registered for this student.</p>
                         @if(Auth::user()->isAdmin())
-                            <a href="{{ route('guardians.create') }}?student_id={{ $student->id }}" class="btn btn-primary">
-                                Add Guardian
+                            <a href="{{ route('parents.create') }}?student_id={{ $student->id }}" class="btn btn-primary">
+                                Add Parent
                             </a>
                         @endif
                     @endif
@@ -127,7 +127,7 @@
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger"
-                                onclick="return confirm('Are you sure you want to delete this student? All associated guardians will also be removed.')">
+                                onclick="return confirm('Are you sure you want to delete this student? All associated parents will also be removed.')">
                             Delete Student
                         </button>
                     </form>

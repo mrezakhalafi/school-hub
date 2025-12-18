@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\PermissionReport;
 use App\Models\Student;
-use App\Models\Guardian;
+use App\Models\ParentModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -83,7 +83,7 @@ class PermissionReportController extends Controller
     public function create()
     {
         $this->authorizeResource('write');
-        $students = Student::with('class', 'guardians')->get();
+        $students = Student::with('class', 'parents')->get();
         return view('permission-reports.create', compact('students'));
     }
 
@@ -108,25 +108,25 @@ class PermissionReportController extends Controller
 
         $permissionReport = PermissionReport::create(array_merge($request->except('class_name'), ['student_name' => $studentName]));
 
-        // Send WhatsApp message to the student's guardians
-        $student = Student::with('class', 'guardians')->find($request->student_id);
+        // Send WhatsApp message to the student's parents
+        $student = Student::with('class', 'parents')->find($request->student_id);
         $className = $student ? ($student->class ? $student->class->name : 'N/A') : 'N/A';
-        if ($student && $student->guardians->count() > 0) {
-            foreach ($student->guardians as $guardian) {
-                if ($guardian->phone) {
+        if ($student && $student->parents->count() > 0) {
+            foreach ($student->parents as $parent) {
+                if ($parent->phone) {
                     $typeText = $request->permission_type === 'sick' ? 'sakit' : ($request->permission_type === 'event' ? 'acara' : ($request->permission_type === 'family' ? 'keluarga' : 'lainnya'));
                     $message = "Pemberitahuan Izin Absensi: Anak Anda {$studentName} dari kelas {$className} tidak hadir pada tanggal {$request->permission_date} jam {$request->permission_time} karena {$typeText}, dengan alasan: {$request->reason}";
                     // In a real application, you would integrate with WhatsApp Business API
                     // For now, we'll just create a URL for manual sharing
-                    $whatsappUrl = "https://api.whatsapp.com/send?phone=" . str_replace(['+', '-', ' '], '', $guardian->phone) . "&text=" . urlencode($message);
+                    $whatsappUrl = "https://api.whatsapp.com/send?phone=" . str_replace(['+', '-', ' '], '', $parent->phone) . "&text=" . urlencode($message);
                     // Log the URL for reference or use it as needed
-                    \Log::info("WhatsApp URL for {$guardian->first_name}: {$whatsappUrl}");
+                    \Log::info("WhatsApp URL for {$parent->first_name}: {$whatsappUrl}");
                 }
             }
         }
 
         return redirect()->route('permission-reports.index')
-            ->with('success', 'Permission report created successfully and notification sent to guardians.');
+            ->with('success', 'Permission report created successfully and notification sent to parents.');
     }
 
     /**
@@ -144,7 +144,7 @@ class PermissionReportController extends Controller
     public function edit(PermissionReport $permissionReport)
     {
         $this->authorizeResource('write');
-        $students = Student::with('class', 'guardians')->get();
+        $students = Student::with('class', 'parents')->get();
         return view('permission-reports.edit', compact('permissionReport', 'students'));
     }
 
@@ -198,16 +198,16 @@ class PermissionReportController extends Controller
         $permissionReport->update(['status' => $request->status]);
 
         // Send WhatsApp notification about status change
-        $student = Student::with('class', 'guardians')->find($permissionReport->student_id);
+        $student = Student::with('class', 'parents')->find($permissionReport->student_id);
         $className = $student ? ($student->class ? $student->class->name : 'N/A') : 'N/A';
-        if ($student && $student->guardians->count() > 0) {
-            foreach ($student->guardians as $guardian) {
-                if ($guardian->phone) {
+        if ($student && $student->parents->count() > 0) {
+            foreach ($student->parents as $parent) {
+                if ($parent->phone) {
                     $typeText = $permissionReport->permission_type === 'sick' ? 'sakit' : ($permissionReport->permission_type === 'event' ? 'acara' : ($permissionReport->permission_type === 'family' ? 'keluarga' : 'lainnya'));
                     $statusText = $request->status === 'approved' ? 'telah disetujui' : 'ditolak';
                     $message = "Status izin untuk {$permissionReport->student_name} ({$className}) pada tanggal {$permissionReport->permission_date} jam {$permissionReport->permission_time} karena {$typeText} {$statusText}. Alasan: {$permissionReport->reason}";
-                    $whatsappUrl = "https://api.whatsapp.com/send?phone=" . str_replace(['+', '-', ' '], '', $guardian->phone) . "&text=" . urlencode($message);
-                    \Log::info("WhatsApp URL for {$guardian->first_name}: {$whatsappUrl}");
+                    $whatsappUrl = "https://api.whatsapp.com/send?phone=" . str_replace(['+', '-', ' '], '', $parent->phone) . "&text=" . urlencode($message);
+                    \Log::info("WhatsApp URL for {$parent->first_name}: {$whatsappUrl}");
                 }
             }
         }

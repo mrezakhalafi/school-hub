@@ -41,7 +41,7 @@ class DashboardController extends Controller
         $permissionReportCount = PermissionReport::count();
         $securityGuardCount = \App\Models\SecurityGuard::count();
         $officeBoyCount = \App\Models\OfficeBoy::count();
-        $guardianCount = \App\Models\Guardian::count();
+        $parentCount = \App\Models\ParentModel::count();
 
         // Get recent attendances for admin
         $recentAttendances = Attendance::with('user')
@@ -61,7 +61,7 @@ class DashboardController extends Controller
             'permissionReportCount',
             'securityGuardCount',
             'officeBoyCount',
-            'guardianCount',
+            'parentCount',
             'recentEvents',
             'recentAttendances'
         ));

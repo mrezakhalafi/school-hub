@@ -118,7 +118,7 @@ class StudentController extends Controller
     public function show(Student $student)
     {
         $this->authorizeResource('read');
-        $student->load('class', 'guardians');
+        $student->load('class', 'parents');
         return view('students.show', compact('student'));
     }
 

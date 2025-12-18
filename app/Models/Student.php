@@ -30,10 +30,10 @@ class Student extends Model
         return $this->belongsTo(ClassModel::class, 'class_id');
     }
 
-    // A student has many guardians
-    public function guardians()
+    // A student has many parents
+    public function parents()
     {
-        return $this->hasMany(Guardian::class, 'student_id');
+        return $this->hasMany(ParentModel::class, 'student_id');
     }
 
     // A student has many permission reports

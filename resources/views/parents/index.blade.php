@@ -5,19 +5,19 @@
     <div class="row">
         <div class="col-12">
             <div class="d-flex justify-content-between align-items-center mb-4">
-                <h1 class="h3">Guardians</h1>
+                <h1 class="h3">Parents</h1>
                 @if(Auth::user()->isAdmin())
-                    <a href="{{ route('guardians.create') }}" class="btn btn-primary">Add New Guardian</a>
+                    <a href="{{ route('parents.create') }}" class="btn btn-primary">Add New Parent</a>
                 @endif
             </div>
-            
+
             @if(session('success'))
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                     {{ session('success') }}
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             @endif
-            
+
             <div class="card">
                 <div class="card-body">
                     <div class="table-responsive">
@@ -33,35 +33,35 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse($guardians as $guardian)
+                                @forelse($parents as $parent)
                                     <tr>
-                                        <td>{{ $guardian->first_name }} {{ $guardian->last_name }}</td>
+                                        <td>{{ $parent->first_name }} {{ $parent->last_name }}</td>
                                         <td>
-                                            <span class="badge bg-{{ $guardian->relationship === 'father' ? 'primary' : 
-                                                   ($guardian->relationship === 'mother' ? 'info' : 'secondary') }}">
-                                                {{ ucfirst($guardian->relationship) }}
+                                            <span class="badge bg-{{ $parent->relationship === 'father' ? 'primary' :
+                                                   ($parent->relationship === 'mother' ? 'info' : 'secondary') }}">
+                                                {{ ucfirst($parent->relationship) }}
                                             </span>
                                         </td>
-                                        <td>{{ $guardian->email ?: 'N/A' }}</td>
-                                        <td>{{ $guardian->phone ?: 'N/A' }}</td>
+                                        <td>{{ $parent->email ?: 'N/A' }}</td>
+                                        <td>{{ $parent->phone ?: 'N/A' }}</td>
                                         <td>
-                                            <a href="{{ route('students.show', $guardian->student) }}" class="text-decoration-none">
-                                                {{ $guardian->student->first_name }} {{ $guardian->student->last_name }}
+                                            <a href="{{ route('students.show', $parent->student) }}" class="text-decoration-none">
+                                                {{ $parent->student->first_name }} {{ $parent->student->last_name }}
                                             </a>
                                         </td>
                                         <td>
-                                            <a href="{{ route('guardians.show', $guardian) }}" class="btn btn-sm btn-info">
+                                            <a href="{{ route('parents.show', $parent) }}" class="btn btn-sm btn-info">
                                                 <i class="fas fa-eye"></i> View
                                             </a>
                                             @if(Auth::user()->isAdmin())
-                                                <a href="{{ route('guardians.edit', $guardian) }}" class="btn btn-sm btn-warning">
+                                                <a href="{{ route('parents.edit', $parent) }}" class="btn btn-sm btn-warning">
                                                     <i class="fas fa-edit"></i> Edit
                                                 </a>
-                                                <form action="{{ route('guardians.destroy', $guardian) }}" method="POST" class="d-inline">
+                                                <form action="{{ route('parents.destroy', $parent) }}" method="POST" class="d-inline">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-sm btn-danger"
-                                                            onclick="return confirm('Are you sure you want to delete this guardian?')">
+                                                            onclick="return confirm('Are you sure you want to delete this parent?')">
                                                         <i class="fas fa-trash"></i> Delete
                                                     </button>
                                                 </form>
@@ -70,15 +70,15 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="6" class="text-center">No guardians found.</td>
+                                        <td colspan="6" class="text-center">No parents found.</td>
                                     </tr>
                                 @endforelse
                             </tbody>
                         </table>
                     </div>
-                    
+
                     <div class="d-flex justify-content-center">
-                        {{ $guardians->links() }}
+                        {{ $parents->links() }}
                     </div>
                 </div>
             </div>

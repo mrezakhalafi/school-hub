@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Guardian;
+use App\Models\ParentModel;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class GuardianController extends Controller
+class ParentController extends Controller
 {
     private function authorizeResource($action = 'read')
     {
@@ -36,8 +36,8 @@ class GuardianController extends Controller
     public function index()
     {
         $this->authorizeResource('read');
-        $guardians = Guardian::with('student')->paginate(10);
-        return view('guardians.index', compact('guardians'));
+        $parents = ParentModel::with('student')->paginate(10);
+        return view('parents.index', compact('parents'));
     }
 
     /**
@@ -47,7 +47,7 @@ class GuardianController extends Controller
     {
         $this->authorizeResource('write');
         $students = Student::all();
-        return view('guardians.create', compact('students'));
+        return view('parents.create', compact('students'));
     }
 
     /**
@@ -62,38 +62,38 @@ class GuardianController extends Controller
             'email' => 'nullable|email',
             'phone' => 'nullable|string|max:20',
             'address' => 'nullable|string',
-            'relationship' => 'required|in:father,mother,guardian',
+            'relationship' => 'required|in:father,mother,parent',
             'student_id' => 'required|exists:students,id',
         ]);
 
-        Guardian::create($request->all());
+        ParentModel::create($request->all());
 
-        return redirect()->route('guardians.index')->with('success', 'Guardian created successfully.');
+        return redirect()->route('parents.index')->with('success', 'Parent created successfully.');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Guardian $guardian)
+    public function show(ParentModel $parent)
     {
         $this->authorizeResource('read');
-        return view('guardians.show', compact('guardian'));
+        return view('parents.show', compact('parent'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Guardian $guardian)
+    public function edit(ParentModel $parent)
     {
         $this->authorizeResource('write');
         $students = Student::all();
-        return view('guardians.edit', compact('guardian', 'students'));
+        return view('parents.edit', compact('parent', 'students'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Guardian $guardian)
+    public function update(Request $request, ParentModel $parent)
     {
         $this->authorizeResource('write');
         $request->validate([
@@ -102,23 +102,23 @@ class GuardianController extends Controller
             'email' => 'nullable|email',
             'phone' => 'nullable|string|max:20',
             'address' => 'nullable|string',
-            'relationship' => 'required|in:father,mother,guardian',
+            'relationship' => 'required|in:father,mother,parent',
             'student_id' => 'required|exists:students,id',
         ]);
 
-        $guardian->update($request->all());
+        $parent->update($request->all());
 
-        return redirect()->route('guardians.index')->with('success', 'Guardian updated successfully.');
+        return redirect()->route('parents.index')->with('success', 'Parent updated successfully.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Guardian $guardian)
+    public function destroy(ParentModel $parent)
     {
         $this->authorizeResource('write');
-        $guardian->delete();
+        $parent->delete();
 
-        return redirect()->route('guardians.index')->with('success', 'Guardian deleted successfully.');
+        return redirect()->route('parents.index')->with('success', 'Parent deleted successfully.');
     }
 }

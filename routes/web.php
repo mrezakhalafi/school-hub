@@ -5,7 +5,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\ClassController;
-use App\Http\Controllers\GuardianController;
+use App\Http\Controllers\ParentController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\SecurityGuardController;
@@ -91,8 +91,8 @@ Route::get('teachers/{teacher}/qr', [TeacherController::class, 'generateTeacherQ
 Route::resource('classes', ClassController::class)
     ->middleware(['auth']);
 
-// Guardian routes
-Route::resource('guardians', GuardianController::class)
+// Parent routes
+Route::resource('parents', ParentController::class)
     ->middleware(['auth']);
 
 // Event routes

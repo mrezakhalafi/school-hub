@@ -63,21 +63,21 @@
                     <!-- WhatsApp Integration Section -->
                     <div class="mt-4">
                         <h6>Share via WhatsApp:</h6>
-                        @if($permissionReport->student && $permissionReport->student->guardians->count() > 0)
-                            @foreach($permissionReport->student->guardians as $guardian)
-                                @if($guardian->phone)
+                        @if($permissionReport->student && $permissionReport->student->parents->count() > 0)
+                            @foreach($permissionReport->student->parents as $parent)
+                                @if($parent->phone)
                                     @php
                                         $typeText = $permissionReport->permission_type === 'sick' ? 'sakit' : ($permissionReport->permission_type === 'event' ? 'acara' : ($permissionReport->permission_type === 'family' ? 'keluarga' : 'lainnya'));
                                     @endphp
-                                    <a href="https://api.whatsapp.com/send?phone={{ urlencode(str_replace(['+', '-', ' '], '', $guardian->phone)) }}&text={{ urlencode('Pemberitahuan Izin Absensi: Anak Anda ' . $permissionReport->student_name . ' dari kelas ' . ($permissionReport->student->class->name ?? 'N/A') . ' tidak hadir pada tanggal ' . \Carbon\Carbon::parse($permissionReport->permission_date)->format('M d, Y') . ' jam ' . \Carbon\Carbon::parse($permissionReport->permission_time)->format('H:i') . ' karena ' . $typeText . ', dengan alasan: ' . $permissionReport->reason) }}"
+                                    <a href="https://api.whatsapp.com/send?phone={{ urlencode(str_replace(['+', '-', ' '], '', $parent->phone)) }}&text={{ urlencode('Pemberitahuan Izin Absensi: Anak Anda ' . $permissionReport->student_name . ' dari kelas ' . ($permissionReport->student->class->name ?? 'N/A') . ' tidak hadir pada tanggal ' . \Carbon\Carbon::parse($permissionReport->permission_date)->format('M d, Y') . ' jam ' . \Carbon\Carbon::parse($permissionReport->permission_time)->format('H:i') . ' karena ' . $typeText . ', dengan alasan: ' . $permissionReport->reason) }}"
                                        target="_blank"
                                        class="btn btn-success btn-sm me-2 mb-2">
-                                        <i class="fab fa-whatsapp"></i> Send to {{ $guardian->first_name }}
+                                        <i class="fab fa-whatsapp"></i> Send to {{ $parent->first_name }}
                                     </a>
                                 @endif
                             @endforeach
                         @else
-                            <p class="text-muted">No guardians found with phone numbers for this student.</p>
+                            <p class="text-muted">No parents found with phone numbers for this student.</p>
                         @endif
                     </div>
                 </div>

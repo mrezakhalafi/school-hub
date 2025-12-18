@@ -152,13 +152,13 @@
                 </div>
 
                 <div class="col-xl-3 col-md-6">
-                    <a href="{{ route('guardians.index') }}" class="text-decoration-none">
+                    <a href="{{ route('parents.index') }}" class="text-decoration-none">
                         <div class="card h-100 shadow-sm border-0 bg-gradient-to-br from-slate-50 to-gray-50">
                             <div class="card-body p-4">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div>
-                                        <p class="text-muted mb-1">Guardians</p>
-                                        <h3 class="fw-bold mb-0">{{ $guardianCount ?? 0 }}</h3>
+                                        <p class="text-muted mb-1">Parents</p>
+                                        <h3 class="fw-bold mb-0">{{ $parentCount ?? 0 }}</h3>
                                     </div>
                                     <div class="p-3 rounded-circle bg-gray-100">
                                         <i class="fas fa-user-friends text-muted" style="font-size: 1.5rem;"></i>

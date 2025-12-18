@@ -31,7 +31,7 @@ class DatabaseSeeder extends Seeder
             ClassSeeder::class,
             TeacherSeeder::class,
             StudentSeeder::class,
-            GuardianSeeder::class,
+            ParentSeeder::class,
             EventSeeder::class,
             SecurityGuardSeeder::class,
             OfficeBoySeeder::class,
