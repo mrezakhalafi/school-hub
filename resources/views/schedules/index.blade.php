@@ -4,8 +4,21 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <div class="d-flex justify-content-between align-items-center mb-4">
-                <h1 class="h3">Schedule for {{ $class->name }}</h1>
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-4">
+                <div class="mb-3 mb-md-0">
+                    <h1 class="h3">Schedule for {{ $class->name }}</h1>
+                    <div class="mt-2">
+                        <label for="classSelector" class="form-label">Change Class:</label>
+                        <select id="classSelector" class="form-select" onchange="location.href='/classes/' + this.value + '/schedules'">
+                            <option value="">Select a class...</option>
+                            @foreach($allClasses as $classItem)
+                                <option value="{{ $classItem->id }}" {{ $classItem->id == $class->id ? 'selected' : '' }}>
+                                    {{ $classItem->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
                 <a href="{{ route('classes.index') }}" class="btn btn-secondary">Back to Classes</a>
             </div>
             

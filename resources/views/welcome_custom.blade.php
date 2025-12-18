@@ -45,7 +45,7 @@
         </section>
 
         <!-- Features Section -->
-        <section class="py-8 py-md-12 mb-5">
+        <section class="py-5 py-md-5 mb-5">
             <div class="container mb-5">
                 <div class="row mb-6 mb-md-8">
                     <div class="col-12 text-center">

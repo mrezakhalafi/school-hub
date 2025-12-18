@@ -39,6 +39,7 @@ class ScheduleController extends Controller
         $this->authorizeResource('read');
 
         $class = ClassModel::findOrFail($classId);
+        $allClasses = ClassModel::all(); // Fetch all classes for the dropdown
 
         // Get all schedules for this class
         $schedules = Schedule::where('class_id', $classId)
@@ -63,7 +64,7 @@ class ScheduleController extends Controller
             $scheduleGrid[$schedule->day][$schedule->hour] = $schedule;
         }
 
-        return view('schedules.index', compact('class', 'scheduleGrid', 'days', 'hours'));
+        return view('schedules.index', compact('class', 'scheduleGrid', 'days', 'hours', 'allClasses'));
     }
 
     /**

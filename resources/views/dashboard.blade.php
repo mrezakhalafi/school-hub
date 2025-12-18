@@ -168,6 +168,42 @@
                         </div>
                     </a>
                 </div>
+
+                <div class="col-xl-3 col-md-6">
+                    <a href="/classes/1/schedules" class="text-decoration-none">
+                        <div class="card h-100 shadow-sm border-0 bg-gradient-to-br from-cyan-50 to-blue-50">
+                            <div class="card-body p-4">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <p class="text-muted mb-1">Class Schedules</p>
+                                        <h3 class="fw-bold mb-0">View</h3>
+                                    </div>
+                                    <div class="p-3 rounded-circle bg-cyan-100">
+                                        <i class="fas fa-calendar text-cyan" style="font-size: 1.5rem;"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-xl-3 col-md-6">
+                    <a href="{{ route('students.index') }}" class="text-decoration-none">
+                        <div class="card h-100 shadow-sm border-0 bg-gradient-to-br from-amber-50 to-yellow-50">
+                            <div class="card-body p-4">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <p class="text-muted mb-1">Student Attendance</p>
+                                        <h3 class="fw-bold mb-0">Manage</h3>
+                                    </div>
+                                    <div class="p-3 rounded-circle bg-amber-100">
+                                        <i class="fas fa-clipboard-list text-amber" style="font-size: 1.5rem;"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
                 @endif
             </div>
 
