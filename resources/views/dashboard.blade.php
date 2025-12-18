@@ -25,132 +25,148 @@
             <!-- Summary Cards Row -->
             <div class="row g-4 mb-5">
                 <div class="col-xl-3 col-md-6">
-                    <div class="card h-100 shadow-sm border-0 bg-gradient-to-br from-blue-50 to-indigo-50">
-                        <div class="card-body p-4">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div>
-                                    <p class="text-muted mb-1">Students</p>
-                                    <h3 class="fw-bold mb-0">{{ $studentCount }}</h3>
-                                </div>
-                                <div class="p-3 rounded-circle bg-blue-100">
-                                    <i class="fas fa-users text-primary" style="font-size: 1.5rem;"></i>
+                    <a href="{{ route('students.index') }}" class="text-decoration-none">
+                        <div class="card h-100 shadow-sm border-0 bg-gradient-to-br from-blue-50 to-indigo-50">
+                            <div class="card-body p-4">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <p class="text-muted mb-1">Students</p>
+                                        <h3 class="fw-bold mb-0">{{ $studentCount }}</h3>
+                                    </div>
+                                    <div class="p-3 rounded-circle bg-blue-100">
+                                        <i class="fas fa-users text-primary" style="font-size: 1.5rem;"></i>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
 
                 <div class="col-xl-3 col-md-6">
-                    <div class="card h-100 shadow-sm border-0 bg-gradient-to-br from-green-50 to-emerald-50">
-                        <div class="card-body p-4">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div>
-                                    <p class="text-muted mb-1">Teachers</p>
-                                    <h3 class="fw-bold mb-0">{{ $teacherCount }}</h3>
-                                </div>
-                                <div class="p-3 rounded-circle bg-green-100">
-                                    <i class="fas fa-chalkboard-teacher text-success" style="font-size: 1.5rem;"></i>
+                    <a href="{{ route('teachers.index') }}" class="text-decoration-none">
+                        <div class="card h-100 shadow-sm border-0 bg-gradient-to-br from-green-50 to-emerald-50">
+                            <div class="card-body p-4">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <p class="text-muted mb-1">Teachers</p>
+                                        <h3 class="fw-bold mb-0">{{ $teacherCount }}</h3>
+                                    </div>
+                                    <div class="p-3 rounded-circle bg-green-100">
+                                        <i class="fas fa-chalkboard-teacher text-success" style="font-size: 1.5rem;"></i>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
 
                 <div class="col-xl-3 col-md-6">
-                    <div class="card h-100 shadow-sm border-0 bg-gradient-to-br from-indigo-50 to-purple-50">
-                        <div class="card-body p-4">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div>
-                                    <p class="text-muted mb-1">Classes</p>
-                                    <h3 class="fw-bold mb-0">{{ $classCount }}</h3>
-                                </div>
-                                <div class="p-3 rounded-circle bg-indigo-100">
-                                    <i class="fas fa-school text-indigo" style="font-size: 1.5rem;"></i>
+                    <a href="{{ route('classes.index') }}" class="text-decoration-none">
+                        <div class="card h-100 shadow-sm border-0 bg-gradient-to-br from-indigo-50 to-purple-50">
+                            <div class="card-body p-4">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <p class="text-muted mb-1">Classes</p>
+                                        <h3 class="fw-bold mb-0">{{ $classCount }}</h3>
+                                    </div>
+                                    <div class="p-3 rounded-circle bg-indigo-100">
+                                        <i class="fas fa-school text-indigo" style="font-size: 1.5rem;"></i>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
 
                 <div class="col-xl-3 col-md-6">
-                    <div class="card h-100 shadow-sm border-0 bg-gradient-to-br from-orange-50 to-amber-50">
-                        <div class="card-body p-4">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div>
-                                    <p class="text-muted mb-1">Permissions</p>
-                                    <h3 class="fw-bold mb-0">{{ $permissionReportCount ?? 0 }}</h3>
-                                </div>
-                                <div class="p-3 rounded-circle bg-orange-100">
-                                    <i class="fas fa-file-alt text-warning" style="font-size: 1.5rem;"></i>
+                    <a href="{{ route('permission-reports.index') }}" class="text-decoration-none">
+                        <div class="card h-100 shadow-sm border-0 bg-gradient-to-br from-orange-50 to-amber-50">
+                            <div class="card-body p-4">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <p class="text-muted mb-1">Permissions</p>
+                                        <h3 class="fw-bold mb-0">{{ $permissionReportCount ?? 0 }}</h3>
+                                    </div>
+                                    <div class="p-3 rounded-circle bg-orange-100">
+                                        <i class="fas fa-file-alt text-warning" style="font-size: 1.5rem;"></i>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
 
                 @if(Auth::user()->isAdmin())
                 <div class="col-xl-3 col-md-6">
-                    <div class="card h-100 shadow-sm border-0 bg-gradient-to-br from-red-50 to-pink-50">
-                        <div class="card-body p-4">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div>
-                                    <p class="text-muted mb-1">Security</p>
-                                    <h3 class="fw-bold mb-0">{{ $securityGuardCount ?? 0 }}</h3>
-                                </div>
-                                <div class="p-3 rounded-circle bg-red-100">
-                                    <i class="fas fa-shield-alt text-danger" style="font-size: 1.5rem;"></i>
+                    <a href="{{ route('security-guards.index') }}" class="text-decoration-none">
+                        <div class="card h-100 shadow-sm border-0 bg-gradient-to-br from-red-50 to-pink-50">
+                            <div class="card-body p-4">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <p class="text-muted mb-1">Security</p>
+                                        <h3 class="fw-bold mb-0">{{ $securityGuardCount ?? 0 }}</h3>
+                                    </div>
+                                    <div class="p-3 rounded-circle bg-red-100">
+                                        <i class="fas fa-shield-alt text-danger" style="font-size: 1.5rem;"></i>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
 
                 <div class="col-xl-3 col-md-6">
-                    <div class="card h-100 shadow-sm border-0 bg-gradient-to-br from-teal-50 to-cyan-50">
-                        <div class="card-body p-4">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div>
-                                    <p class="text-muted mb-1">Office Staff</p>
-                                    <h3 class="fw-bold mb-0">{{ $officeBoyCount ?? 0 }}</h3>
-                                </div>
-                                <div class="p-3 rounded-circle bg-teal-100">
-                                    <i class="fas fa-user-tie text-teal" style="font-size: 1.5rem;"></i>
+                    <a href="{{ route('office-boys.index') }}" class="text-decoration-none">
+                        <div class="card h-100 shadow-sm border-0 bg-gradient-to-br from-teal-50 to-cyan-50">
+                            <div class="card-body p-4">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <p class="text-muted mb-1">Office Staff</p>
+                                        <h3 class="fw-bold mb-0">{{ $officeBoyCount ?? 0 }}</h3>
+                                    </div>
+                                    <div class="p-3 rounded-circle bg-teal-100">
+                                        <i class="fas fa-user-tie text-teal" style="font-size: 1.5rem;"></i>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
 
                 <div class="col-xl-3 col-md-6">
-                    <div class="card h-100 shadow-sm border-0 bg-gradient-to-br from-violet-50 to-purple-50">
-                        <div class="card-body p-4">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div>
-                                    <p class="text-muted mb-1">Events</p>
-                                    <h3 class="fw-bold mb-0">{{ $eventCount ?? 0 }}</h3>
-                                </div>
-                                <div class="p-3 rounded-circle bg-violet-100">
-                                    <i class="fas fa-calendar-alt text-purple" style="font-size: 1.5rem;"></i>
+                    <a href="{{ route('events.index') }}" class="text-decoration-none">
+                        <div class="card h-100 shadow-sm border-0 bg-gradient-to-br from-violet-50 to-purple-50">
+                            <div class="card-body p-4">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <p class="text-muted mb-1">Events</p>
+                                        <h3 class="fw-bold mb-0">{{ $eventCount ?? 0 }}</h3>
+                                    </div>
+                                    <div class="p-3 rounded-circle bg-violet-100">
+                                        <i class="fas fa-calendar-alt text-purple" style="font-size: 1.5rem;"></i>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
 
                 <div class="col-xl-3 col-md-6">
-                    <div class="card h-100 shadow-sm border-0 bg-gradient-to-br from-slate-50 to-gray-50">
-                        <div class="card-body p-4">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div>
-                                    <p class="text-muted mb-1">Guardians</p>
-                                    <h3 class="fw-bold mb-0">{{ $guardianCount ?? 0 }}</h3>
-                                </div>
-                                <div class="p-3 rounded-circle bg-gray-100">
-                                    <i class="fas fa-user-friends text-muted" style="font-size: 1.5rem;"></i>
+                    <a href="{{ route('guardians.index') }}" class="text-decoration-none">
+                        <div class="card h-100 shadow-sm border-0 bg-gradient-to-br from-slate-50 to-gray-50">
+                            <div class="card-body p-4">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <p class="text-muted mb-1">Guardians</p>
+                                        <h3 class="fw-bold mb-0">{{ $guardianCount ?? 0 }}</h3>
+                                    </div>
+                                    <div class="p-3 rounded-circle bg-gray-100">
+                                        <i class="fas fa-user-friends text-muted" style="font-size: 1.5rem;"></i>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
                 @endif
             </div>
