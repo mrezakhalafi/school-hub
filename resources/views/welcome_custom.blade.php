@@ -264,7 +264,7 @@
                     <div class="col-lg-4 text-center text-lg-end">
                         <a href="{{ route('register') }}"
                             class="btn btn-light btn-lg px-5 py-3 rounded-pill fw-semibold shadow">
-                            Start Free Trial
+                            Explore Now
                         </a>
                     </div>
                 </div>

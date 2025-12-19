@@ -14,36 +14,34 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        // Create admin user
+        // Create admin user if not exists
+        if (!User::where('email', 'admin@example.com')->exists()) {
+            User::factory()->create([
+                'name' => 'Admin User',
+                'email' => 'admin@example.com',
+                'password' => Hash::make('password'),
+                'role' => 'admin',
+            ]);
+        }
 
-        // User::factory()->create([
-        //     'name' => 'M Reza Khalafi',
-        //     'email' => 'mrezakhalafi@gmail.com',
-        //     'password' => Hash::make('11111'),
-        //     'role' => 'admin',
-        // ]);
+        // Create teacher user if not exists
+        if (!User::where('email', 'teacher@example.com')->exists()) {
+            User::factory()->create([
+                'name' => 'Teacher User',
+                'email' => 'teacher@example.com',
+                'password' => Hash::make('11111'),
+                'role' => 'teacher',
+            ]);
+        }
 
-        User::factory()->create([
-            'name' => 'Admin User',
-            'email' => 'admin@example.com',
-            'password' => Hash::make('password'),
-            'role' => 'admin',
-        ]);
-
-        // Create teacher user
-        User::factory()->create([
-            'name' => 'Teacher User',
-            'email' => 'teacher@example.com',
-            'password' => Hash::make('11111'),
-            'role' => 'teacher',
-        ]);
-
-        // Create student user
-        User::factory()->create([
-            'name' => 'Student User',
-            'email' => 'student@example.com',
-            'password' => Hash::make('11111'),
-            'role' => 'student',
-        ]);
+        // Create student user if not exists
+        if (!User::where('email', 'student@example.com')->exists()) {
+            User::factory()->create([
+                'name' => 'Student User',
+                'email' => 'student@example.com',
+                'password' => Hash::make('11111'),
+                'role' => 'student',
+            ]);
+        }
     }
 }
