@@ -140,7 +140,7 @@
                         <tr>
                             <td>
                                 <a href="{{ route('finance-records.show', $record) }}" class="text-decoration-none fw-medium">
-                                    {{ $record->student->name ?? 'N/A' }}
+                                    {{ $record->student->first_name ?? '' }} {{ $record->student->last_name ?? '' }}
                                 </a>
                             </td>
                             <td>Rp{{ number_format($record->amount, 0, ',', '.') }}</td>

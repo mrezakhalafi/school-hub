@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\FinanceRecord;
-use App\Models\User;
+use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 
@@ -13,7 +13,7 @@ class FinanceRecordController extends Controller
     {
         $financeRecords = FinanceRecord::with('student')->latest()->paginate(10);
 
-        // Calculate totals
+        // Calculate totals - also eager load student for these queries if needed but we'll use the main query result
         $totalPending = FinanceRecord::where('payment_status', 'pending')->sum('amount');
         $totalPaid = FinanceRecord::where('payment_status', 'paid')->sum('amount');
         $totalOverdue = FinanceRecord::where('payment_status', 'overdue')->sum('amount');
@@ -23,14 +23,14 @@ class FinanceRecordController extends Controller
 
     public function create()
     {
-        $students = User::where('role', 'student')->get();
+        $students = Student::all();
         return view('finance-records.create', compact('students'));
     }
 
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'student_id' => 'required|exists:users,id',
+            'student_id' => 'required|exists:students,id',
             'amount' => 'required|numeric|min:0',
             'payment_type' => 'required|string|max:100',
             'payment_status' => 'required|in:pending,paid,overdue,cancelled',
@@ -57,14 +57,14 @@ class FinanceRecordController extends Controller
 
     public function edit(FinanceRecord $financeRecord)
     {
-        $students = User::where('role', 'student')->get();
+        $students = Student::all();
         return view('finance-records.edit', compact('financeRecord', 'students'));
     }
 
     public function update(Request $request, FinanceRecord $financeRecord)
     {
         $validatedData = $request->validate([
-            'student_id' => 'required|exists:users,id',
+            'student_id' => 'required|exists:students,id',
             'amount' => 'required|numeric|min:0',
             'payment_type' => 'required|string|max:100',
             'payment_status' => 'required|in:pending,paid,overdue,cancelled',

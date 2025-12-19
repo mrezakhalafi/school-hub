@@ -127,7 +127,7 @@
                         <tr>
                             <td>
                                 <a href="{{ route('health-records.show', $record) }}" class="text-decoration-none fw-medium">
-                                    {{ $record->student->name ?? 'N/A' }}
+                                    {{ $record->student->first_name ?? '' }} {{ $record->student->last_name ?? '' }}
                                 </a>
                             </td>
                             <td>{{ $record->height ? $record->height . ' cm' : '-' }}</td>

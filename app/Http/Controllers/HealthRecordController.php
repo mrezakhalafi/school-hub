@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\HealthRecord;
-use App\Models\User;
+use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -17,14 +17,14 @@ class HealthRecordController extends Controller
 
     public function create()
     {
-        $students = User::where('role', 'student')->get();
+        $students = Student::all();
         return view('health-records.create', compact('students'));
     }
 
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'student_id' => 'required|exists:users,id',
+            'student_id' => 'required|exists:students,id',
             'height' => 'nullable|integer|min:0',
             'weight' => 'nullable|numeric|min:0',
             'blood_pressure' => 'nullable|string|max:20',
@@ -57,14 +57,14 @@ class HealthRecordController extends Controller
 
     public function edit(HealthRecord $healthRecord)
     {
-        $students = User::where('role', 'student')->get();
+        $students = Student::all();
         return view('health-records.edit', compact('healthRecord', 'students'));
     }
 
     public function update(Request $request, HealthRecord $healthRecord)
     {
         $validatedData = $request->validate([
-            'student_id' => 'required|exists:users,id',
+            'student_id' => 'required|exists:students,id',
             'height' => 'nullable|integer|min:0',
             'weight' => 'nullable|numeric|min:0',
             'blood_pressure' => 'nullable|string|max:20',

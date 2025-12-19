@@ -16,12 +16,12 @@ class UserSeeder extends Seeder
     {
         // Create admin user
 
-        User::factory()->create([
-            'name' => 'M Reza Khalafi',
-            'email' => 'mrezakhalafi@gmail.com',
-            'password' => Hash::make('11111'),
-            'role' => 'admin',
-        ]);
+        // User::factory()->create([
+        //     'name' => 'M Reza Khalafi',
+        //     'email' => 'mrezakhalafi@gmail.com',
+        //     'password' => Hash::make('11111'),
+        //     'role' => 'admin',
+        // ]);
 
         User::factory()->create([
             'name' => 'Admin User',

@@ -16,7 +16,7 @@
                         </p>
                         <div class="d-flex flex-wrap gap-3">
                             <a href="{{ route('register') }}" class="btn btn-primary btn-lg px-5 py-3 rounded-pill shadow">
-                                Get Started Free
+                                Enter Apps
                             </a>
                             @guest
                                 <a href="{{ route('login') }}" class="btn btn-outline-primary btn-lg px-5 py-3 rounded-pill">
