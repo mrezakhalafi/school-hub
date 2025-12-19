@@ -19,7 +19,7 @@ class ParentSeeder extends Seeder
         // Create 1-2 parents for each student
         $firstNames = ['Suharto', 'Siti', 'Bambang', 'Dewi', 'Agus', 'Lina', 'Rudi', 'Mutiara', 'Haryanto', 'Ratna'];
         $lastNames = ['Wijaya', 'Sari', 'Kurniawan', 'Utami', 'Santoso', 'Pratiwi', 'Hidayat', 'Lestari', 'Saputra', 'Puspita'];
-        $relationships = ['father', 'mother', 'parent'];
+        $relationships = ['father', 'mother', 'guardian'];
 
         foreach ($students as $index => $student) {
             // Each student gets 1-2 parents

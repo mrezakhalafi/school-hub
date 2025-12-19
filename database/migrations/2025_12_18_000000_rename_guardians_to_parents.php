@@ -11,8 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        // Rename the guardians table to parents
-        Schema::rename('guardians', 'parents');
+        Schema::create('parents', function (Blueprint $table) {
+            $table->id();
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->string('email')->nullable();
+            $table->string('phone')->nullable();
+            $table->text('address')->nullable();
+            $table->enum('relationship', ['father', 'mother', 'guardian']); // Relationship to student
+            $table->foreignId('student_id')->constrained('students')->onDelete('cascade'); // Belongs to a student
+            $table->timestamps();
+        });
     }
 
     /**
@@ -20,7 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        // Rename the parents table back to guardians
-        Schema::rename('parents', 'guardians');
+        Schema::dropIfExists('parents');
     }
 };
