@@ -382,8 +382,26 @@
                             statusSelect.value = 'present';
                         }
                         document.getElementById('note').value = attendanceData[dayDateString]?.note || '';
-                        const modal = new bootstrap.Modal(document.getElementById('attendanceModal'));
-                        modal.show();
+                        // Show modal using the Bootstrap data attributes
+                        const modalElement = document.getElementById('attendanceModal');
+
+                        // If Bootstrap is available, use it, otherwise manually show
+                        if (typeof bootstrap !== 'undefined' && bootstrap.Modal) {
+                            const modal = new bootstrap.Modal(modalElement);
+                            modal.show();
+                        } else {
+                            // Manual fallback for showing modal
+                            modalElement.style.display = 'block';
+                            modalElement.classList.add('show');
+                            modalElement.setAttribute('aria-modal', 'true');
+                            modalElement.removeAttribute('aria-hidden');
+
+                            // Add backdrop
+                            const backdrop = document.createElement('div');
+                            backdrop.className = 'modal-backdrop fade show';
+                            document.body.appendChild(backdrop);
+                            document.body.classList.add('modal-open');
+                        }
                     } else {
                         alert('You cannot mark attendance for future dates.');
                     }
@@ -459,14 +477,31 @@
                 document.getElementById('note').value = '';
             }
 
-            const modal = new bootstrap.Modal(document.getElementById('attendanceModal'));
-            modal.show();
+            // Show modal using the Bootstrap data attributes
+            const modalElement = document.getElementById('attendanceModal');
+
+            // If Bootstrap is available, use it, otherwise manually show
+            if (typeof bootstrap !== 'undefined' && bootstrap.Modal) {
+                const modal = new bootstrap.Modal(modalElement);
+                modal.show();
+            } else {
+                // Manual fallback for showing modal
+                modalElement.style.display = 'block';
+                modalElement.classList.add('show');
+                modalElement.setAttribute('aria-modal', 'true');
+                modalElement.removeAttribute('aria-hidden');
+
+                // Add backdrop
+                const backdrop = document.createElement('div');
+                backdrop.className = 'modal-backdrop fade show';
+                document.body.appendChild(backdrop);
+                document.body.classList.add('modal-open');
+            }
         });
 
         // Submit attendance
         document.getElementById('submit-attendance').addEventListener('click', function() {
             const formData = new FormData();
-            formData.append('user_id', userId);
             formData.append('date', document.getElementById('date').value);
             formData.append('status', document.getElementById('status').value);
             formData.append('note', document.getElementById('note').value);
@@ -474,9 +509,28 @@
 
             fetch('{{ route("attendance.store") }}', {
                 method: 'POST',
-                body: formData
+                body: formData,
+                headers: {
+                    'Accept': 'application/json',
+                    'X-Requested-With': 'XMLHttpRequest',
+                }
             })
-            .then(response => response.json())
+            .then(response => {
+                // Check if response is ok before parsing JSON
+                if (!response.ok) {
+                    // Handle HTTP error responses
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                // Check if response is JSON before parsing
+                const contentType = response.headers.get('content-type');
+                if (contentType && contentType.includes('application/json')) {
+                    return response.json();
+                } else {
+                    // If not JSON, return error
+                    throw new Error('Server returned non-JSON response');
+                }
+            })
             .then(data => {
                 if (data.success) {
                     // Update local data
@@ -491,7 +545,38 @@
                     updateAttendanceStats();
 
                     // Close modal and show success message
-                    bootstrap.Modal.getInstance(document.getElementById('attendanceModal')).hide();
+                    // Hide modal using the Bootstrap data attributes
+                    const modalElement = document.getElementById('attendanceModal');
+
+                    // If Bootstrap is available, use it, otherwise manually hide
+                    if (typeof bootstrap !== 'undefined' && bootstrap.Modal && bootstrap.Modal.getInstance) {
+                        const modalInstance = bootstrap.Modal.getInstance(modalElement);
+                        if (modalInstance) {
+                            modalInstance.hide();
+                        } else {
+                            // Manual fallback for hiding modal
+                            modalElement.style.display = 'none';
+                            modalElement.classList.remove('show');
+                            modalElement.setAttribute('aria-hidden', 'true');
+                            modalElement.removeAttribute('aria-modal');
+
+                            // Remove backdrop
+                            const backdrop = document.querySelector('.modal-backdrop');
+                            if (backdrop) backdrop.remove();
+                            document.body.classList.remove('modal-open');
+                        }
+                    } else {
+                        // Manual fallback for hiding modal
+                        modalElement.style.display = 'none';
+                        modalElement.classList.remove('show');
+                        modalElement.setAttribute('aria-hidden', 'true');
+                        modalElement.removeAttribute('aria-modal');
+
+                        // Remove backdrop
+                        const backdrop = document.querySelector('.modal-backdrop');
+                        if (backdrop) backdrop.remove();
+                        document.body.classList.remove('modal-open');
+                    }
                     alert('Attendance marked successfully!');
                 } else {
                     alert('Error: ' + (data.message || 'Failed to submit attendance'));
@@ -499,7 +584,8 @@
             })
             .catch(error => {
                 console.error('Error:', error);
-                alert('An error occurred while submitting attendance.');
+                // Check if it's a validation error or network error
+                alert('An error occurred while submitting attendance. Please check the console for details.');
             });
         });
 

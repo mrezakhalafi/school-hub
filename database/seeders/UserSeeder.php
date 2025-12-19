@@ -15,6 +15,14 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         // Create admin user
+
+        User::factory()->create([
+            'name' => 'M Reza Khalafi',
+            'email' => 'mrezakhalafi@gmail.com',
+            'password' => Hash::make('11111'),
+            'role' => 'admin',
+        ]);
+
         User::factory()->create([
             'name' => 'Admin User',
             'email' => 'admin@example.com',
@@ -26,7 +34,7 @@ class UserSeeder extends Seeder
         User::factory()->create([
             'name' => 'Teacher User',
             'email' => 'teacher@example.com',
-            'password' => Hash::make('password'),
+            'password' => Hash::make('11111'),
             'role' => 'teacher',
         ]);
 
@@ -34,7 +42,7 @@ class UserSeeder extends Seeder
         User::factory()->create([
             'name' => 'Student User',
             'email' => 'student@example.com',
-            'password' => Hash::make('password'),
+            'password' => Hash::make('11111'),
             'role' => 'student',
         ]);
     }

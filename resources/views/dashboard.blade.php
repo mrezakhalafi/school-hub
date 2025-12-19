@@ -188,7 +188,7 @@
                 </div>
 
                 <div class="col-xl-3 col-md-6">
-                    <a href="{{ route('students.index') }}" class="text-decoration-none">
+                    <a href="{{ route('attendance.student-dashboard') }}" class="text-decoration-none">
                         <div class="card h-100 shadow-sm border-0 bg-gradient-to-br from-amber-50 to-yellow-50">
                             <div class="card-body p-4">
                                 <div class="d-flex justify-content-between align-items-center">

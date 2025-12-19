@@ -55,6 +55,11 @@ Route::get('/api/user/{user}/attendances', [AttendanceController::class, 'getUse
     ->middleware(['auth'])
     ->name('user.attendances.api');
 
+// Student attendance dashboard for admin
+Route::get('/attendance/student-dashboard', [AttendanceController::class, 'studentAttendanceDashboard'])
+    ->middleware(['auth'])
+    ->name('attendance.student-dashboard');
+
 // Security Guard routes
 Route::resource('security-guards', SecurityGuardController::class)
     ->middleware(['auth']);
