@@ -8,6 +8,41 @@
         </div>
     </div>
 
+    <!-- Gender Summary Cards Row -->
+    <div class="row g-4 mb-4">
+        <div class="col-md-6">
+            <div class="card h-100 shadow-sm border-0 bg-gradient-to-br from-cyan-50 to-blue-50">
+                <div class="card-body p-4">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <p class="text-muted mb-1">Male Office Boys</p>
+                            <h3 class="fw-bold mb-0">{{ $totalMale }}</h3>
+                        </div>
+                        <div class="p-3 rounded-circle bg-cyan-100">
+                            <i class="fas fa-mars text-cyan" style="font-size: 1.5rem;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card h-100 shadow-sm border-0 bg-gradient-to-br from-pink-50 to-rose-50">
+                <div class="card-body p-4">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <p class="text-muted mb-1">Female Office Boys</p>
+                            <h3 class="fw-bold mb-0">{{ $totalFemale }}</h3>
+                        </div>
+                        <div class="p-3 rounded-circle bg-pink-100">
+                            <i class="fas fa-venus text-pink" style="font-size: 1.5rem;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Search and Filter Section -->
     <div class="row mb-4">
         <div class="col-md-12">

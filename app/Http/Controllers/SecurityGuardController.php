@@ -65,7 +65,11 @@ class SecurityGuardController extends Controller
         $genders = ['male', 'female']; // Available gender options
         $shifts = ['morning', 'afternoon', 'night']; // Available shift options
 
-        return view('security-guards.index', compact('securityGuards', 'genders', 'shifts'));
+        // Calculate summary data for the cards
+        $totalMale = SecurityGuard::where('gender', 'male')->count();
+        $totalFemale = SecurityGuard::where('gender', 'female')->count();
+
+        return view('security-guards.index', compact('securityGuards', 'genders', 'shifts', 'totalMale', 'totalFemale'));
     }
 
     /**

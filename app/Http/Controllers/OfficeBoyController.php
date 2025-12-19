@@ -66,7 +66,11 @@ class OfficeBoyController extends Controller
         $genders = ['male', 'female']; // Available gender options
         $departments = OfficeBoy::select('department')->distinct()->pluck('department')->filter(); // Get distinct departments
 
-        return view('office-boys.index', compact('officeBoys', 'genders', 'departments'));
+        // Calculate summary data for the cards
+        $totalMale = OfficeBoy::where('gender', 'male')->count();
+        $totalFemale = OfficeBoy::where('gender', 'female')->count();
+
+        return view('office-boys.index', compact('officeBoys', 'genders', 'departments', 'totalMale', 'totalFemale'));
     }
 
     /**

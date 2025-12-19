@@ -69,7 +69,20 @@ class StudentController extends Controller
         $classes = ClassModel::all(); // For the filter dropdown
         $genders = ['male', 'female']; // Available gender options
 
-        return view('students.index', compact('students', 'classes', 'genders'));
+        // Calculate summary data for the cards
+        $totalIPA = Student::whereHas('class', function($q) {
+            $q->where('major', 'IPA');
+        })->count();
+
+        $totalIPS = Student::whereHas('class', function($q) {
+            $q->where('major', 'IPS');
+        })->count();
+
+        $totalMale = Student::where('gender', 'male')->count();
+
+        $totalFemale = Student::where('gender', 'female')->count();
+
+        return view('students.index', compact('students', 'classes', 'genders', 'totalIPA', 'totalIPS', 'totalMale', 'totalFemale'));
     }
 
     /**

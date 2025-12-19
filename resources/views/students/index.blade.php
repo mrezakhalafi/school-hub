@@ -11,6 +11,73 @@
                 @endif
             </div>
 
+            <!-- Summary Cards Row -->
+            <div class="row g-4 mb-4">
+                <div class="col-md-3">
+                    <div class="card h-100 shadow-sm border-0 bg-gradient-to-br from-blue-50 to-indigo-50">
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <p class="text-muted mb-1">IPA Students</p>
+                                    <h3 class="fw-bold mb-0">{{ $totalIPA }}</h3>
+                                </div>
+                                <div class="p-3 rounded-circle bg-blue-100">
+                                    <i class="fas fa-flask text-primary" style="font-size: 1.5rem;"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="card h-100 shadow-sm border-0 bg-gradient-to-br from-green-50 to-emerald-50">
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <p class="text-muted mb-1">IPS Students</p>
+                                    <h3 class="fw-bold mb-0">{{ $totalIPS }}</h3>
+                                </div>
+                                <div class="p-3 rounded-circle bg-green-100">
+                                    <i class="fas fa-chart-line text-success" style="font-size: 1.5rem;"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="card h-100 shadow-sm border-0 bg-gradient-to-br from-cyan-50 to-blue-50">
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <p class="text-muted mb-1">Male Students</p>
+                                    <h3 class="fw-bold mb-0">{{ $totalMale }}</h3>
+                                </div>
+                                <div class="p-3 rounded-circle bg-cyan-100">
+                                    <i class="fas fa-mars text-cyan" style="font-size: 1.5rem;"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="card h-100 shadow-sm border-0 bg-gradient-to-br from-pink-50 to-rose-50">
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <p class="text-muted mb-1">Female Students</p>
+                                    <h3 class="fw-bold mb-0">{{ $totalFemale }}</h3>
+                                </div>
+                                <div class="p-3 rounded-circle bg-pink-100">
+                                    <i class="fas fa-venus text-pink" style="font-size: 1.5rem;"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Search and Filter Form -->
             <div class="card mb-4">
                 <div class="card-body">

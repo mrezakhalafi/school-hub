@@ -67,7 +67,11 @@ class TeacherController extends Controller
         $classes = \App\Models\ClassModel::all(); // For the filter dropdown
         $genders = ['male', 'female']; // Available gender options
 
-        return view('teachers.index', compact('teachers', 'classes', 'genders'));
+        // Calculate summary data for the cards
+        $totalMale = Teacher::where('gender', 'male')->count();
+        $totalFemale = Teacher::where('gender', 'female')->count();
+
+        return view('teachers.index', compact('teachers', 'classes', 'genders', 'totalMale', 'totalFemale'));
     }
 
     /**
