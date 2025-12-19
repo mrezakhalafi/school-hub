@@ -36,6 +36,8 @@ class DatabaseSeeder extends Seeder
             SecurityGuardSeeder::class,
             OfficeBoySeeder::class,
             ScheduleSeeder::class,
+            HealthRecordSeeder::class,
+            FinanceRecordSeeder::class,
         ]);
     }
 }

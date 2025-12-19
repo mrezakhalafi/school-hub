@@ -204,6 +204,42 @@
                         </div>
                     </a>
                 </div>
+
+                <div class="col-xl-3 col-md-6">
+                    <a href="{{ route('health-records.index') }}" class="text-decoration-none">
+                        <div class="card h-100 shadow-sm border-0 bg-gradient-to-br from-pink-50 to-rose-50">
+                            <div class="card-body p-4">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <p class="text-muted mb-1">Puskesmas Siswa</p>
+                                        <h3 class="fw-bold mb-0">{{ $healthRecordCount ?? 0 }}</h3>
+                                    </div>
+                                    <div class="p-3 rounded-circle bg-pink-100">
+                                        <i class="fas fa-heartbeat text-pink" style="font-size: 1.5rem;"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-xl-3 col-md-6">
+                    <a href="{{ route('finance-records.index') }}" class="text-decoration-none">
+                        <div class="card h-100 shadow-sm border-0 bg-gradient-to-br from-emerald-50 to-teal-50">
+                            <div class="card-body p-4">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <p class="text-muted mb-1">Finance Sekolah</p>
+                                        <h3 class="fw-bold mb-0">{{ $financeRecordCount ?? 0 }}</h3>
+                                    </div>
+                                    <div class="p-3 rounded-circle bg-emerald-100">
+                                        <i class="fas fa-money-bill-wave text-emerald" style="font-size: 1.5rem;"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
                 @endif
             </div>
 

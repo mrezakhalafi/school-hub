@@ -52,6 +52,10 @@ class DashboardController extends Controller
         // Get recent events
         $recentEvents = SchoolEvent::orderBy('start_date', 'desc')->limit(5)->get();
 
+        // Get counts for new features
+        $healthRecordCount = \App\Models\HealthRecord::count();
+        $financeRecordCount = \App\Models\FinanceRecord::count();
+
         // Pass data to the view
         return view('dashboard', compact(
             'studentCount',
@@ -62,6 +66,8 @@ class DashboardController extends Controller
             'securityGuardCount',
             'officeBoyCount',
             'parentCount',
+            'healthRecordCount',
+            'financeRecordCount',
             'recentEvents',
             'recentAttendances'
         ));

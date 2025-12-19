@@ -11,6 +11,8 @@ use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\SecurityGuardController;
 use App\Http\Controllers\OfficeBoyController;
 use App\Http\Controllers\ScheduleController;
+use App\Http\Controllers\HealthRecordController;
+use App\Http\Controllers\FinanceRecordController;
 use Illuminate\Support\Facades\Route;
 
 // Welcome page
@@ -102,6 +104,19 @@ Route::resource('events', EventController::class)
 // Permission Report routes
 Route::resource('permission-reports', \App\Http\Controllers\PermissionReportController::class)
     ->middleware(['auth']);
+
+// Health Record routes
+Route::resource('health-records', HealthRecordController::class)
+    ->middleware(['auth']);
+
+// Finance Record routes
+Route::resource('finance-records', FinanceRecordController::class)
+    ->middleware(['auth']);
+
+// Mark finance record as paid
+Route::post('/finance-records/{financeRecord}/mark-as-paid', [FinanceRecordController::class, 'markAsPaid'])
+    ->middleware(['auth'])
+    ->name('finance-records.markAsPaid');
 
 // Update status route
 Route::post('/permission-reports/{permissionReport}/status', [\App\Http\Controllers\PermissionReportController::class, 'updateStatus'])
