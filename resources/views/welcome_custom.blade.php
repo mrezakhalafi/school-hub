@@ -165,11 +165,11 @@
                             <a class="nav-link text-dark" href="{{ route('login') }}">Sign In</a>
                         </li>
                         <li class="nav-item ms-2">
-                            <a href="{{ route('register') }}" class="btn btn-primary">Register</a>
+                            <a href="{{ route('register') }}" class="btn btn-primary rounded-5 px-4 py-2">Register</a>
                         </li>
                     @else
                         <li class="nav-item ms-2">
-                            <a href="{{ route('dashboard') }}" class="btn btn-primary">Dashboard</a>
+                            <a href="{{ route('dashboard') }}" class="btn btn-primary rounded-5 px-4 py-2">Dashboard</a>
                         </li>
                     @endguest
                 </ul>
@@ -178,15 +178,14 @@
     </nav>
 
     <!-- Main Content -->
-    <div class="container-fluid px-4">
+    <div>
         <!-- Hero Section -->
-        <section id="home"
-            class="hero-section bg-gradient-to-br py-5 py-md-5 mb-5">
+        <section id="home" class="hero-section bg-gradient-to-br py-5 py-md-5 mb-5">
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-6 mb-5 mb-lg-0">
                         <h1 class="display-4 fw-bold mb-4">
-                            <span class="text-primary">SchoolHub</span> - Empowering Education for Tomorrow
+                            Empowering Education for Tomorrow
                         </h1>
                         <p class="lead text-muted mb-5">
                             A comprehensive digital ecosystem connecting students, teachers, parents, and administrators
@@ -196,7 +195,7 @@
                         <div class="d-flex flex-wrap gap-3">
                             <a href="{{ route('register') }}"
                                 class="btn btn-primary btn-lg px-5 py-3 rounded-pill shadow">
-                                Enter Apps
+                                Get Started
                             </a>
                             @guest
                                 <a href="{{ route('login') }}"
@@ -540,19 +539,20 @@
                                 <form>
                                     <div class="mb-4">
                                         <label for="name" class="form-label">Name</label>
-                                        <input type="text" class="form-control form-control-lg" id="name"
+                                        <input type="text" class="form-control form-control" id="name"
                                             placeholder="Enter your name">
                                     </div>
                                     <div class="mb-4">
                                         <label for="email" class="form-label">Email</label>
-                                        <input type="email" class="form-control form-control-lg" id="email"
+                                        <input type="email" class="form-control form-control" id="email"
                                             placeholder="Enter your email">
                                     </div>
                                     <div class="mb-4">
                                         <label for="message" class="form-label">Message</label>
-                                        <textarea class="form-control form-control-lg" id="message" rows="4" placeholder="How can we help you?"></textarea>
+                                        <textarea class="form-control form-control" id="message" rows="4" placeholder="How can we help you?"></textarea>
                                     </div>
-                                    <button type="submit" class="btn btn-primary btn-lg w-100">Send Message</button>
+                                    <button type="submit" class="btn btn-primary rounded-5 w-100">Send
+                                        Message</button>
                                 </form>
                             </div>
                         </div>
@@ -563,7 +563,7 @@
                                 <h3 class="fw-bold mb-4">Contact Information</h3>
                                 <div class="d-flex align-items-start mb-4">
                                     <div
-                                        class="icon-container bg-primary bg-opacity-10 rounded-circle d-inline-flex p-3 me-4">
+                                        class="icon-container bg-primary bg-opacity-10 rounded-circle d-inline-flex p-3 py-4 me-4">
                                         <i class="fas fa-map-marker-alt fa-lg text-primary"></i>
                                     </div>
                                     <div>
@@ -573,7 +573,7 @@
                                 </div>
                                 <div class="d-flex align-items-start mb-4">
                                     <div
-                                        class="icon-container bg-success bg-opacity-10 rounded-circle d-inline-flex p-3 me-4">
+                                        class="icon-container bg-success bg-opacity-10 rounded-circle d-inline-flex p-3 py-4 me-4">
                                         <i class="fas fa-phone-alt fa-lg text-success"></i>
                                     </div>
                                     <div>
@@ -583,7 +583,7 @@
                                 </div>
                                 <div class="d-flex align-items-start mb-4">
                                     <div
-                                        class="icon-container bg-info bg-opacity-10 rounded-circle d-inline-flex p-3 me-4">
+                                        class="icon-container bg-info bg-opacity-10 rounded-circle d-inline-flex p-3 py-4 me-4">
                                         <i class="fas fa-envelope fa-lg text-info"></i>
                                     </div>
                                     <div>
@@ -593,7 +593,7 @@
                                 </div>
                                 <div class="d-flex align-items-start">
                                     <div
-                                        class="icon-container bg-warning bg-opacity-10 rounded-circle d-inline-flex p-3 me-4">
+                                        class="icon-container bg-warning bg-opacity-10 rounded-circle d-inline-flex p-3 py-4 me-4">
                                         <i class="fas fa-clock fa-lg text-warning"></i>
                                     </div>
                                     <div>
@@ -658,53 +658,6 @@
         </section>
     </div>
 
-    <!-- CTA Section -->
-    <section class="py-5 py-md-5 bg-cta-gradient text-white mt-5 mb-5">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-8 text-center text-lg-start mb-4 mb-lg-0">
-                    <h2 class="display-6 fw-bold mb-3">Ready to Transform Your School Experience?</h2>
-                    <p class="lead mb-0 opacity-90">Join hundreds of schools already benefiting from our comprehensive
-                        platform</p>
-                </div>
-                <div class="col-lg-4 text-center text-lg-end">
-                    <a href="{{ route('register') }}"
-                        class="btn btn-light btn-lg px-5 py-3 rounded-pill fw-semibold shadow">
-                        Explore Now
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer CTA -->
-    <section class="py-5 py-md-5 mt-5 mb-5">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-8 text-center">
-                    <h3 class="display-6 fw-bold mb-4">Experience the Future of School Management Today</h3>
-                    <p class="lead text-muted mb-5">Discover how our platform can revolutionize the way your school
-                        operates, learns, and grows.</p>
-                    <div class="d-flex flex-wrap justify-content-center gap-3">
-                        @guest
-                            <a href="{{ route('register') }}" class="btn btn-primary btn-lg px-5 py-3 rounded-pill">
-                                Register Now
-                            </a>
-                            <a href="{{ route('login') }}" class="btn btn-outline-primary btn-lg px-5 py-3 rounded-pill">
-                                Sign In
-                            </a>
-                        @else
-                            <a href="{{ route('dashboard') }}" class="btn btn-primary btn-lg px-5 py-3 rounded-pill">
-                                Go to Dashboard
-                            </a>
-                        @endguest
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    </div>
-
     <!-- Footer -->
     <footer class="footer mt-5">
         <div class="container py-5">
@@ -767,7 +720,7 @@
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-md-6 text-center text-md-start">
-                        <p class="mb-0">&copy; {{ date('Y') }} {{ config('app.name', 'SchoolHub') }}. All
+                        <p class="mb-0">&copy; {{ date('Y') + 1 }} {{ config('app.name', 'SchoolHub') }}. All
                             rights reserved.</p>
                     </div>
                     <div class="col-md-6 text-center text-md-end">

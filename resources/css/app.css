@@ -23,8 +23,13 @@ a {
 
 svg, i[class*="fa"] {
     font-size: 0.9rem;
-    width: 16px;
-    height: 16px;
+}
+
+/* Specific sizing for FA icons in input groups */
+.input-group-text i[class*="fa"] {
+    font-size: 1rem;
+    width: auto;
+    height: auto;
 }
 
 /* Modern Input Fields */
@@ -119,7 +124,7 @@ svg, i[class*="fa"] {
 }
 
 .dashboard-page .card-body .fw-bold {
-    font-size: 1.5rem; /* Keep numbers large */
+    font-size: 1.8rem; /* Increased to 1.8rem */
 }
 
 .dashboard-page .card-body h3 {
