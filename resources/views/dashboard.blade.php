@@ -181,7 +181,7 @@
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div>
                                             <p class="text-muted mb-1">Class Schedules</p>
-                                            <h3 class="fw-bold mb-0">View</h3>
+                                            <h4 class="fw-bold mb-0">View</h4>
                                         </div>
                                         <div class="p-3 rounded-circle bg-cyan-100 dashboard-card-icon">
                                             <i class="fas fa-calendar text-cyan-blue"></i>

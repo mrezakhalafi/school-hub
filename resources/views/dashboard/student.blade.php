@@ -252,7 +252,7 @@
 
         .calendar-day:hover {
             background-color: #e2e8f0;
-            transform: scale(1.05);
+            /* Removed scale transformation */
         }
 
         .calendar-day.other-month {

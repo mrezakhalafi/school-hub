@@ -76,7 +76,6 @@
         }
 
         .hover-lift:hover {
-            transform: translateY(-10px);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15) !important;
         }
 
@@ -85,7 +84,7 @@
         }
 
         .stat-card:hover {
-            transform: scale(1.05);
+            /* Removed scale transformation */
         }
 
         .testimonial-card {
@@ -93,7 +92,7 @@
         }
 
         .testimonial-card:hover {
-            transform: translateY(-5px);
+            /* Removed translateY transformation */
         }
 
         .icon-container {
@@ -101,7 +100,7 @@
         }
 
         .icon-container:hover {
-            transform: scale(1.1);
+            /* Removed scale transformation */
         }
 
         .footer {
@@ -126,7 +125,6 @@
         }
 
         .btn-school:hover {
-            transform: translateY(-2px);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
     </style>

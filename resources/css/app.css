@@ -63,7 +63,6 @@ svg, i[class*="fa"] {
 }
 
 .btn:hover {
-    transform: translateY(-2px);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); /* Enhanced shadow */
 }
 
@@ -101,7 +100,6 @@ svg, i[class*="fa"] {
 }
 
 .card:hover {
-    transform: translateY(-5px);
     box-shadow: 0 25px 35px -10px rgba(0, 0, 0, 0.2), 0 15px 15px -5px rgba(0, 0, 0, 0.15); /* More pronounced shadow */
 }
 
@@ -111,7 +109,7 @@ svg, i[class*="fa"] {
 }
 
 .dashboard-card-icon:hover {
-    transform: scale(1.1);
+    /* Removed scale transformation */
 }
 
 /* Dashboard specific font sizes - slightly larger than default */
