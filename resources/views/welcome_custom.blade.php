@@ -60,6 +60,11 @@
             min-height: 100vh;
             display: flex;
             align-items: center;
+            background: linear-gradient(135deg, #dbeafe 0%, #e0e7ff 25%, #e0e7ff 75%, #f3e8ff 100%);
+        }
+
+        .bg-cta-gradient {
+            background: linear-gradient(90deg, #2563eb 0%, #4f46e5 100%);
         }
 
         .section-padding {
@@ -176,7 +181,7 @@
     <div class="container-fluid px-4">
         <!-- Hero Section -->
         <section id="home"
-            class="hero-section bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 py-5 py-md-5 mb-5">
+            class="hero-section bg-gradient-to-br py-5 py-md-5 mb-5">
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-6 mb-5 mb-lg-0">
@@ -605,7 +610,7 @@
         </section>
 
         <!-- CTA Section -->
-        <section class="py-5 py-md-5 bg-gradient-to-r from-blue-600 to-indigo-700 text-white mt-5 mb-5">
+        <section class="py-5 py-md-5 bg-cta-gradient text-white mt-5 mb-5">
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-8 text-center text-lg-start mb-4 mb-lg-0">
@@ -654,7 +659,7 @@
     </div>
 
     <!-- CTA Section -->
-    <section class="py-5 py-md-5 bg-gradient-to-r from-blue-600 to-indigo-700 text-white mt-5 mb-5">
+    <section class="py-5 py-md-5 bg-cta-gradient text-white mt-5 mb-5">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-8 text-center text-lg-start mb-4 mb-lg-0">

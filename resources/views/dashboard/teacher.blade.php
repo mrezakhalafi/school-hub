@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="container dashboard-page">
         <div class="mb-5">
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <div>
@@ -22,7 +22,7 @@
             <div class="row g-4 mb-5">
                 <div class="col-xl-4 col-md-6">
                     <a href="{{ route('students.index') }}" class="text-decoration-none">
-                        <div class="card h-100 shadow-lg border-0 bg-gradient-to-br from-blue-50 to-indigo-50">
+                        <div class="card h-100 shadow-lg border-0 bg-gradient-to-br-blue-indigo">
                             <div class="card-body p-4">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div>
@@ -30,7 +30,7 @@
                                         <p class="text-muted mb-0">View and manage all students</p>
                                     </div>
                                     <div class="p-3 rounded-circle bg-blue-100 dashboard-card-icon">
-                                        <i class="fas fa-users text-primary"></i>
+                                        <i class="fas fa-users text-primary-blue"></i>
                                     </div>
                                 </div>
                             </div>
@@ -40,7 +40,7 @@
 
                 <div class="col-xl-4 col-md-6">
                     <a href="{{ route('events.index') }}" class="text-decoration-none">
-                        <div class="card h-100 shadow-lg border-0 bg-gradient-to-br from-green-50 to-emerald-50">
+                        <div class="card h-100 shadow-lg border-0 bg-gradient-to-br-green-emerald">
                             <div class="card-body p-4">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div>
@@ -48,7 +48,7 @@
                                         <p class="text-muted mb-0">View and manage school events</p>
                                     </div>
                                     <div class="p-3 rounded-circle bg-green-100 dashboard-card-icon">
-                                        <i class="fas fa-calendar-alt text-success"></i>
+                                        <i class="fas fa-calendar-alt text-success-green"></i>
                                     </div>
                                 </div>
                             </div>
@@ -58,7 +58,7 @@
 
                 <div class="col-xl-4 col-md-6">
                     <a href="{{ route('teachers.index') }}" class="text-decoration-none">
-                        <div class="card h-100 shadow-lg border-0 bg-gradient-to-br from-indigo-50 to-purple-50">
+                        <div class="card h-100 shadow-lg border-0 bg-gradient-to-br-indigo-purple">
                             <div class="card-body p-4">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div>
@@ -66,7 +66,7 @@
                                         <p class="text-muted mb-0">View all teachers in school</p>
                                     </div>
                                     <div class="p-3 rounded-circle bg-indigo-100 dashboard-card-icon">
-                                        <i class="fas fa-chalkboard-teacher text-indigo"></i>
+                                        <i class="fas fa-chalkboard-teacher text-indigo-purple"></i>
                                     </div>
                                 </div>
                             </div>

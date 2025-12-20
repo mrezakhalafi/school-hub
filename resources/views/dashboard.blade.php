@@ -3,7 +3,7 @@
 @use('Illuminate\Support\Str')
 
 @section('content')
-    <div class="container">
+    <div class="container dashboard-page">
         <div class="mb-5">
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <div>
@@ -26,7 +26,7 @@
             <div class="row g-4 mb-5">
                 <div class="col-xl-3 col-md-6">
                     <a href="{{ route('students.index') }}" class="text-decoration-none">
-                        <div class="card h-100 shadow-lg border-0 bg-gradient-to-br from-blue-50 to-indigo-50">
+                        <div class="card h-100 shadow-lg border-0 bg-gradient-to-br-blue-indigo">
                             <div class="card-body p-4">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div>
@@ -34,7 +34,7 @@
                                         <h3 class="fw-bold mb-0">{{ $studentCount }}</h3>
                                     </div>
                                     <div class="p-3 rounded-circle bg-blue-100 dashboard-card-icon">
-                                        <i class="fas fa-users text-primary"></i>
+                                        <i class="fas fa-users text-primary-blue"></i>
                                     </div>
                                 </div>
                             </div>
@@ -44,7 +44,7 @@
 
                 <div class="col-xl-3 col-md-6">
                     <a href="{{ route('teachers.index') }}" class="text-decoration-none">
-                        <div class="card h-100 shadow-lg border-0 bg-gradient-to-br from-green-50 to-emerald-50">
+                        <div class="card h-100 shadow-lg border-0 bg-gradient-to-br-green-emerald">
                             <div class="card-body p-4">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div>
@@ -52,7 +52,7 @@
                                         <h3 class="fw-bold mb-0">{{ $teacherCount }}</h3>
                                     </div>
                                     <div class="p-3 rounded-circle bg-green-100 dashboard-card-icon">
-                                        <i class="fas fa-chalkboard-teacher text-success"></i>
+                                        <i class="fas fa-chalkboard-teacher text-success-green"></i>
                                     </div>
                                 </div>
                             </div>
@@ -62,7 +62,7 @@
 
                 <div class="col-xl-3 col-md-6">
                     <a href="{{ route('classes.index') }}" class="text-decoration-none">
-                        <div class="card h-100 shadow-lg border-0 bg-gradient-to-br from-indigo-50 to-purple-50">
+                        <div class="card h-100 shadow-lg border-0 bg-gradient-to-br-indigo-purple">
                             <div class="card-body p-4">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div>
@@ -70,7 +70,7 @@
                                         <h3 class="fw-bold mb-0">{{ $classCount }}</h3>
                                     </div>
                                     <div class="p-3 rounded-circle bg-indigo-100 dashboard-card-icon">
-                                        <i class="fas fa-school text-indigo"></i>
+                                        <i class="fas fa-school text-indigo-purple"></i>
                                     </div>
                                 </div>
                             </div>
@@ -80,7 +80,7 @@
 
                 <div class="col-xl-3 col-md-6">
                     <a href="{{ route('permission-reports.index') }}" class="text-decoration-none">
-                        <div class="card h-100 shadow-lg border-0 bg-gradient-to-br from-orange-50 to-amber-50">
+                        <div class="card h-100 shadow-lg border-0 bg-gradient-to-br-orange-amber">
                             <div class="card-body p-4">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div>
@@ -88,7 +88,7 @@
                                         <h3 class="fw-bold mb-0">{{ $permissionReportCount ?? 0 }}</h3>
                                     </div>
                                     <div class="p-3 rounded-circle bg-orange-100 dashboard-card-icon">
-                                        <i class="fas fa-file-alt text-warning"></i>
+                                        <i class="fas fa-file-alt text-warning-orange"></i>
                                     </div>
                                 </div>
                             </div>
@@ -99,7 +99,7 @@
                 @if(Auth::user()->isAdmin())
                 <div class="col-xl-3 col-md-6">
                     <a href="{{ route('security-guards.index') }}" class="text-decoration-none">
-                        <div class="card h-100 shadow-lg border-0 bg-gradient-to-br from-red-50 to-pink-50">
+                        <div class="card h-100 shadow-lg border-0 bg-gradient-to-br-red-pink">
                             <div class="card-body p-4">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div>
@@ -107,7 +107,7 @@
                                         <h3 class="fw-bold mb-0">{{ $securityGuardCount ?? 0 }}</h3>
                                     </div>
                                     <div class="p-3 rounded-circle bg-red-100 dashboard-card-icon">
-                                        <i class="fas fa-shield-alt text-danger"></i>
+                                        <i class="fas fa-shield-alt text-danger-red"></i>
                                     </div>
                                 </div>
                             </div>
@@ -117,7 +117,7 @@
 
                 <div class="col-xl-3 col-md-6">
                     <a href="{{ route('office-boys.index') }}" class="text-decoration-none">
-                        <div class="card h-100 shadow-lg border-0 bg-gradient-to-br from-teal-50 to-cyan-50">
+                        <div class="card h-100 shadow-lg border-0 bg-gradient-to-br-teal-cyan">
                             <div class="card-body p-4">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div>
@@ -125,7 +125,7 @@
                                         <h3 class="fw-bold mb-0">{{ $officeBoyCount ?? 0 }}</h3>
                                     </div>
                                     <div class="p-3 rounded-circle bg-teal-100 dashboard-card-icon">
-                                        <i class="fas fa-user-tie text-teal"></i>
+                                        <i class="fas fa-user-tie text-teal-cyan"></i>
                                     </div>
                                 </div>
                             </div>
@@ -135,7 +135,7 @@
 
                 <div class="col-xl-3 col-md-6">
                     <a href="{{ route('events.index') }}" class="text-decoration-none">
-                        <div class="card h-100 shadow-lg border-0 bg-gradient-to-br from-violet-50 to-purple-50">
+                        <div class="card h-100 shadow-lg border-0 bg-gradient-to-br-violet-purple">
                             <div class="card-body p-4">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div>
@@ -143,7 +143,7 @@
                                         <h3 class="fw-bold mb-0">{{ $eventCount ?? 0 }}</h3>
                                     </div>
                                     <div class="p-3 rounded-circle bg-violet-100 dashboard-card-icon">
-                                        <i class="fas fa-calendar-alt text-purple"></i>
+                                        <i class="fas fa-calendar-alt text-violet-purple"></i>
                                     </div>
                                 </div>
                             </div>
@@ -153,7 +153,7 @@
 
                 <div class="col-xl-3 col-md-6">
                     <a href="{{ route('parents.index') }}" class="text-decoration-none">
-                        <div class="card h-100 shadow-lg border-0 bg-gradient-to-br from-slate-50 to-gray-50">
+                        <div class="card h-100 shadow-lg border-0 bg-gradient-to-br-slate-gray">
                             <div class="card-body p-4">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div>
@@ -161,7 +161,7 @@
                                         <h3 class="fw-bold mb-0">{{ $parentCount ?? 0 }}</h3>
                                     </div>
                                     <div class="p-3 rounded-circle bg-gray-100 dashboard-card-icon">
-                                        <i class="fas fa-user-friends text-muted"></i>
+                                        <i class="fas fa-user-friends text-gray-slate"></i>
                                     </div>
                                 </div>
                             </div>
@@ -171,7 +171,7 @@
 
                 <div class="col-xl-3 col-md-6">
                     <a href="/classes/1/schedules" class="text-decoration-none">
-                        <div class="card h-100 shadow-lg border-0 bg-gradient-to-br from-cyan-50 to-blue-50">
+                        <div class="card h-100 shadow-lg border-0 bg-gradient-to-br-cyan-blue">
                             <div class="card-body p-4">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div>
@@ -179,7 +179,7 @@
                                         <h3 class="fw-bold mb-0">View</h3>
                                     </div>
                                     <div class="p-3 rounded-circle bg-cyan-100 dashboard-card-icon">
-                                        <i class="fas fa-calendar text-cyan"></i>
+                                        <i class="fas fa-calendar text-cyan-blue"></i>
                                     </div>
                                 </div>
                             </div>
@@ -189,7 +189,7 @@
 
                 <div class="col-xl-3 col-md-6">
                     <a href="{{ route('attendance.student-dashboard') }}" class="text-decoration-none">
-                        <div class="card h-100 shadow-lg border-0 bg-gradient-to-br from-amber-50 to-yellow-50">
+                        <div class="card h-100 shadow-lg border-0 bg-gradient-to-br-amber-yellow">
                             <div class="card-body p-4">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div>
@@ -197,7 +197,7 @@
                                         <h3 class="fw-bold mb-0">Manage</h3>
                                     </div>
                                     <div class="p-3 rounded-circle bg-amber-100 dashboard-card-icon">
-                                        <i class="fas fa-clipboard-list text-amber"></i>
+                                        <i class="fas fa-clipboard-list text-amber-yellow"></i>
                                     </div>
                                 </div>
                             </div>
@@ -207,7 +207,7 @@
 
                 <div class="col-xl-3 col-md-6">
                     <a href="{{ route('health-records.index') }}" class="text-decoration-none">
-                        <div class="card h-100 shadow-lg border-0 bg-gradient-to-br from-pink-50 to-rose-50">
+                        <div class="card h-100 shadow-lg border-0 bg-gradient-to-br-pink-rose">
                             <div class="card-body p-4">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div>
@@ -215,7 +215,7 @@
                                         <h3 class="fw-bold mb-0">{{ $healthRecordCount ?? 0 }}</h3>
                                     </div>
                                     <div class="p-3 rounded-circle bg-pink-100 dashboard-card-icon">
-                                        <i class="fas fa-heartbeat text-pink"></i>
+                                        <i class="fas fa-heartbeat text-pink-rose"></i>
                                     </div>
                                 </div>
                             </div>
@@ -225,7 +225,7 @@
 
                 <div class="col-xl-3 col-md-6">
                     <a href="{{ route('finance-records.index') }}" class="text-decoration-none">
-                        <div class="card h-100 shadow-lg border-0 bg-gradient-to-br from-emerald-50 to-teal-50">
+                        <div class="card h-100 shadow-lg border-0 bg-gradient-to-br-emerald-teal">
                             <div class="card-body p-4">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div>
@@ -233,7 +233,7 @@
                                         <h3 class="fw-bold mb-0">{{ $financeRecordCount ?? 0 }}</h3>
                                     </div>
                                     <div class="p-3 rounded-circle bg-emerald-100 dashboard-card-icon">
-                                        <i class="fas fa-money-bill-wave text-emerald"></i>
+                                        <i class="fas fa-money-bill-wave text-emerald-teal"></i>
                                     </div>
                                 </div>
                             </div>

@@ -109,6 +109,27 @@ svg, i[class*="fa"] {
     transform: scale(1.1);
 }
 
+/* Dashboard specific font sizes - slightly larger than default */
+.dashboard-page .display-6 {
+    font-size: 2.2rem; /* Slightly larger than default */
+}
+
+.dashboard-page .card-body p.text-muted {
+    font-size: 0.95rem; /* Slightly larger */
+}
+
+.dashboard-page .card-body .fw-bold {
+    font-size: 1.5rem; /* Keep numbers large */
+}
+
+.dashboard-page .card-body h3 {
+    font-size: 1.3rem; /* Slightly larger */
+}
+
+.dashboard-page .card-body h5 {
+    font-size: 1.1rem; /* Slightly larger */
+}
+
 /* Input Group */
 .input-group {
     border-radius: 12px;
@@ -138,4 +159,102 @@ svg, i[class*="fa"] {
 
 .bg-gradient-success {
     background: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);
+}
+
+/* Dashboard card gradients */
+.bg-gradient-to-br-blue-indigo {
+    background: linear-gradient(135deg, #eff6ff 0%, #e0e7ff 100%);
+}
+
+.bg-gradient-to-br-green-emerald {
+    background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+}
+
+.bg-gradient-to-br-indigo-purple {
+    background: linear-gradient(135deg, #eef2ff 0%, #ede9fe 100%);
+}
+
+.bg-gradient-to-br-orange-amber {
+    background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+}
+
+.bg-gradient-to-br-red-pink {
+    background: linear-gradient(135deg, #fef2f2 0%, #fce7f3 100%);
+}
+
+.bg-gradient-to-br-teal-cyan {
+    background: linear-gradient(135deg, #f0fdfa 0%, #ecfeff 100%);
+}
+
+.bg-gradient-to-br-violet-purple {
+    background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%);
+}
+
+.bg-gradient-to-br-slate-gray {
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+}
+
+.bg-gradient-to-br-cyan-blue {
+    background: linear-gradient(135deg, #ecfeff 0%, #dbeafe 100%);
+}
+
+.bg-gradient-to-br-amber-yellow {
+    background: linear-gradient(135deg, #fffbeb 0%, #fef08a 100%);
+}
+
+.bg-gradient-to-br-pink-rose {
+    background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 100%);
+}
+
+.bg-gradient-to-br-emerald-teal {
+    background: linear-gradient(135deg, #ecfdf5 0%, #ccfbf1 100%);
+}
+
+/* Custom text colors for icons */
+.text-primary-blue {
+    color: #3b82f6 !important;
+}
+
+.text-success-green {
+    color: #10b981 !important;
+}
+
+.text-indigo-purple {
+    color: #6366f1 !important;
+}
+
+.text-warning-orange {
+    color: #f59e0b !important;
+}
+
+.text-danger-red {
+    color: #ef4444 !important;
+}
+
+.text-teal-cyan {
+    color: #14b8a6 !important;
+}
+
+.text-violet-purple {
+    color: #8b5cf6 !important;
+}
+
+.text-gray-slate {
+    color: #64748b !important;
+}
+
+.text-cyan-blue {
+    color: #0ea5e9 !important;
+}
+
+.text-amber-yellow {
+    color: #fbbf24 !important;
+}
+
+.text-pink-rose {
+    color: #ec4899 !important;
+}
+
+.text-emerald-teal {
+    color: #10b981 !important;
 }
