@@ -22,15 +22,15 @@
             <div class="row g-4 mb-5">
                 <div class="col-xl-4 col-md-6">
                     <a href="{{ route('students.index') }}" class="text-decoration-none">
-                        <div class="card h-100 shadow-sm border-0 bg-gradient-to-br from-blue-50 to-indigo-50">
+                        <div class="card h-100 shadow-lg border-0 bg-gradient-to-br from-blue-50 to-indigo-50">
                             <div class="card-body p-4">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div>
                                         <h3 class="fw-bold mb-1 text-primary">Students</h3>
                                         <p class="text-muted mb-0">View and manage all students</p>
                                     </div>
-                                    <div class="p-3 rounded-circle bg-blue-100">
-                                        <i class="fas fa-users text-primary" style="font-size: 1.5rem;"></i>
+                                    <div class="p-3 rounded-circle bg-blue-100 dashboard-card-icon">
+                                        <i class="fas fa-users text-primary"></i>
                                     </div>
                                 </div>
                             </div>
@@ -40,15 +40,15 @@
 
                 <div class="col-xl-4 col-md-6">
                     <a href="{{ route('events.index') }}" class="text-decoration-none">
-                        <div class="card h-100 shadow-sm border-0 bg-gradient-to-br from-green-50 to-emerald-50">
+                        <div class="card h-100 shadow-lg border-0 bg-gradient-to-br from-green-50 to-emerald-50">
                             <div class="card-body p-4">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div>
                                         <h3 class="fw-bold mb-1 text-success">Events</h3>
                                         <p class="text-muted mb-0">View and manage school events</p>
                                     </div>
-                                    <div class="p-3 rounded-circle bg-green-100">
-                                        <i class="fas fa-calendar-alt text-success" style="font-size: 1.5rem;"></i>
+                                    <div class="p-3 rounded-circle bg-green-100 dashboard-card-icon">
+                                        <i class="fas fa-calendar-alt text-success"></i>
                                     </div>
                                 </div>
                             </div>
@@ -58,15 +58,15 @@
 
                 <div class="col-xl-4 col-md-6">
                     <a href="{{ route('teachers.index') }}" class="text-decoration-none">
-                        <div class="card h-100 shadow-sm border-0 bg-gradient-to-br from-indigo-50 to-purple-50">
+                        <div class="card h-100 shadow-lg border-0 bg-gradient-to-br from-indigo-50 to-purple-50">
                             <div class="card-body p-4">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div>
                                         <h3 class="fw-bold mb-1 text-indigo">Teachers</h3>
                                         <p class="text-muted mb-0">View all teachers in school</p>
                                     </div>
-                                    <div class="p-3 rounded-circle bg-indigo-100">
-                                        <i class="fas fa-chalkboard-teacher text-indigo" style="font-size: 1.5rem;"></i>
+                                    <div class="p-3 rounded-circle bg-indigo-100 dashboard-card-icon">
+                                        <i class="fas fa-chalkboard-teacher text-indigo"></i>
                                     </div>
                                 </div>
                             </div>
@@ -79,7 +79,7 @@
             <div class="row g-4">
                 <!-- Attendance Calendar -->
                 <div class="col-xl-8">
-                    <div class="card shadow-sm border-0 h-100">
+                    <div class="card shadow-lg border-0 h-100">
                         <div class="card-header bg-white border-0 py-4 px-4">
                             <h5 class="card-title mb-0 fw-bold">
                                 <i class="fas fa-calendar-alt text-success me-2"></i>
@@ -90,11 +90,11 @@
                             <div class="calendar-container">
                                 <div class="calendar-header d-flex justify-content-between align-items-center mb-3">
                                     <button class="btn btn-outline-secondary rounded-circle" id="prev-month">
-                                        <i class="fas fa-chevron-left"></i>
+                                        <i class="fas fa-chevron-left dashboard-card-icon"></i>
                                     </button>
                                     <h4 id="current-month-year" class="h5 mb-0">{{ now()->isoFormat('MMMM YYYY') }}</h4>
                                     <button class="btn btn-outline-secondary rounded-circle" id="next-month">
-                                        <i class="fas fa-chevron-right"></i>
+                                        <i class="fas fa-chevron-right dashboard-card-icon"></i>
                                     </button>
                                 </div>
 
@@ -115,7 +115,7 @@
 
                             <div class="mt-3 d-flex justify-content-center">
                                 <button type="button" class="btn btn-success px-4 py-2" id="mark-today-attendance">
-                                    <i class="fas fa-check-circle me-2"></i> Mark Today's Attendance
+                                    <i class="fas fa-check-circle me-2 dashboard-card-icon"></i> Mark Today's Attendance
                                 </button>
                             </div>
                         </div>
@@ -124,7 +124,7 @@
 
                 <!-- Attendance Summary -->
                 <div class="col-xl-4">
-                    <div class="card shadow-sm border-0 h-100">
+                    <div class="card shadow-lg border-0 h-100">
                         <div class="card-header bg-white border-0 py-4 px-4">
                             <h5 class="card-title mb-0 fw-bold">
                                 <i class="fas fa-chart-bar text-primary me-2"></i>

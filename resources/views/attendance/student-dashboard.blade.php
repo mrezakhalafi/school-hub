@@ -13,15 +13,15 @@
     <!-- Summary Cards Row -->
     <div class="row g-4 mb-4">
         <div class="col-xl-3 col-md-6">
-            <div class="card h-100 shadow-sm border-0 bg-gradient-to-br from-blue-50 to-indigo-50">
+            <div class="card h-100 shadow-lg border-0 bg-gradient-to-br from-blue-50 to-indigo-50">
                 <div class="card-body p-4">
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
                             <p class="text-muted mb-1">Total Records</p>
                             <h3 class="fw-bold mb-0">{{ $totalCount }}</h3>
                         </div>
-                        <div class="p-3 rounded-circle bg-blue-100">
-                            <i class="fas fa-clipboard-list text-primary" style="font-size: 1.5rem;"></i>
+                        <div class="p-3 rounded-circle bg-blue-100 dashboard-card-icon">
+                            <i class="fas fa-clipboard-list text-primary"></i>
                         </div>
                     </div>
                 </div>
@@ -29,15 +29,15 @@
         </div>
 
         <div class="col-xl-3 col-md-6">
-            <div class="card h-100 shadow-sm border-0 bg-gradient-to-br from-green-50 to-emerald-50">
+            <div class="card h-100 shadow-lg border-0 bg-gradient-to-br from-green-50 to-emerald-50">
                 <div class="card-body p-4">
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
                             <p class="text-muted mb-1">Present</p>
                             <h3 class="fw-bold mb-0">{{ $totalPresent }}</h3>
                         </div>
-                        <div class="p-3 rounded-circle bg-green-100">
-                            <i class="fas fa-check-circle text-success" style="font-size: 1.5rem;"></i>
+                        <div class="p-3 rounded-circle bg-green-100 dashboard-card-icon">
+                            <i class="fas fa-check-circle text-success"></i>
                         </div>
                     </div>
                 </div>
@@ -45,15 +45,15 @@
         </div>
 
         <div class="col-xl-3 col-md-6">
-            <div class="card h-100 shadow-sm border-0 bg-gradient-to-br from-orange-50 to-amber-50">
+            <div class="card h-100 shadow-lg border-0 bg-gradient-to-br from-orange-50 to-amber-50">
                 <div class="card-body p-4">
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
                             <p class="text-muted mb-1">Absent</p>
                             <h3 class="fw-bold mb-0">{{ $totalAbsent }}</h3>
                         </div>
-                        <div class="p-3 rounded-circle bg-orange-100">
-                            <i class="fas fa-times-circle text-warning" style="font-size: 1.5rem;"></i>
+                        <div class="p-3 rounded-circle bg-orange-100 dashboard-card-icon">
+                            <i class="fas fa-times-circle text-warning"></i>
                         </div>
                     </div>
                 </div>
@@ -61,15 +61,15 @@
         </div>
 
         <div class="col-xl-3 col-md-6">
-            <div class="card h-100 shadow-sm border-0 bg-gradient-to-br from-red-50 to-pink-50">
+            <div class="card h-100 shadow-lg border-0 bg-gradient-to-br from-red-50 to-pink-50">
                 <div class="card-body p-4">
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
                             <p class="text-muted mb-1">Late</p>
                             <h3 class="fw-bold mb-0">{{ $totalLate }}</h3>
                         </div>
-                        <div class="p-3 rounded-circle bg-red-100">
-                            <i class="fas fa-clock text-danger" style="font-size: 1.5rem;"></i>
+                        <div class="p-3 rounded-circle bg-red-100 dashboard-card-icon">
+                            <i class="fas fa-clock text-danger"></i>
                         </div>
                     </div>
                 </div>
@@ -78,7 +78,7 @@
     </div>
 
     <!-- Search and Filters -->
-    <div class="card mb-4">
+    <div class="card shadow-lg mb-4">
         <div class="card-body">
             <form method="GET" action="{{ route('attendance.student-dashboard') }}">
                 <div class="row g-3 align-items-end">
@@ -115,7 +115,7 @@
     @endif
 
     <!-- Student Attendance Table -->
-    <div class="card">
+    <div class="card shadow-lg">
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-striped table-hover">
@@ -136,7 +136,7 @@
                             <td>{{ $attendance->user->student_id ?? 'N/A' }}</td>
                             <td>{{ $attendance->date->format('M d, Y') }}</td>
                             <td>
-                                <span class="badge 
+                                <span class="badge
                                     @if($attendance->status == 'present') bg-success
                                     @elseif($attendance->status == 'absent') bg-danger
                                     @elseif($attendance->status == 'late') bg-warning text-dark
@@ -154,7 +154,7 @@
                         @empty
                         <tr>
                             <td colspan="6" class="text-center py-5">
-                                <i class="fas fa-clipboard-list text-muted mb-3" style="font-size: 3rem;"></i>
+                                <i class="fas fa-clipboard-list text-muted mb-3 dashboard-card-icon"></i>
                                 <p class="text-muted">No attendance records found.</p>
                             </td>
                         </tr>

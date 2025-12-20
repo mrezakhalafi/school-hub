@@ -1,14 +1,30 @@
 /* Import Bootstrap */
 @import 'bootstrap/dist/css/bootstrap.css';
 
+/* Reduce all font sizes throughout the project */
+html {
+    font-size: 0.85rem; /* Reduce base font size */
+}
+
+h1, .h1 { font-size: 1.8rem; }
+h2, .h2 { font-size: 1.6rem; }
+h3, .h3 { font-size: 1.4rem; }
+h4, .h4 { font-size: 1.2rem; }
+h5, .h5 { font-size: 1.1rem; }
+h6, .h6 { font-size: 1rem; }
+
+.display-6 {
+    font-size: 2rem;
+}
+
 a {
     text-decoration: none;
 }
 
-svg {
-    font-size: 1rem;
-    width: 20px;
-    height: 20px;
+svg, i[class*="fa"] {
+    font-size: 0.9rem;
+    width: 16px;
+    height: 16px;
 }
 
 /* Modern Input Fields */
@@ -16,7 +32,8 @@ svg {
     transition: all 0.3s ease;
     border: 1px solid #e2e8f0;
     border-radius: 12px !important;
-    padding: 12px 16px;
+    padding: 10px 14px; /* Reduced padding */
+    font-size: 0.9rem; /* Smaller font size */
 }
 
 .form-control:focus {
@@ -26,8 +43,8 @@ svg {
 }
 
 .form-control-lg {
-    padding: 14px 18px;
-    font-size: 1.1rem;
+    padding: 12px 16px;
+    font-size: 1rem; /* Reduced from 1.1rem */
 }
 
 /* Modern Buttons */
@@ -36,11 +53,13 @@ svg {
     transition: all 0.3s ease;
     font-weight: 600;
     letter-spacing: 0.5px;
+    font-size: 0.9rem; /* Smaller font size */
+    padding: 0.5rem 1rem; /* Reduced padding */
 }
 
 .btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); /* Enhanced shadow */
 }
 
 .btn:active {
@@ -68,16 +87,26 @@ svg {
     border-color: #cbd5e1;
 }
 
-/* Modern Cards */
+/* Modern Cards with enhanced shadows */
 .card {
     border-radius: 20px;
     overflow: hidden;
     transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07); /* Enhanced base shadow */
 }
 
 .card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    box-shadow: 0 25px 35px -10px rgba(0, 0, 0, 0.2), 0 15px 15px -5px rgba(0, 0, 0, 0.15); /* More pronounced shadow */
+}
+
+/* Specific styling for FA icons in dashboard cards */
+.dashboard-card-icon {
+    transition: all 0.3s ease;
+}
+
+.dashboard-card-icon:hover {
+    transform: scale(1.1);
 }
 
 /* Input Group */
@@ -92,12 +121,14 @@ svg {
     border-right: none;
     border-radius: 12px 0 0 12px;
     color: #64748b;
+    font-size: 0.9rem; /* Smaller font size */
 }
 
 .input-group .form-control {
     border-radius: 0 12px 12px 0 !important;
     border-left: none;
     border-right: 1px solid #e2e8f0;
+    font-size: 0.9rem; /* Smaller font size */
 }
 
 /* Custom gradients */

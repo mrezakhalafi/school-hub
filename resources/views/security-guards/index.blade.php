@@ -11,15 +11,15 @@
     <!-- Gender Summary Cards Row -->
     <div class="row g-4 mb-4">
         <div class="col-md-6">
-            <div class="card h-100 shadow-sm border-0 bg-gradient-to-br from-cyan-50 to-blue-50">
+            <div class="card h-100 shadow-lg border-0 bg-gradient-to-br from-cyan-50 to-blue-50">
                 <div class="card-body p-4">
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
                             <p class="text-muted mb-1">Male Security Guards</p>
                             <h3 class="fw-bold mb-0">{{ $totalMale }}</h3>
                         </div>
-                        <div class="p-3 rounded-circle bg-cyan-100">
-                            <i class="fas fa-mars text-cyan" style="font-size: 1.5rem;"></i>
+                        <div class="p-3 rounded-circle bg-cyan-100 dashboard-card-icon">
+                            <i class="fas fa-mars text-cyan"></i>
                         </div>
                     </div>
                 </div>
@@ -27,15 +27,15 @@
         </div>
 
         <div class="col-md-6">
-            <div class="card h-100 shadow-sm border-0 bg-gradient-to-br from-pink-50 to-rose-50">
+            <div class="card h-100 shadow-lg border-0 bg-gradient-to-br from-pink-50 to-rose-50">
                 <div class="card-body p-4">
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
                             <p class="text-muted mb-1">Female Security Guards</p>
                             <h3 class="fw-bold mb-0">{{ $totalFemale }}</h3>
                         </div>
-                        <div class="p-3 rounded-circle bg-pink-100">
-                            <i class="fas fa-venus text-pink" style="font-size: 1.5rem;"></i>
+                        <div class="p-3 rounded-circle bg-pink-100 dashboard-card-icon">
+                            <i class="fas fa-venus text-pink"></i>
                         </div>
                     </div>
                 </div>
@@ -46,7 +46,7 @@
     <!-- Search and Filter Section -->
     <div class="row mb-4">
         <div class="col-md-12">
-            <div class="card">
+            <div class="card shadow-lg">
                 <div class="card-body">
                     <form method="GET" action="{{ route('security-guards.index') }}">
                         <div class="row g-3">
@@ -89,7 +89,7 @@
     <!-- Security Guards Table -->
     <div class="row">
         <div class="col-12">
-            <div class="card">
+            <div class="card shadow-lg">
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-striped table-hover">
@@ -121,9 +121,9 @@
                                     <td>{{ $guard->email }}</td>
                                     <td>{{ $guard->badge_number }}</td>
                                     <td>
-                                        <span class="badge 
-                                            @if($guard->shift == 'morning') bg-success 
-                                            @elseif($guard->shift == 'afternoon') bg-warning text-dark 
+                                        <span class="badge
+                                            @if($guard->shift == 'morning') bg-success
+                                            @elseif($guard->shift == 'afternoon') bg-warning text-dark
                                             @else bg-info @endif">
                                             {{ ucfirst($guard->shift) }}
                                         </span>

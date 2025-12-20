@@ -17,7 +17,7 @@
 
             <div class="row g-4 justify-content-center">
                 <div class="col-xl-8">
-                    <div class="card shadow-sm border-0 mb-4">
+                    <div class="card shadow-lg border-0 mb-4">
                         <div class="card-header bg-white border-0 py-4 px-4">
                             <h5 class="card-title mb-0 fw-bold">
                                 <i class="fas fa-user-edit text-primary me-2"></i>
@@ -119,7 +119,7 @@
                         </div>
                     </div>
 
-                    <div class="card shadow-sm border-0 mb-4">
+                    <div class="card shadow-lg border-0 mb-4">
                         <div class="card-header bg-white border-0 py-4 px-4">
                             <h5 class="card-title mb-0 fw-bold">
                                 <i class="fas fa-key text-success me-2"></i>
@@ -187,7 +187,7 @@
                         </div>
                     </div>
 
-                    <div class="card shadow-sm border-0">
+                    <div class="card shadow-lg border-0">
                         <div class="card-header bg-white border-0 py-4 px-4">
                             <h5 class="card-title mb-0 fw-bold">
                                 <i class="fas fa-trash-alt text-danger me-2"></i>

@@ -12,15 +12,15 @@
     <!-- Summary Cards -->
     <div class="row g-4 mb-4">
         <div class="col-xl-3 col-md-6">
-            <div class="card h-100 shadow-sm border-0 bg-gradient-to-br from-blue-50 to-indigo-50">
+            <div class="card h-100 shadow-lg border-0 bg-gradient-to-br from-blue-50 to-indigo-50">
                 <div class="card-body p-4">
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
                             <p class="text-muted mb-1">Total Students</p>
                             <h3 class="fw-bold mb-0">{{ $healthRecords->total() }}</h3>
                         </div>
-                        <div class="p-3 rounded-circle bg-blue-100">
-                            <i class="fas fa-users text-primary" style="font-size: 1.5rem;"></i>
+                        <div class="p-3 rounded-circle bg-blue-100 dashboard-card-icon">
+                            <i class="fas fa-users text-primary"></i>
                         </div>
                     </div>
                 </div>
@@ -28,15 +28,15 @@
         </div>
 
         <div class="col-xl-3 col-md-6">
-            <div class="card h-100 shadow-sm border-0 bg-gradient-to-br from-green-50 to-emerald-50">
+            <div class="card h-100 shadow-lg border-0 bg-gradient-to-br from-green-50 to-emerald-50">
                 <div class="card-body p-4">
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
                             <p class="text-muted mb-1">Healthy Students</p>
                             <h3 class="fw-bold mb-0">0</h3>
                         </div>
-                        <div class="p-3 rounded-circle bg-green-100">
-                            <i class="fas fa-heart text-success" style="font-size: 1.5rem;"></i>
+                        <div class="p-3 rounded-circle bg-green-100 dashboard-card-icon">
+                            <i class="fas fa-heart text-success"></i>
                         </div>
                     </div>
                 </div>
@@ -44,15 +44,15 @@
         </div>
 
         <div class="col-xl-3 col-md-6">
-            <div class="card h-100 shadow-sm border-0 bg-gradient-to-br from-red-50 to-pink-50">
+            <div class="card h-100 shadow-lg border-0 bg-gradient-to-br from-red-50 to-pink-50">
                 <div class="card-body p-4">
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
                             <p class="text-muted mb-1">Medical Issues</p>
                             <h3 class="fw-bold mb-0">0</h3>
                         </div>
-                        <div class="p-3 rounded-circle bg-red-100">
-                            <i class="fas fa-stethoscope text-danger" style="font-size: 1.5rem;"></i>
+                        <div class="p-3 rounded-circle bg-red-100 dashboard-card-icon">
+                            <i class="fas fa-stethoscope text-danger"></i>
                         </div>
                     </div>
                 </div>
@@ -60,15 +60,15 @@
         </div>
 
         <div class="col-xl-3 col-md-6">
-            <div class="card h-100 shadow-sm border-0 bg-gradient-to-br from-amber-50 to-yellow-50">
+            <div class="card h-100 shadow-lg border-0 bg-gradient-to-br from-amber-50 to-yellow-50">
                 <div class="card-body p-4">
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
                             <p class="text-muted mb-1">Last Checkup</p>
                             <h3 class="fw-bold mb-0">{{ $healthRecords->first() ? $healthRecords->first()->created_at->format('M d') : '-' }}</h3>
                         </div>
-                        <div class="p-3 rounded-circle bg-amber-100">
-                            <i class="fas fa-calendar-check text-amber" style="font-size: 1.5rem;"></i>
+                        <div class="p-3 rounded-circle bg-amber-100 dashboard-card-icon">
+                            <i class="fas fa-calendar-check text-amber"></i>
                         </div>
                     </div>
                 </div>
@@ -77,7 +77,7 @@
     </div>
 
     <!-- Search and Filters -->
-    <div class="card shadow-sm border-0 mb-4">
+    <div class="card shadow-lg border-0 mb-4">
         <div class="card-body">
             <form method="GET" action="{{ route('health-records.index') }}">
                 <div class="row g-3">
@@ -100,7 +100,7 @@
     </div>
 
     <!-- Health Records Table -->
-    <div class="card shadow-sm border-0">
+    <div class="card shadow-lg border-0">
         <div class="card-header bg-white border-0 py-4 px-4">
             <h5 class="card-title mb-0 fw-bold">
                 <i class="fas fa-file-medical text-info me-2"></i>
@@ -167,7 +167,7 @@
                         @empty
                         <tr>
                             <td colspan="8" class="text-center py-5">
-                                <i class="fas fa-file-medical text-muted mb-3" style="font-size: 3rem;"></i>
+                                <i class="fas fa-file-medical text-muted mb-3 dashboard-card-icon"></i>
                                 <p class="text-muted">No health records found.</p>
                                 <a href="{{ route('health-records.create') }}" class="btn btn-primary">Add New Record</a>
                             </td>

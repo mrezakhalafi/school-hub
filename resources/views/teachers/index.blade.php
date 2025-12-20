@@ -14,15 +14,15 @@
             <!-- Gender Summary Cards Row -->
             <div class="row g-4 mb-4">
                 <div class="col-md-6">
-                    <div class="card h-100 shadow-sm border-0 bg-gradient-to-br from-cyan-50 to-blue-50">
+                    <div class="card h-100 shadow-lg border-0 bg-gradient-to-br from-cyan-50 to-blue-50">
                         <div class="card-body p-4">
                             <div class="d-flex justify-content-between align-items-center">
                                 <div>
                                     <p class="text-muted mb-1">Male Teachers</p>
                                     <h3 class="fw-bold mb-0">{{ $totalMale }}</h3>
                                 </div>
-                                <div class="p-3 rounded-circle bg-cyan-100">
-                                    <i class="fas fa-mars text-cyan" style="font-size: 1.5rem;"></i>
+                                <div class="p-3 rounded-circle bg-cyan-100 dashboard-card-icon">
+                                    <i class="fas fa-mars text-cyan"></i>
                                 </div>
                             </div>
                         </div>
@@ -30,15 +30,15 @@
                 </div>
 
                 <div class="col-md-6">
-                    <div class="card h-100 shadow-sm border-0 bg-gradient-to-br from-pink-50 to-rose-50">
+                    <div class="card h-100 shadow-lg border-0 bg-gradient-to-br from-pink-50 to-rose-50">
                         <div class="card-body p-4">
                             <div class="d-flex justify-content-between align-items-center">
                                 <div>
                                     <p class="text-muted mb-1">Female Teachers</p>
                                     <h3 class="fw-bold mb-0">{{ $totalFemale }}</h3>
                                 </div>
-                                <div class="p-3 rounded-circle bg-pink-100">
-                                    <i class="fas fa-venus text-pink" style="font-size: 1.5rem;"></i>
+                                <div class="p-3 rounded-circle bg-pink-100 dashboard-card-icon">
+                                    <i class="fas fa-venus text-pink"></i>
                                 </div>
                             </div>
                         </div>
@@ -92,7 +92,7 @@
                 </div>
             @endif
             
-            <div class="card">
+            <div class="card shadow-lg">
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-striped">
@@ -170,7 +170,7 @@
                             </tbody>
                         </table>
                     </div>
-                    
+
                     <div class="d-flex justify-content-center">
                         {{ $teachers->appends(['search' => request('search'), 'class_id' => request('class_id'), 'gender' => request('gender')])->links() }}
                     </div>

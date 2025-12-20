@@ -26,15 +26,15 @@
             <div class="row g-4 mb-5">
                 <div class="col-xl-3 col-md-6">
                     <a href="{{ route('students.index') }}" class="text-decoration-none">
-                        <div class="card h-100 shadow-sm border-0 bg-gradient-to-br from-blue-50 to-indigo-50">
+                        <div class="card h-100 shadow-lg border-0 bg-gradient-to-br from-blue-50 to-indigo-50">
                             <div class="card-body p-4">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div>
                                         <p class="text-muted mb-1">Students</p>
                                         <h3 class="fw-bold mb-0">{{ $studentCount }}</h3>
                                     </div>
-                                    <div class="p-3 rounded-circle bg-blue-100">
-                                        <i class="fas fa-users text-primary" style="font-size: 1.5rem;"></i>
+                                    <div class="p-3 rounded-circle bg-blue-100 dashboard-card-icon">
+                                        <i class="fas fa-users text-primary"></i>
                                     </div>
                                 </div>
                             </div>
@@ -44,15 +44,15 @@
 
                 <div class="col-xl-3 col-md-6">
                     <a href="{{ route('teachers.index') }}" class="text-decoration-none">
-                        <div class="card h-100 shadow-sm border-0 bg-gradient-to-br from-green-50 to-emerald-50">
+                        <div class="card h-100 shadow-lg border-0 bg-gradient-to-br from-green-50 to-emerald-50">
                             <div class="card-body p-4">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div>
                                         <p class="text-muted mb-1">Teachers</p>
                                         <h3 class="fw-bold mb-0">{{ $teacherCount }}</h3>
                                     </div>
-                                    <div class="p-3 rounded-circle bg-green-100">
-                                        <i class="fas fa-chalkboard-teacher text-success" style="font-size: 1.5rem;"></i>
+                                    <div class="p-3 rounded-circle bg-green-100 dashboard-card-icon">
+                                        <i class="fas fa-chalkboard-teacher text-success"></i>
                                     </div>
                                 </div>
                             </div>
@@ -62,15 +62,15 @@
 
                 <div class="col-xl-3 col-md-6">
                     <a href="{{ route('classes.index') }}" class="text-decoration-none">
-                        <div class="card h-100 shadow-sm border-0 bg-gradient-to-br from-indigo-50 to-purple-50">
+                        <div class="card h-100 shadow-lg border-0 bg-gradient-to-br from-indigo-50 to-purple-50">
                             <div class="card-body p-4">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div>
                                         <p class="text-muted mb-1">Classes</p>
                                         <h3 class="fw-bold mb-0">{{ $classCount }}</h3>
                                     </div>
-                                    <div class="p-3 rounded-circle bg-indigo-100">
-                                        <i class="fas fa-school text-indigo" style="font-size: 1.5rem;"></i>
+                                    <div class="p-3 rounded-circle bg-indigo-100 dashboard-card-icon">
+                                        <i class="fas fa-school text-indigo"></i>
                                     </div>
                                 </div>
                             </div>
@@ -80,15 +80,15 @@
 
                 <div class="col-xl-3 col-md-6">
                     <a href="{{ route('permission-reports.index') }}" class="text-decoration-none">
-                        <div class="card h-100 shadow-sm border-0 bg-gradient-to-br from-orange-50 to-amber-50">
+                        <div class="card h-100 shadow-lg border-0 bg-gradient-to-br from-orange-50 to-amber-50">
                             <div class="card-body p-4">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div>
                                         <p class="text-muted mb-1">Permissions</p>
                                         <h3 class="fw-bold mb-0">{{ $permissionReportCount ?? 0 }}</h3>
                                     </div>
-                                    <div class="p-3 rounded-circle bg-orange-100">
-                                        <i class="fas fa-file-alt text-warning" style="font-size: 1.5rem;"></i>
+                                    <div class="p-3 rounded-circle bg-orange-100 dashboard-card-icon">
+                                        <i class="fas fa-file-alt text-warning"></i>
                                     </div>
                                 </div>
                             </div>
@@ -99,15 +99,15 @@
                 @if(Auth::user()->isAdmin())
                 <div class="col-xl-3 col-md-6">
                     <a href="{{ route('security-guards.index') }}" class="text-decoration-none">
-                        <div class="card h-100 shadow-sm border-0 bg-gradient-to-br from-red-50 to-pink-50">
+                        <div class="card h-100 shadow-lg border-0 bg-gradient-to-br from-red-50 to-pink-50">
                             <div class="card-body p-4">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div>
                                         <p class="text-muted mb-1">Security</p>
                                         <h3 class="fw-bold mb-0">{{ $securityGuardCount ?? 0 }}</h3>
                                     </div>
-                                    <div class="p-3 rounded-circle bg-red-100">
-                                        <i class="fas fa-shield-alt text-danger" style="font-size: 1.5rem;"></i>
+                                    <div class="p-3 rounded-circle bg-red-100 dashboard-card-icon">
+                                        <i class="fas fa-shield-alt text-danger"></i>
                                     </div>
                                 </div>
                             </div>
@@ -117,15 +117,15 @@
 
                 <div class="col-xl-3 col-md-6">
                     <a href="{{ route('office-boys.index') }}" class="text-decoration-none">
-                        <div class="card h-100 shadow-sm border-0 bg-gradient-to-br from-teal-50 to-cyan-50">
+                        <div class="card h-100 shadow-lg border-0 bg-gradient-to-br from-teal-50 to-cyan-50">
                             <div class="card-body p-4">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div>
                                         <p class="text-muted mb-1">Office Staff</p>
                                         <h3 class="fw-bold mb-0">{{ $officeBoyCount ?? 0 }}</h3>
                                     </div>
-                                    <div class="p-3 rounded-circle bg-teal-100">
-                                        <i class="fas fa-user-tie text-teal" style="font-size: 1.5rem;"></i>
+                                    <div class="p-3 rounded-circle bg-teal-100 dashboard-card-icon">
+                                        <i class="fas fa-user-tie text-teal"></i>
                                     </div>
                                 </div>
                             </div>
@@ -135,15 +135,15 @@
 
                 <div class="col-xl-3 col-md-6">
                     <a href="{{ route('events.index') }}" class="text-decoration-none">
-                        <div class="card h-100 shadow-sm border-0 bg-gradient-to-br from-violet-50 to-purple-50">
+                        <div class="card h-100 shadow-lg border-0 bg-gradient-to-br from-violet-50 to-purple-50">
                             <div class="card-body p-4">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div>
                                         <p class="text-muted mb-1">Events</p>
                                         <h3 class="fw-bold mb-0">{{ $eventCount ?? 0 }}</h3>
                                     </div>
-                                    <div class="p-3 rounded-circle bg-violet-100">
-                                        <i class="fas fa-calendar-alt text-purple" style="font-size: 1.5rem;"></i>
+                                    <div class="p-3 rounded-circle bg-violet-100 dashboard-card-icon">
+                                        <i class="fas fa-calendar-alt text-purple"></i>
                                     </div>
                                 </div>
                             </div>
@@ -153,15 +153,15 @@
 
                 <div class="col-xl-3 col-md-6">
                     <a href="{{ route('parents.index') }}" class="text-decoration-none">
-                        <div class="card h-100 shadow-sm border-0 bg-gradient-to-br from-slate-50 to-gray-50">
+                        <div class="card h-100 shadow-lg border-0 bg-gradient-to-br from-slate-50 to-gray-50">
                             <div class="card-body p-4">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div>
                                         <p class="text-muted mb-1">Parents</p>
                                         <h3 class="fw-bold mb-0">{{ $parentCount ?? 0 }}</h3>
                                     </div>
-                                    <div class="p-3 rounded-circle bg-gray-100">
-                                        <i class="fas fa-user-friends text-muted" style="font-size: 1.5rem;"></i>
+                                    <div class="p-3 rounded-circle bg-gray-100 dashboard-card-icon">
+                                        <i class="fas fa-user-friends text-muted"></i>
                                     </div>
                                 </div>
                             </div>
@@ -171,15 +171,15 @@
 
                 <div class="col-xl-3 col-md-6">
                     <a href="/classes/1/schedules" class="text-decoration-none">
-                        <div class="card h-100 shadow-sm border-0 bg-gradient-to-br from-cyan-50 to-blue-50">
+                        <div class="card h-100 shadow-lg border-0 bg-gradient-to-br from-cyan-50 to-blue-50">
                             <div class="card-body p-4">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div>
                                         <p class="text-muted mb-1">Class Schedules</p>
                                         <h3 class="fw-bold mb-0">View</h3>
                                     </div>
-                                    <div class="p-3 rounded-circle bg-cyan-100">
-                                        <i class="fas fa-calendar text-cyan" style="font-size: 1.5rem;"></i>
+                                    <div class="p-3 rounded-circle bg-cyan-100 dashboard-card-icon">
+                                        <i class="fas fa-calendar text-cyan"></i>
                                     </div>
                                 </div>
                             </div>
@@ -189,15 +189,15 @@
 
                 <div class="col-xl-3 col-md-6">
                     <a href="{{ route('attendance.student-dashboard') }}" class="text-decoration-none">
-                        <div class="card h-100 shadow-sm border-0 bg-gradient-to-br from-amber-50 to-yellow-50">
+                        <div class="card h-100 shadow-lg border-0 bg-gradient-to-br from-amber-50 to-yellow-50">
                             <div class="card-body p-4">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div>
                                         <p class="text-muted mb-1">Student Attendance</p>
                                         <h3 class="fw-bold mb-0">Manage</h3>
                                     </div>
-                                    <div class="p-3 rounded-circle bg-amber-100">
-                                        <i class="fas fa-clipboard-list text-amber" style="font-size: 1.5rem;"></i>
+                                    <div class="p-3 rounded-circle bg-amber-100 dashboard-card-icon">
+                                        <i class="fas fa-clipboard-list text-amber"></i>
                                     </div>
                                 </div>
                             </div>
@@ -207,15 +207,15 @@
 
                 <div class="col-xl-3 col-md-6">
                     <a href="{{ route('health-records.index') }}" class="text-decoration-none">
-                        <div class="card h-100 shadow-sm border-0 bg-gradient-to-br from-pink-50 to-rose-50">
+                        <div class="card h-100 shadow-lg border-0 bg-gradient-to-br from-pink-50 to-rose-50">
                             <div class="card-body p-4">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div>
                                         <p class="text-muted mb-1">Puskesmas Siswa</p>
                                         <h3 class="fw-bold mb-0">{{ $healthRecordCount ?? 0 }}</h3>
                                     </div>
-                                    <div class="p-3 rounded-circle bg-pink-100">
-                                        <i class="fas fa-heartbeat text-pink" style="font-size: 1.5rem;"></i>
+                                    <div class="p-3 rounded-circle bg-pink-100 dashboard-card-icon">
+                                        <i class="fas fa-heartbeat text-pink"></i>
                                     </div>
                                 </div>
                             </div>
@@ -225,15 +225,15 @@
 
                 <div class="col-xl-3 col-md-6">
                     <a href="{{ route('finance-records.index') }}" class="text-decoration-none">
-                        <div class="card h-100 shadow-sm border-0 bg-gradient-to-br from-emerald-50 to-teal-50">
+                        <div class="card h-100 shadow-lg border-0 bg-gradient-to-br from-emerald-50 to-teal-50">
                             <div class="card-body p-4">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div>
                                         <p class="text-muted mb-1">Finance Sekolah</p>
                                         <h3 class="fw-bold mb-0">{{ $financeRecordCount ?? 0 }}</h3>
                                     </div>
-                                    <div class="p-3 rounded-circle bg-emerald-100">
-                                        <i class="fas fa-money-bill-wave text-emerald" style="font-size: 1.5rem;"></i>
+                                    <div class="p-3 rounded-circle bg-emerald-100 dashboard-card-icon">
+                                        <i class="fas fa-money-bill-wave text-emerald"></i>
                                     </div>
                                 </div>
                             </div>
@@ -247,7 +247,7 @@
             <div class="row g-4">
                 <!-- Recent Events -->
                 <div class="col-xl-6">
-                    <div class="card shadow-sm border-0 h-100">
+                    <div class="card shadow-lg border-0 h-100">
                         <div class="card-header bg-white border-0 py-4 px-4">
                             <h5 class="card-title mb-0 fw-bold">
                                 <i class="fas fa-calendar-alt text-primary me-2"></i>
@@ -300,7 +300,7 @@
                                 </div>
                             @else
                                 <div class="text-center py-5">
-                                    <i class="fas fa-calendar-alt text-muted mb-3" style="font-size: 3rem;"></i>
+                                    <i class="fas fa-calendar-alt text-muted mb-3 dashboard-card-icon"></i>
                                     <p class="text-muted">No recent events available.</p>
                                 </div>
                             @endif
@@ -310,7 +310,7 @@
 
                 <!-- Recent Attendance -->
                 <div class="col-xl-6">
-                    <div class="card shadow-sm border-0 h-100">
+                    <div class="card shadow-lg border-0 h-100">
                         <div class="card-header bg-white border-0 py-4 px-4">
                             <h5 class="card-title mb-0 fw-bold">
                                 <i class="fas fa-user-check text-success me-2"></i>
@@ -352,7 +352,7 @@
                                 </div>
                             @else
                                 <div class="text-center py-5">
-                                    <i class="fas fa-user-check text-muted mb-3" style="font-size: 3rem;"></i>
+                                    <i class="fas fa-user-check text-muted mb-3 dashboard-card-icon"></i>
                                     <p class="text-muted">No recent attendance records available.</p>
                                 </div>
                             @endif

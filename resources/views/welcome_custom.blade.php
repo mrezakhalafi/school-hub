@@ -30,16 +30,6 @@
                             @endguest
                         </div>
                     </div>
-                    <div class="col-lg-6">
-                        <div class="position-relative">
-                            <div class="position-absolute top-0 start-0 translate-middle bg-primary rounded-circle opacity-10"
-                                style="width: 200px; height: 200px;"></div>
-                            <div class="position-absolute bottom-0 end-0 translate-middle bg-info rounded-circle opacity-10"
-                                style="width: 150px; height: 150px;"></div>
-                            <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=600&q=80"
-                                alt="Students Learning" class="img-fluid rounded-3 shadow-lg" style="z-index: 1;">
-                        </div>
-                    </div>
                 </div>
             </div>
         </section>
@@ -54,9 +44,9 @@
                         </p>
                     </div>
                 </div>
-                <div class="row g-4">
+                <div class="row g-4 mt-5">
                     <div class="col-md-4">
-                        <div class="card h-100 border-0 shadow-sm rounded-3 hover-lift">
+                        <div class="card h-100 border-0 shadow-lg rounded-3 hover-lift">
                             <div class="card-body p-4 p-md-5 text-center">
                                 <div
                                     class="icon-container bg-primary bg-opacity-10 rounded-circle d-inline-flex p-4 mb-3 mb-md-4">
@@ -69,7 +59,7 @@
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="card h-100 border-0 shadow-sm rounded-3 hover-lift">
+                        <div class="card h-100 border-0 shadow-lg rounded-3 hover-lift">
                             <div class="card-body p-4 p-md-5 text-center">
                                 <div
                                     class="icon-container bg-success bg-opacity-10 rounded-circle d-inline-flex p-4 mb-3 mb-md-4">
@@ -82,7 +72,7 @@
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="card h-100 border-0 shadow-sm rounded-3 hover-lift">
+                        <div class="card h-100 border-0 shadow-lg rounded-3 hover-lift">
                             <div class="card-body p-4 p-md-5 text-center">
                                 <div
                                     class="icon-container bg-info bg-opacity-10 rounded-circle d-inline-flex p-4 mb-3 mb-md-4">
@@ -95,7 +85,7 @@
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="card h-100 border-0 shadow-sm rounded-3 hover-lift">
+                        <div class="card h-100 border-0 shadow-lg rounded-3 hover-lift">
                             <div class="card-body p-4 p-md-5 text-center">
                                 <div
                                     class="icon-container bg-warning bg-opacity-10 rounded-circle d-inline-flex p-4 mb-3 mb-md-4">
@@ -108,7 +98,7 @@
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="card h-100 border-0 shadow-sm rounded-3 hover-lift">
+                        <div class="card h-100 border-0 shadow-lg rounded-3 hover-lift">
                             <div class="card-body p-4 p-md-5 text-center">
                                 <div
                                     class="icon-container bg-danger bg-opacity-10 rounded-circle d-inline-flex p-4 mb-3 mb-md-4">
@@ -121,7 +111,7 @@
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="card h-100 border-0 shadow-sm rounded-3 hover-lift">
+                        <div class="card h-100 border-0 shadow-lg rounded-3 hover-lift">
                             <div class="card-body p-4 p-md-5 text-center">
                                 <div
                                     class="icon-container bg-secondary bg-opacity-10 rounded-circle d-inline-flex p-4 mb-3 mb-md-4">
@@ -142,25 +132,25 @@
             <div class="container">
                 <div class="row g-4 mb-5">
                     <div class="col-md-3 col-6 text-center">
-                        <div class="stat-card bg-white p-4 rounded-3 shadow-sm">
+                        <div class="stat-card bg-white p-4 rounded-3 shadow-lg">
                             <h3 class="fw-bold text-primary display-5">500+</h3>
                             <p class="mb-0 mt-2">Students</p>
                         </div>
                     </div>
                     <div class="col-md-3 col-6 text-center">
-                        <div class="stat-card bg-white p-4 rounded-3 shadow-sm">
+                        <div class="stat-card bg-white p-4 rounded-3 shadow-lg">
                             <h3 class="fw-bold text-success display-5">25+</h3>
                             <p class="mb-0">Teachers</p>
                         </div>
                     </div>
                     <div class="col-md-3 col-6 text-center">
-                        <div class="stat-card bg-white p-4 rounded-3 shadow-sm">
+                        <div class="stat-card bg-white p-4 rounded-3 shadow-lg">
                             <h3 class="fw-bold text-info display-5">12</h3>
                             <p class="mb-0">Classes</p>
                         </div>
                     </div>
                     <div class="col-md-3 col-6 text-center">
-                        <div class="stat-card bg-white p-4 rounded-3 shadow-sm">
+                        <div class="stat-card bg-white p-4 rounded-3 shadow-lg">
                             <h3 class="fw-bold text-warning display-5">98%</h3>
                             <p class="mb-0">Satisfaction</p>
                         </div>
@@ -178,9 +168,9 @@
                         <p class="lead text-muted mb-0">Hear from our community members</p>
                     </div>
                 </div>
-                <div class="row g-4">
+                <div class="row g-4 mt-5">
                     <div class="col-md-4">
-                        <div class="testimonial-card card border-0 shadow-sm h-100">
+                        <div class="testimonial-card card border-0 shadow-lg h-100">
                             <div class="card-body p-4 p-md-5">
                                 <div class="rating mb-3">
                                     <i class="fas fa-star text-warning"></i>
@@ -203,7 +193,7 @@
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="testimonial-card card border-0 shadow-sm h-100">
+                        <div class="testimonial-card card border-0 shadow-lg h-100">
                             <div class="card-body p-4 p-md-5">
                                 <div class="rating mb-3">
                                     <i class="fas fa-star text-warning"></i>
@@ -226,7 +216,7 @@
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="testimonial-card card border-0 shadow-sm h-100">
+                        <div class="testimonial-card card border-0 shadow-lg h-100">
                             <div class="card-body p-4 p-md-5">
                                 <div class="rating mb-3">
                                     <i class="fas fa-star text-warning"></i>
