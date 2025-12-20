@@ -1,9 +1,182 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
-@section('content')
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <title>{{ config('app.name', 'SchoolHub') }}</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        .navbar {
+            transition: all 0.4s;
+        }
+
+        .navbar.scrolled {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            background-color: rgba(255, 255, 255, 0.95) !important;
+        }
+
+        .nav-link {
+            font-weight: 600;
+            position: relative;
+            padding: 0.5rem 1rem !important;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            background-color: #3b82f6;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+            left: 0;
+        }
+
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-padding {
+            padding: 5rem 0;
+        }
+
+        .hover-lift {
+            transition: all 0.3s ease;
+        }
+
+        .hover-lift:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15) !important;
+        }
+
+        .stat-card {
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: scale(1.05);
+        }
+
+        .testimonial-card {
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .icon-container {
+            transition: all 0.3s ease;
+        }
+
+        .icon-container:hover {
+            transform: scale(1.1);
+        }
+
+        .footer {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+        }
+
+        .footer a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        .btn-school {
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-school:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+
+<body class="bg-light">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold fs-4" href="#home">
+                <span class="text-primary">{{ config('app.name', 'School-Hub') }}</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="#features">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="#testimonials">Testimonials</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="#contact">Contact</a>
+                    </li>
+                    @guest
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="{{ route('login') }}">Sign In</a>
+                        </li>
+                        <li class="nav-item ms-2">
+                            <a href="{{ route('register') }}" class="btn btn-primary">Register</a>
+                        </li>
+                    @else
+                        <li class="nav-item ms-2">
+                            <a href="{{ route('dashboard') }}" class="btn btn-primary">Dashboard</a>
+                        </li>
+                    @endguest
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
     <div class="container-fluid px-4">
         <!-- Hero Section -->
-        <section class="hero-section bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 py-5 py-md-5 mb-5">
+        <section id="home"
+            class="hero-section bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 py-5 py-md-5 mb-5">
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-6 mb-5 mb-lg-0">
@@ -11,15 +184,18 @@
                             <span class="text-primary">SchoolHub</span> - Empowering Education for Tomorrow
                         </h1>
                         <p class="lead text-muted mb-5">
-                            A comprehensive digital ecosystem connecting students, teachers, parents, and administrators to
+                            A comprehensive digital ecosystem connecting students, teachers, parents, and administrators
+                            to
                             create exceptional learning experiences.
                         </p>
                         <div class="d-flex flex-wrap gap-3">
-                            <a href="{{ route('register') }}" class="btn btn-primary btn-lg px-5 py-3 rounded-pill shadow">
+                            <a href="{{ route('register') }}"
+                                class="btn btn-primary btn-lg px-5 py-3 rounded-pill shadow">
                                 Enter Apps
                             </a>
                             @guest
-                                <a href="{{ route('login') }}" class="btn btn-outline-primary btn-lg px-5 py-3 rounded-pill">
+                                <a href="{{ route('login') }}"
+                                    class="btn btn-outline-primary btn-lg px-5 py-3 rounded-pill">
                                     Sign In
                                 </a>
                             @else
@@ -35,12 +211,13 @@
         </section>
 
         <!-- Features Section -->
-        <section class="py-5 py-md-5 mb-5">
+        <section id="features" class="py-5 py-md-5 mb-5">
             <div class="container mb-5">
                 <div class="row mb-6 mb-md-8">
                     <div class="col-12 text-center">
                         <h2 class="display-6 fw-bold mb-3 mb-md-4">Comprehensive School Management</h2>
-                        <p class="lead text-muted mb-0">All the tools you need to run an exceptional educational institution
+                        <p class="lead text-muted mb-0">All the tools you need to run an exceptional educational
+                            institution
                         </p>
                     </div>
                 </div>
@@ -53,7 +230,8 @@
                                     <i class="fas fa-users fa-2x text-primary"></i>
                                 </div>
                                 <h5 class="fw-bold mb-2 mb-md-3">Student Management</h5>
-                                <p class="text-muted mb-0">Effortlessly track student records, grades, and academic progress
+                                <p class="text-muted mb-0">Effortlessly track student records, grades, and academic
+                                    progress
                                     with our intuitive interface.</p>
                             </div>
                         </div>
@@ -66,7 +244,8 @@
                                     <i class="fas fa-chalkboard-teacher fa-2x text-success"></i>
                                 </div>
                                 <h5 class="fw-bold mb-2 mb-md-3">Teacher Portal</h5>
-                                <p class="text-muted mb-0">Streamline teaching activities, attendance, grading, and parent
+                                <p class="text-muted mb-0">Streamline teaching activities, attendance, grading, and
+                                    parent
                                     communication in one place.</p>
                             </div>
                         </div>
@@ -127,6 +306,98 @@
             </div>
         </section>
 
+        <!-- About Section -->
+        <section id="about" class="py-5 py-md-5 mb-5">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 mb-5 mb-lg-0">
+                        <h2 class="display-6 fw-bold mb-4">About SchoolHub</h2>
+                        <p class="lead text-muted mb-4">
+                            SchoolHub is a revolutionary educational platform designed to transform the way schools
+                            operate,
+                            teach, and connect with their communities. Our mission is to create seamless experiences
+                            that
+                            enhance learning outcomes and administrative efficiency.
+                        </p>
+                        <p class="text-muted mb-4">
+                            With over 5 years of experience in educational technology, our team has worked with hundreds
+                            of
+                            schools worldwide to create a comprehensive solution that addresses the real challenges
+                            faced by
+                            educators, students, and parents in today's digital age.
+                        </p>
+                        <div class="d-flex flex-wrap gap-3">
+                            <div class="d-flex align-items-center">
+                                <i class="fas fa-check-circle text-success me-2"></i>
+                                <span>Secure & Reliable</span>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <i class="fas fa-check-circle text-success me-2"></i>
+                                <span>Easy to Use</span>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <i class="fas fa-check-circle text-success me-2"></i>
+                                <span>24/7 Support</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="card shadow-sm h-100">
+                                    <div class="card-body text-center p-4">
+                                        <div
+                                            class="icon-container bg-primary bg-opacity-10 rounded-circle d-inline-flex p-3 mb-3">
+                                            <i class="fas fa-graduation-cap fa-2x text-primary"></i>
+                                        </div>
+                                        <h4 class="fw-bold">Academic Excellence</h4>
+                                        <p class="text-muted">Tools designed to enhance teaching and learning outcomes
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card shadow-sm h-100">
+                                    <div class="card-body text-center p-4">
+                                        <div
+                                            class="icon-container bg-success bg-opacity-10 rounded-circle d-inline-flex p-3 mb-3">
+                                            <i class="fas fa-users fa-2x text-success"></i>
+                                        </div>
+                                        <h4 class="fw-bold">Community</h4>
+                                        <p class="text-muted">Connect students, teachers, and parents effectively</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card shadow-sm h-100">
+                                    <div class="card-body text-center p-4">
+                                        <div
+                                            class="icon-container bg-info bg-opacity-10 rounded-circle d-inline-flex p-3 mb-3">
+                                            <i class="fas fa-shield-alt fa-2x text-info"></i>
+                                        </div>
+                                        <h4 class="fw-bold">Safety First</h4>
+                                        <p class="text-muted">Prioritizing student and campus security</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card shadow-sm h-100">
+                                    <div class="card-body text-center p-4">
+                                        <div
+                                            class="icon-container bg-warning bg-opacity-10 rounded-circle d-inline-flex p-3 mb-3">
+                                            <i class="fas fa-chart-line fa-2x text-warning"></i>
+                                        </div>
+                                        <h4 class="fw-bold">Analytics</h4>
+                                        <p class="text-muted">Data-driven insights for better decisions</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Statistics Section -->
         <section class="py-5 py-md-5 bg-light mt-5 mb-5">
             <div class="container">
@@ -160,7 +431,7 @@
         </section>
 
         <!-- Testimonials Section -->
-        <section class="py-8 py-md-12 mt-5 mb-5">
+        <section id="testimonials" class="py-8 py-md-12 mt-5 mb-5">
             <div class="container mt-5">
                 <div class="row mb-6 mb-md-8">
                     <div class="col-12 text-center">
@@ -183,7 +454,8 @@
                                     Communication between teachers, students, and parents has never been better."</p>
                                 <div class="d-flex align-items-center">
                                     <img src="https://ui-avatars.com/api/?name=Sarah+Johnson&background=3b82f6&color=fff"
-                                        class="rounded-circle me-3" width="50" height="50" alt="Sarah Johnson">
+                                        class="rounded-circle me-3" width="50" height="50"
+                                        alt="Sarah Johnson">
                                     <div>
                                         <h6 class="mb-0">Sarah Johnson</h6>
                                         <small class="text-muted">School Principal</small>
@@ -202,11 +474,13 @@
                                     <i class="fas fa-star text-warning"></i>
                                     <i class="fas fa-star text-warning"></i>
                                 </div>
-                                <p class="mb-4">"As a teacher, this platform saves me hours each week on administrative
+                                <p class="mb-4">"As a teacher, this platform saves me hours each week on
+                                    administrative
                                     tasks, allowing me to focus more on my students."</p>
                                 <div class="d-flex align-items-center">
                                     <img src="https://ui-avatars.com/api/?name=Michael+Chen&background=10b981&color=fff"
-                                        class="rounded-circle me-3" width="50" height="50" alt="Michael Chen">
+                                        class="rounded-circle me-3" width="50" height="50"
+                                        alt="Michael Chen">
                                     <div>
                                         <h6 class="mb-0">Michael Chen</h6>
                                         <small class="text-muted">Mathematics Teacher</small>
@@ -225,14 +499,102 @@
                                     <i class="fas fa-star text-warning"></i>
                                     <i class="fas fa-star-half-alt text-warning"></i>
                                 </div>
-                                <p class="mb-4">"I love staying connected with my child's school through SchoolHub. The
+                                <p class="mb-4">"I love staying connected with my child's school through SchoolHub.
+                                    The
                                     real-time updates keep me informed of his progress."</p>
                                 <div class="d-flex align-items-center">
                                     <img src="https://ui-avatars.com/api/?name=Amy+Rodriguez&background=f59e0b&color=fff"
-                                        class="rounded-circle me-3" width="50" height="50" alt="Amy Rodriguez">
+                                        class="rounded-circle me-3" width="50" height="50"
+                                        alt="Amy Rodriguez">
                                     <div>
                                         <h6 class="mb-0">Amy Rodriguez</h6>
                                         <small class="text-muted">Parent</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-5 py-md-5 mb-5">
+            <div class="container">
+                <div class="row mb-6 mb-md-8">
+                    <div class="col-12 text-center">
+                        <h2 class="display-6 fw-bold mb-3 mb-md-4">Get In Touch</h2>
+                        <p class="lead text-muted mb-0">Have questions? We'd love to hear from you</p>
+                    </div>
+                </div>
+                <div class="row g-5 mt-5">
+                    <div class="col-lg-6">
+                        <div class="card shadow-sm h-100">
+                            <div class="card-body p-5">
+                                <h3 class="fw-bold mb-4">Send us a message</h3>
+                                <form>
+                                    <div class="mb-4">
+                                        <label for="name" class="form-label">Name</label>
+                                        <input type="text" class="form-control form-control-lg" id="name"
+                                            placeholder="Enter your name">
+                                    </div>
+                                    <div class="mb-4">
+                                        <label for="email" class="form-label">Email</label>
+                                        <input type="email" class="form-control form-control-lg" id="email"
+                                            placeholder="Enter your email">
+                                    </div>
+                                    <div class="mb-4">
+                                        <label for="message" class="form-label">Message</label>
+                                        <textarea class="form-control form-control-lg" id="message" rows="4" placeholder="How can we help you?"></textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary btn-lg w-100">Send Message</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="card shadow-sm h-100">
+                            <div class="card-body p-5">
+                                <h3 class="fw-bold mb-4">Contact Information</h3>
+                                <div class="d-flex align-items-start mb-4">
+                                    <div
+                                        class="icon-container bg-primary bg-opacity-10 rounded-circle d-inline-flex p-3 me-4">
+                                        <i class="fas fa-map-marker-alt fa-lg text-primary"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="fw-bold">Address</h5>
+                                        <p class="text-muted mb-0">123 Education Street<br>Learning City, LC 12345</p>
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-start mb-4">
+                                    <div
+                                        class="icon-container bg-success bg-opacity-10 rounded-circle d-inline-flex p-3 me-4">
+                                        <i class="fas fa-phone-alt fa-lg text-success"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="fw-bold">Phone</h5>
+                                        <p class="text-muted mb-0">+1 (555) 123-4567<br>Mon-Fri, 9am-5pm</p>
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-start mb-4">
+                                    <div
+                                        class="icon-container bg-info bg-opacity-10 rounded-circle d-inline-flex p-3 me-4">
+                                        <i class="fas fa-envelope fa-lg text-info"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="fw-bold">Email</h5>
+                                        <p class="text-muted mb-0">info@schoolhub.edu<br>support@schoolhub.edu</p>
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-start">
+                                    <div
+                                        class="icon-container bg-warning bg-opacity-10 rounded-circle d-inline-flex p-3 me-4">
+                                        <i class="fas fa-clock fa-lg text-warning"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="fw-bold">Working Hours</h5>
+                                        <p class="text-muted mb-0">Monday - Friday: 9:00 AM - 6:00 PM<br>Saturday:
+                                            10:00 AM - 2:00 PM</p>
                                     </div>
                                 </div>
                             </div>
@@ -248,7 +610,8 @@
                 <div class="row align-items-center">
                     <div class="col-lg-8 text-center text-lg-start mb-4 mb-lg-0">
                         <h2 class="display-6 fw-bold mb-3">Ready to Transform Your School Experience?</h2>
-                        <p class="lead mb-0 opacity-90">Join hundreds of schools already benefiting from our comprehensive
+                        <p class="lead mb-0 opacity-90">Join hundreds of schools already benefiting from our
+                            comprehensive
                             platform</p>
                     </div>
                     <div class="col-lg-4 text-center text-lg-end">
@@ -274,7 +637,8 @@
                                 <a href="{{ route('register') }}" class="btn btn-primary btn-lg px-5 py-3 rounded-pill">
                                     Register Now
                                 </a>
-                                <a href="{{ route('login') }}" class="btn btn-outline-primary btn-lg px-5 py-3 rounded-pill">
+                                <a href="{{ route('login') }}"
+                                    class="btn btn-outline-primary btn-lg px-5 py-3 rounded-pill">
                                     Sign In
                                 </a>
                             @else
@@ -289,44 +653,166 @@
         </section>
     </div>
 
-    <!-- Add custom CSS for modern effects -->
-    <style>
-        .hover-lift {
-            transition: all 0.3s ease;
-        }
+    <!-- CTA Section -->
+    <section class="py-5 py-md-5 bg-gradient-to-r from-blue-600 to-indigo-700 text-white mt-5 mb-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8 text-center text-lg-start mb-4 mb-lg-0">
+                    <h2 class="display-6 fw-bold mb-3">Ready to Transform Your School Experience?</h2>
+                    <p class="lead mb-0 opacity-90">Join hundreds of schools already benefiting from our comprehensive
+                        platform</p>
+                </div>
+                <div class="col-lg-4 text-center text-lg-end">
+                    <a href="{{ route('register') }}"
+                        class="btn btn-light btn-lg px-5 py-3 rounded-pill fw-semibold shadow">
+                        Explore Now
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        .hover-lift:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15) !important;
-        }
+    <!-- Footer CTA -->
+    <section class="py-5 py-md-5 mt-5 mb-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <h3 class="display-6 fw-bold mb-4">Experience the Future of School Management Today</h3>
+                    <p class="lead text-muted mb-5">Discover how our platform can revolutionize the way your school
+                        operates, learns, and grows.</p>
+                    <div class="d-flex flex-wrap justify-content-center gap-3">
+                        @guest
+                            <a href="{{ route('register') }}" class="btn btn-primary btn-lg px-5 py-3 rounded-pill">
+                                Register Now
+                            </a>
+                            <a href="{{ route('login') }}" class="btn btn-outline-primary btn-lg px-5 py-3 rounded-pill">
+                                Sign In
+                            </a>
+                        @else
+                            <a href="{{ route('dashboard') }}" class="btn btn-primary btn-lg px-5 py-3 rounded-pill">
+                                Go to Dashboard
+                            </a>
+                        @endguest
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    </div>
 
-        .stat-card {
-            transition: all 0.3s ease;
-        }
+    <!-- Footer -->
+    <footer class="footer mt-5">
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-md-4">
+                    <h4 class="fw-bold mb-4">{{ config('app.name', 'SchoolHub') }}</h4>
+                    <p class="mb-4">
+                        Empowering education through innovative technology solutions that connect students, teachers,
+                        and parents.
+                    </p>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="text-white">
+                            <i class="fab fa-facebook-f fa-lg"></i>
+                        </a>
+                        <a href="#" class="text-white">
+                            <i class="fab fa-twitter fa-lg"></i>
+                        </a>
+                        <a href="#" class="text-white">
+                            <i class="fab fa-instagram fa-lg"></i>
+                        </a>
+                        <a href="#" class="text-white">
+                            <i class="fab fa-linkedin-in fa-lg"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <h5 class="fw-bold mb-4">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#home" class="text-decoration-none">Home</a></li>
+                        <li class="mb-2"><a href="#features" class="text-decoration-none">Features</a></li>
+                        <li class="mb-2"><a href="#about" class="text-decoration-none">About</a></li>
+                        <li class="mb-2"><a href="#testimonials" class="text-decoration-none">Testimonials</a></li>
+                        <li class="mb-2"><a href="#contact" class="text-decoration-none">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5 class="fw-bold mb-4">Services</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-decoration-none">Student Management</a></li>
+                        <li class="mb-2"><a href="#" class="text-decoration-none">Teacher Portal</a></li>
+                        <li class="mb-2"><a href="#" class="text-decoration-none">Parent Communication</a>
+                        </li>
+                        <li class="mb-2"><a href="#" class="text-decoration-none">Attendance Tracking</a>
+                        </li>
+                        <li class="mb-2"><a href="#" class="text-decoration-none">Grade Management</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5 class="fw-bold mb-4">Contact Us</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="fas fa-map-marker-alt me-2"></i> 123 Education Street</li>
+                        <li class="mb-2"><i class="fas fa-phone-alt me-2"></i> +1 (555) 123-4567</li>
+                        <li class="mb-2"><i class="fas fa-envelope me-2"></i> info@schoolhub.edu</li>
+                        <li class="mb-2"><i class="fas fa-clock me-2"></i> Mon-Fri: 9am-5pm</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="border-top border-light py-3">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-6 text-center text-md-start">
+                        <p class="mb-0">&copy; {{ date('Y') }} {{ config('app.name', 'SchoolHub') }}. All
+                            rights reserved.</p>
+                    </div>
+                    <div class="col-md-6 text-center text-md-end">
+                        <a href="#" class="text-white text-decoration-none me-3">Privacy Policy</a>
+                        <a href="#" class="text-white text-decoration-none me-3">Terms of Service</a>
+                        <a href="#" class="text-white text-decoration-none">FAQ</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
 
-        .stat-card:hover {
-            transform: scale(1.05);
-        }
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-        .testimonial-card {
-            transition: all 0.3s ease;
-        }
+    <!-- Custom JavaScript -->
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
 
-        .testimonial-card:hover {
-            transform: translateY(-5px);
-        }
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80, // Adjust for fixed navbar height
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
 
-        .icon-container {
-            transition: all 0.3s ease;
-        }
+        // Navbar background change on scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
 
-        .icon-container:hover {
-            transform: scale(1.1);
-        }
+        // Initialize navbar background state
+        document.addEventListener('DOMContentLoaded', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            }
+        });
+    </script>
+</body>
 
-        .hero-section {
-            position: relative;
-            overflow: hidden;
-        }
-    </style>
-@endsection
+</html>
