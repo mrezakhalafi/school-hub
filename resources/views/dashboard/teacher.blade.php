@@ -332,82 +332,108 @@
             // Get previous month details
             const prevMonthDays = new Date(year, month, 0).getDate();
 
-            // Create previous month's days
-            for (let i = 0; i < firstDay; i++) {
-                const dayElement = document.createElement('div');
-                dayElement.className = 'col calendar-day other-month past-day';
-                dayElement.textContent = prevMonthDays - firstDay + i + 1;
-                calendarDaysElement.appendChild(dayElement);
-            }
+            // Calculate total days needed (including previous/next month days to complete grid)
+            const totalCells = 42; // 6 weeks * 7 days
+            let dayIndex = 0;
 
-            // Create current month's days
-            const todayDate = today.getDate();
-            const todayMonth = today.getMonth();
-            const todayYear = today.getFullYear();
+            // Create weeks (rows) with 7 days (columns) each
+            for (let week = 0; week < 6; week++) {
+                // Create a new row for each week
+                const weekRow = document.createElement('div');
+                weekRow.className = 'row g-1 mb-1';
 
-            for (let day = 1; day <= daysInMonth; day++) {
-                const dayDate = new Date(year, month, day);
-                const dayDateString = dayDate.toISOString().split('T')[0];
+                for (let dayOfWeek = 0; dayOfWeek < 7; dayOfWeek++) {
+                    const dayElement = document.createElement('div');
+                    dayElement.className = 'col'; // Each day gets equal space in the grid
 
-                const dayElement = document.createElement('div');
-                dayElement.className = 'col calendar-day';
-                dayElement.textContent = day;
+                    // Create the calendar day element inside the column
+                    const dayContent = document.createElement('div');
+                    dayContent.className = 'calendar-day';
 
-                // Check if this is today
-                if (day === todayDate && month === todayMonth && year === todayYear) {
-                    dayElement.classList.add('today');
-                } else if (dayDate < today) {
-                    dayElement.classList.add('past-day');
-                }
-
-                // Add attendance status if exists
-                if (attendanceData[dayDateString]) {
-                    dayElement.classList.add(`attendance-${attendanceData[dayDateString].status}`);
-
-                    // Add tooltip with status and note
-                    dayElement.title = `${attendanceData[dayDateString].status.charAt(0).toUpperCase() + attendanceData[dayDateString].status.slice(1)}`;
-                    if (attendanceData[dayDateString].note) {
-                        dayElement.title += `: ${attendanceData[dayDateString].note}`;
-                    }
-                }
-
-                // Add click event to mark attendance
-                dayElement.addEventListener('click', function() {
-                    if (dayDate <= today) {
-                        document.getElementById('date').value = dayDateString;
-                        const statusSelect = document.getElementById('status');
-                        if (attendanceData[dayDateString]) {
-                            statusSelect.value = attendanceData[dayDateString].status;
-                        } else {
-                            statusSelect.value = 'present';
-                        }
-                        document.getElementById('note').value = attendanceData[dayDateString]?.note || '';
-                        // Show modal using the Bootstrap data attributes
-                        const modalElement = document.getElementById('attendanceModal');
-
-                        // If Bootstrap is available, use it, otherwise manually show
-                        if (typeof bootstrap !== 'undefined' && bootstrap.Modal) {
-                            const modal = new bootstrap.Modal(modalElement);
-                            modal.show();
-                        } else {
-                            // Manual fallback for showing modal
-                            modalElement.style.display = 'block';
-                            modalElement.classList.add('show');
-                            modalElement.setAttribute('aria-modal', 'true');
-                            modalElement.removeAttribute('aria-hidden');
-
-                            // Add backdrop
-                            const backdrop = document.createElement('div');
-                            backdrop.className = 'modal-backdrop fade show';
-                            document.body.appendChild(backdrop);
-                            document.body.classList.add('modal-open');
-                        }
+                    // Check if this cell should be filled
+                    if ((week === 0 && dayOfWeek < firstDay)) {
+                        // Previous month's day
+                        const prevDay = prevMonthDays - firstDay + dayOfWeek + 1;
+                        dayContent.classList.add('other-month', 'past-day');
+                        dayContent.textContent = prevDay;
+                    } else if (dayIndex >= daysInMonth) {
+                        // Next month's day
+                        const nextDay = dayIndex - daysInMonth + 1;
+                        dayContent.classList.add('other-month');
+                        dayContent.textContent = nextDay;
                     } else {
-                        alert('You cannot mark attendance for future dates.');
-                    }
-                });
+                        // Current month's day
+                        const day = dayIndex + 1;
+                        const dayDate = new Date(year, month, day);
+                        const dayDateString = dayDate.toISOString().split('T')[0];
 
-                calendarDaysElement.appendChild(dayElement);
+                        dayContent.textContent = day;
+
+                        // Check if this is today
+                        const todayDate = today.getDate();
+                        const todayMonth = today.getMonth();
+                        const todayYear = today.getFullYear();
+
+                        if (day === todayDate && month === todayMonth && year === todayYear) {
+                            dayContent.classList.add('today');
+                        } else if (dayDate < today) {
+                            dayContent.classList.add('past-day');
+                        }
+
+                        // Add attendance status if exists
+                        if (attendanceData[dayDateString]) {
+                            dayContent.classList.add(`attendance-${attendanceData[dayDateString].status}`);
+
+                            // Add tooltip with status and note
+                            dayContent.title = `${attendanceData[dayDateString].status.charAt(0).toUpperCase() + attendanceData[dayDateString].status.slice(1)}`;
+                            if (attendanceData[dayDateString].note) {
+                                dayContent.title += `: ${attendanceData[dayDateString].note}`;
+                            }
+                        }
+
+                        // Add click event to mark attendance
+                        dayContent.addEventListener('click', function() {
+                            if (dayDate <= today) {
+                                document.getElementById('date').value = dayDateString;
+                                const statusSelect = document.getElementById('status');
+                                if (attendanceData[dayDateString]) {
+                                    statusSelect.value = attendanceData[dayDateString].status;
+                                } else {
+                                    statusSelect.value = 'present';
+                                }
+                                document.getElementById('note').value = attendanceData[dayDateString]?.note || '';
+                                // Show modal using the Bootstrap data attributes
+                                const modalElement = document.getElementById('attendanceModal');
+
+                                // If Bootstrap is available, use it, otherwise manually show
+                                if (typeof bootstrap !== 'undefined' && bootstrap.Modal) {
+                                    const modal = new bootstrap.Modal(modalElement);
+                                    modal.show();
+                                } else {
+                                    // Manual fallback for showing modal
+                                    modalElement.style.display = 'block';
+                                    modalElement.classList.add('show');
+                                    modalElement.setAttribute('aria-modal', 'true');
+                                    modalElement.removeAttribute('aria-hidden');
+
+                                    // Add backdrop
+                                    const backdrop = document.createElement('div');
+                                    backdrop.className = 'modal-backdrop fade show';
+                                    document.body.appendChild(backdrop);
+                                    document.body.classList.add('modal-open');
+                                }
+                            } else {
+                                alert('You cannot mark attendance for future dates.');
+                            }
+                        });
+                    }
+
+                    dayElement.appendChild(dayContent);
+                    weekRow.appendChild(dayElement);
+                    dayIndex++;
+                }
+
+                calendarDaysElement.appendChild(weekRow);
             }
         }
 
