@@ -25,6 +25,10 @@ svg, i[class*="fa"] {
     font-size: 0.9rem;
 }
 
+.dashboard-card-icon > i {
+    font-size: 1.5rem !important;
+}
+
 /* Specific sizing for FA icons in input groups */
 .input-group-text i[class*="fa"] {
     font-size: 1rem;

@@ -7,7 +7,7 @@
         <div class="mb-5">
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <div>
-                    <h1 class="display-6 fw-bold text-primary">Welcome back, {{ Auth::user()->name }}!</h1>
+                    <h1 class="display-6 fw-bold text-dark">Welcome, {{ Auth::user()->name }}!</h1>
                     <p class="text-muted">Here's what's happening with your school today.</p>
                 </div>
                 <div class="d-flex gap-2">
@@ -26,11 +26,11 @@
             <div class="row g-4 mb-5">
                 <div class="col-xl-2 col-md-4">
                     <a href="{{ route('students.index') }}" class="text-decoration-none">
-                        <div class="card h-100 shadow-lg border-0 bg-gradient-to-br-blue-indigo">
+                        <div class="card h-100 p-2 shadow-md border-0 bg-gradient-to-br-blue-indigo">
                             <div class="card-body p-4">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div>
-                                        <p class="text-muted mb-1">Students</p>
+                                        <p class="text-muted mb-1 fs-6 fw-bold">Students</p>
                                         <h3 class="fw-bold mb-0">{{ $studentCount }}</h3>
                                     </div>
                                     <div class="p-3 rounded-circle bg-blue-100 dashboard-card-icon">
@@ -44,11 +44,11 @@
 
                 <div class="col-xl-2 col-md-4">
                     <a href="{{ route('teachers.index') }}" class="text-decoration-none">
-                        <div class="card h-100 shadow-lg border-0 bg-gradient-to-br-green-emerald">
+                        <div class="card h-100 p-2 shadow-md border-0 bg-gradient-to-br-green-emerald">
                             <div class="card-body p-4">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div>
-                                        <p class="text-muted mb-1">Teachers</p>
+                                        <p class="text-muted mb-1 fs-6 fw-bold">Teachers</p>
                                         <h3 class="fw-bold mb-0">{{ $teacherCount }}</h3>
                                     </div>
                                     <div class="p-3 rounded-circle bg-green-100 dashboard-card-icon">
@@ -62,11 +62,11 @@
 
                 <div class="col-xl-2 col-md-4">
                     <a href="{{ route('classes.index') }}" class="text-decoration-none">
-                        <div class="card h-100 shadow-lg border-0 bg-gradient-to-br-indigo-purple">
+                        <div class="card h-100 p-2 shadow-md border-0 bg-gradient-to-br-indigo-purple">
                             <div class="card-body p-4">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div>
-                                        <p class="text-muted mb-1">Classes</p>
+                                        <p class="text-muted mb-1 fs-6 fw-bold">Classes</p>
                                         <h3 class="fw-bold mb-0">{{ $classCount }}</h3>
                                     </div>
                                     <div class="p-3 rounded-circle bg-indigo-100 dashboard-card-icon">
@@ -80,11 +80,11 @@
 
                 <div class="col-xl-2 col-md-4">
                     <a href="{{ route('permission-reports.index') }}" class="text-decoration-none">
-                        <div class="card h-100 shadow-lg border-0 bg-gradient-to-br-orange-amber">
+                        <div class="card h-100 p-2 shadow-md border-0 bg-gradient-to-br-orange-amber">
                             <div class="card-body p-4">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div>
-                                        <p class="text-muted mb-1">Permissions</p>
+                                        <p class="text-muted mb-1 fs-6 fw-bold">Permissions</p>
                                         <h3 class="fw-bold mb-0">{{ $permissionReportCount ?? 0 }}</h3>
                                     </div>
                                     <div class="p-3 rounded-circle bg-orange-100 dashboard-card-icon">
@@ -99,11 +99,11 @@
                 @if (Auth::user()->isAdmin())
                     <div class="col-xl-2 col-md-4">
                         <a href="{{ route('security-guards.index') }}" class="text-decoration-none">
-                            <div class="card h-100 shadow-lg border-0 bg-gradient-to-br-red-pink">
+                            <div class="card h-100 p-2 shadow-md border-0 bg-gradient-to-br-red-pink">
                                 <div class="card-body p-4">
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div>
-                                            <p class="text-muted mb-1">Security</p>
+                                            <p class="text-muted mb-1 fs-6 fw-bold">Security</p>
                                             <h3 class="fw-bold mb-0">{{ $securityGuardCount ?? 0 }}</h3>
                                         </div>
                                         <div class="p-3 rounded-circle bg-red-100 dashboard-card-icon">
@@ -117,11 +117,11 @@
 
                     <div class="col-xl-2 col-md-4">
                         <a href="{{ route('office-boys.index') }}" class="text-decoration-none">
-                            <div class="card h-100 shadow-lg border-0 bg-gradient-to-br-teal-cyan">
+                            <div class="card h-100 p-2 shadow-md border-0 bg-gradient-to-br-teal-cyan">
                                 <div class="card-body p-4">
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div>
-                                            <p class="text-muted mb-1">Office Staff</p>
+                                            <p class="text-muted mb-1 fs-6 fw-bold">Office Staff</p>
                                             <h3 class="fw-bold mb-0">{{ $officeBoyCount ?? 0 }}</h3>
                                         </div>
                                         <div class="p-3 rounded-circle bg-teal-100 dashboard-card-icon">
@@ -140,11 +140,11 @@
                 @if (Auth::user()->isAdmin())
                     <div class="col-xl-2 col-md-4">
                         <a href="{{ route('events.index') }}" class="text-decoration-none">
-                            <div class="card h-100 shadow-lg border-0 bg-gradient-to-br-violet-purple">
+                            <div class="card h-100 p-2 shadow-md border-0 bg-gradient-to-br-violet-purple">
                                 <div class="card-body p-4">
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div>
-                                            <p class="text-muted mb-1">Events</p>
+                                            <p class="text-muted mb-1 fs-6 fw-bold">Events</p>
                                             <h3 class="fw-bold mb-0">{{ $eventCount ?? 0 }}</h3>
                                         </div>
                                         <div class="p-3 rounded-circle bg-violet-100 dashboard-card-icon">
@@ -158,11 +158,11 @@
 
                     <div class="col-xl-2 col-md-4">
                         <a href="{{ route('parents.index') }}" class="text-decoration-none">
-                            <div class="card h-100 shadow-lg border-0 bg-gradient-to-br-slate-gray">
+                            <div class="card h-100 p-2 shadow-md border-0 bg-gradient-to-br-slate-gray">
                                 <div class="card-body p-4">
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div>
-                                            <p class="text-muted mb-1">Parents</p>
+                                            <p class="text-muted mb-1 fs-6 fw-bold">Parents</p>
                                             <h3 class="fw-bold mb-0">{{ $parentCount ?? 0 }}</h3>
                                         </div>
                                         <div class="p-3 rounded-circle bg-gray-100 dashboard-card-icon">
@@ -176,12 +176,12 @@
 
                     <div class="col-xl-2 col-md-4">
                         <a href="/classes/1/schedules" class="text-decoration-none">
-                            <div class="card h-100 shadow-lg border-0 bg-gradient-to-br-cyan-blue">
+                            <div class="card h-100 p-2 shadow-md border-0 bg-gradient-to-br-cyan-blue">
                                 <div class="card-body p-4">
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div>
-                                            <p class="text-muted mb-1">Class Schedules</p>
-                                            <h4 class="fw-bold mb-0">View</h4>
+                                            <p class="text-muted mb-1 fs-6 fw-bold">Schedules</p>
+                                            <h4 class="fw-bold mb-0" style="font-size: 1.3rem">View</h4>
                                         </div>
                                         <div class="p-3 rounded-circle bg-cyan-100 dashboard-card-icon">
                                             <i class="fas fa-calendar text-cyan-blue"></i>
@@ -194,12 +194,12 @@
 
                     <div class="col-xl-2 col-md-4">
                         <a href="{{ route('attendance.student-dashboard') }}" class="text-decoration-none">
-                            <div class="card h-100 shadow-lg border-0 bg-gradient-to-br-amber-yellow">
+                            <div class="card h-100 p-2 shadow-md border-0 bg-gradient-to-br-amber-yellow">
                                 <div class="card-body p-4">
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div>
-                                            <p class="text-muted mb-1">Student Attendance</p>
-                                            <h3 class="fw-bold mb-0">Manage</h3>
+                                            <p class="text-muted mb-1 fs-6 fw-bold">Attendance</p>
+                                            <h3 class="fw-bold mb-0" style="font-size: 1.3rem">Manage</h3>
                                         </div>
                                         <div class="p-3 rounded-circle bg-amber-100 dashboard-card-icon">
                                             <i class="fas fa-clipboard-list text-amber-yellow"></i>
@@ -212,11 +212,11 @@
 
                     <div class="col-xl-2 col-md-4">
                         <a href="{{ route('health-records.index') }}" class="text-decoration-none">
-                            <div class="card h-100 shadow-lg border-0 bg-gradient-to-br-pink-rose">
+                            <div class="card h-100 p-2 shadow-md border-0 bg-gradient-to-br-pink-rose">
                                 <div class="card-body p-4">
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div>
-                                            <p class="text-muted mb-1">Puskesmas Siswa</p>
+                                            <p class="text-muted mb-1 fs-6 fw-bold">Puskesmas</p>
                                             <h3 class="fw-bold mb-0">{{ $healthRecordCount ?? 0 }}</h3>
                                         </div>
                                         <div class="p-3 rounded-circle bg-pink-100 dashboard-card-icon">
@@ -230,11 +230,11 @@
 
                     <div class="col-xl-2 col-md-4">
                         <a href="{{ route('finance-records.index') }}" class="text-decoration-none">
-                            <div class="card h-100 shadow-lg border-0 bg-gradient-to-br-emerald-teal">
+                            <div class="card h-100 p-2 shadow-md border-0 bg-gradient-to-br-emerald-teal">
                                 <div class="card-body p-4">
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div>
-                                            <p class="text-muted mb-1">Finance Sekolah</p>
+                                            <p class="text-muted mb-1 fs-6 fw-bold">Finance</p>
                                             <h3 class="fw-bold mb-0">{{ $financeRecordCount ?? 0 }}</h3>
                                         </div>
                                         <div class="p-3 rounded-circle bg-emerald-100 dashboard-card-icon">
@@ -254,7 +254,7 @@
         <div class="row g-4">
             <!-- Recent Events -->
             <div class="col-xl-6">
-                <div class="card shadow-lg border-0 h-100">
+                <div class="card shadow-md border-0 h-100">
                     <div class="card-header bg-white border-0 py-4 px-4">
                         <h5 class="card-title mb-0 fw-bold">
                             <i class="fas fa-calendar-alt text-primary me-2"></i>
@@ -320,7 +320,7 @@
 
             <!-- Recent Attendance -->
             <div class="col-xl-6">
-                <div class="card shadow-lg border-0 h-100">
+                <div class="card shadow-md border-0 h-100">
                     <div class="card-header bg-white border-0 py-4 px-4">
                         <h5 class="card-title mb-0 fw-bold">
                             <i class="fas fa-user-check text-success me-2"></i>

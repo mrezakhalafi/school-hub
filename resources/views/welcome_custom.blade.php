@@ -159,11 +159,8 @@
                         <a class="nav-link text-dark" href="#contact">Contact</a>
                     </li>
                     @guest
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" href="{{ route('login') }}">Sign In</a>
-                        </li>
                         <li class="nav-item ms-2">
-                            <a href="{{ route('register') }}" class="btn btn-primary rounded-5 px-4 py-2">Register</a>
+                            <a href="{{ route('register') }}" class="btn btn-primary rounded-5 px-4 py-2">Get Started</a>
                         </li>
                     @else
                         <li class="nav-item ms-2">
@@ -196,9 +193,8 @@
                                 Get Started
                             </a>
                             @guest
-                                <a href="{{ route('login') }}"
-                                    class="btn btn-outline-primary btn-lg px-5 py-3 rounded-pill">
-                                    Sign In
+                                <a href="#features" class="btn btn-outline-primary btn-lg px-5 py-3 rounded-pill">
+                                    Explore More
                                 </a>
                             @else
                                 <a href="{{ route('dashboard') }}"
@@ -207,6 +203,10 @@
                                 </a>
                             @endguest
                         </div>
+                    </div>
+                    <div class="col-lg-6 mb-5 mb-lg-0 d-flex justify-content-center">
+                        <img src="{{ asset('img/undraw_true-friends_1h3v.svg') }}" class="img-fluid w-75"
+                            alt="Hero Image">
                     </div>
                 </div>
             </div>
@@ -452,15 +452,14 @@
                                     <i class="fas fa-star text-warning"></i>
                                     <i class="fas fa-star text-warning"></i>
                                 </div>
-                                <p class="mb-4">"SchoolHub has transformed how we manage our school operations.
-                                    Communication between teachers, students, and parents has never been better."</p>
+                                <p class="mb-4">"SchoolHub telah mengubah cara kami mengelola operasional sekolah.
+                                    Komunikasi antara guru, siswa, dan orang tua tidak pernah sebaik ini."</p>
                                 <div class="d-flex align-items-center">
-                                    <img src="https://ui-avatars.com/api/?name=Sarah+Johnson&background=3b82f6&color=fff"
-                                        class="rounded-circle me-3" width="50" height="50"
-                                        alt="Sarah Johnson">
+                                    <img src="https://picsum.photos/50/50" class="rounded-circle me-3" width="50"
+                                        height="50" alt="Siti Aminah">
                                     <div>
-                                        <h6 class="mb-0">Sarah Johnson</h6>
-                                        <small class="text-muted">School Principal</small>
+                                        <h6 class="mb-0">Siti Aminah</h6>
+                                        <small class="text-muted">Kepala Sekolah</small>
                                     </div>
                                 </div>
                             </div>
@@ -476,16 +475,14 @@
                                     <i class="fas fa-star text-warning"></i>
                                     <i class="fas fa-star text-warning"></i>
                                 </div>
-                                <p class="mb-4">"As a teacher, this platform saves me hours each week on
-                                    administrative
-                                    tasks, allowing me to focus more on my students."</p>
+                                <p class="mb-4">"Sebagai guru, platform ini menghemat waktu saya setiap minggu untuk
+                                    tugas administratif, sehingga saya bisa lebih fokus pada siswa saya."</p>
                                 <div class="d-flex align-items-center">
-                                    <img src="https://ui-avatars.com/api/?name=Michael+Chen&background=10b981&color=fff"
-                                        class="rounded-circle me-3" width="50" height="50"
-                                        alt="Michael Chen">
+                                    <img src="https://picsum.photos/50/50" class="rounded-circle me-3" width="50"
+                                        height="50" alt="Budi Santoso">
                                     <div>
-                                        <h6 class="mb-0">Michael Chen</h6>
-                                        <small class="text-muted">Mathematics Teacher</small>
+                                        <h6 class="mb-0">Budi Santoso</h6>
+                                        <small class="text-muted">Guru Matematika</small>
                                     </div>
                                 </div>
                             </div>
@@ -501,16 +498,14 @@
                                     <i class="fas fa-star text-warning"></i>
                                     <i class="fas fa-star-half-alt text-warning"></i>
                                 </div>
-                                <p class="mb-4">"I love staying connected with my child's school through SchoolHub.
-                                    The
-                                    real-time updates keep me informed of his progress."</p>
+                                <p class="mb-4">"Saya senang bisa terus terhubung dengan sekolah anak saya melalui
+                                    SchoolHub. Pembaruan real-time membuat saya selalu mendapat informasi."</p>
                                 <div class="d-flex align-items-center">
-                                    <img src="https://ui-avatars.com/api/?name=Amy+Rodriguez&background=f59e0b&color=fff"
-                                        class="rounded-circle me-3" width="50" height="50"
-                                        alt="Amy Rodriguez">
+                                    <img src="https://picsum.photos/50/50" class="rounded-circle me-3" width="50"
+                                        class="rounded-circle me-3" width="50" height="50" alt="Ani Wijaya">
                                     <div>
-                                        <h6 class="mb-0">Amy Rodriguez</h6>
-                                        <small class="text-muted">Parent</small>
+                                        <h6 class="mb-0">Ani Wijaya</h6>
+                                        <small class="text-muted">Orang Tua Murid</small>
                                     </div>
                                 </div>
                             </div>
@@ -566,7 +561,7 @@
                                     </div>
                                     <div>
                                         <h5 class="fw-bold">Address</h5>
-                                        <p class="text-muted mb-0">123 Education Street<br>Learning City, LC 12345</p>
+                                        <p class="text-muted mb-0">Cipinang Elok, Jatinegara<br>DKI Jakarta, 13420</p>
                                     </div>
                                 </div>
                                 <div class="d-flex align-items-start mb-4">
@@ -576,7 +571,7 @@
                                     </div>
                                     <div>
                                         <h5 class="fw-bold">Phone</h5>
-                                        <p class="text-muted mb-0">+1 (555) 123-4567<br>Mon-Fri, 9am-5pm</p>
+                                        <p class="text-muted mb-0">+62 812-9329-1580<br>Mon-Fri, 9 AM - 5 PM</p>
                                     </div>
                                 </div>
                                 <div class="d-flex align-items-start mb-4">
@@ -586,7 +581,7 @@
                                     </div>
                                     <div>
                                         <h5 class="fw-bold">Email</h5>
-                                        <p class="text-muted mb-0">info@schoolhub.edu<br>support@schoolhub.edu</p>
+                                        <p class="text-muted mb-0">mrezakhalafi@gmail.com<br>cs@mrezakhalafi.com</p>
                                     </div>
                                 </div>
                                 <div class="d-flex align-items-start">
@@ -638,11 +633,10 @@
                         <div class="d-flex flex-wrap justify-content-center gap-3">
                             @guest
                                 <a href="{{ route('register') }}" class="btn btn-primary btn-lg px-5 py-3 rounded-pill">
-                                    Register Now
+                                    Get Started
                                 </a>
-                                <a href="{{ route('login') }}"
-                                    class="btn btn-outline-primary btn-lg px-5 py-3 rounded-pill">
-                                    Sign In
+                                <a href="#features" class="btn btn-outline-primary btn-lg px-5 py-3 rounded-pill">
+                                    Explore More
                                 </a>
                             @else
                                 <a href="{{ route('dashboard') }}" class="btn btn-primary btn-lg px-5 py-3 rounded-pill">
@@ -706,10 +700,10 @@
                 <div class="col-md-3">
                     <h5 class="fw-bold mb-4">Contact Us</h5>
                     <ul class="list-unstyled">
-                        <li class="mb-2"><i class="fas fa-map-marker-alt me-2"></i> 123 Education Street</li>
-                        <li class="mb-2"><i class="fas fa-phone-alt me-2"></i> +1 (555) 123-4567</li>
-                        <li class="mb-2"><i class="fas fa-envelope me-2"></i> info@schoolhub.edu</li>
-                        <li class="mb-2"><i class="fas fa-clock me-2"></i> Mon-Fri: 9am-5pm</li>
+                        <li class="mb-2"><i class="fas fa-map-marker-alt me-2"></i> Cipinang Elok, 13420</li>
+                        <li class="mb-2"><i class="fas fa-phone-alt me-2"></i> +62 812-9329-1580</li>
+                        <li class="mb-2"><i class="fas fa-envelope me-2"></i> mrezakhalafi@gmail.com</li>
+                        <li class="mb-2"><i class="fas fa-clock me-2"></i> Mon-Fri: 9 AM - 5 PM</li>
                     </ul>
                 </div>
             </div>
