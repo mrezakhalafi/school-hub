@@ -33,11 +33,45 @@ class ParentController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $this->authorizeResource('read');
-        $parents = ParentModel::with('student')->paginate(10);
-        return view('parents.index', compact('parents'));
+
+        $query = ParentModel::with('student');
+
+        // Search functionality
+        if ($request->search) {
+            $searchTerm = $request->search;
+            $query->where(function($q) use ($searchTerm) {
+                $q->where('first_name', 'LIKE', "%{$searchTerm}%")
+                  ->orWhere('last_name', 'LIKE', "%{$searchTerm}%")
+                  ->orWhere('email', 'LIKE', "%{$searchTerm}%")
+                  ->orWhere('phone', 'LIKE', "%{$searchTerm}%")
+                  ->orWhere('relationship', 'LIKE', "%{$searchTerm}%")
+                  ->orWhereHas('student', function($q) use ($searchTerm) {
+                      $q->where('first_name', 'LIKE', "%{$searchTerm}%")
+                        ->orWhere('last_name', 'LIKE', "%{$searchTerm}%")
+                        ->orWhere('student_id', 'LIKE', "%{$searchTerm}%");
+                  });
+            });
+        }
+
+        // Filter by relationship
+        if ($request->relationship) {
+            $query->where('relationship', $request->relationship);
+        }
+
+        $query->orderBy('id', 'asc');
+
+        // Calculate summary data for the cards
+        $totalFathers = ParentModel::where('relationship', 'father')->count();
+        $totalMothers = ParentModel::where('relationship', 'mother')->count();
+        $totalGuardians = ParentModel::where('relationship', 'guardian')->count();
+
+        $parents = $query->paginate(10);
+        $relationships = ['father', 'mother', 'guardian']; // Available relationship options
+
+        return view('parents.index', compact('parents', 'totalFathers', 'totalMothers', 'totalGuardians', 'relationships'));
     }
 
     /**
