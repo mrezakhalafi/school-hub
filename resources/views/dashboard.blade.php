@@ -184,7 +184,7 @@
                                             <h3 class="fw-bold mb-0">{{ $classCount }}</h3>
                                         </div>
                                         <div class="p-3 rounded-circle bg-cyan-100 dashboard-card-icon">
-                                            <i class="fas fa-calendar text-cyan-blue"></i>
+                                            <i class="fas fa-calendar text-primary-blue"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -220,7 +220,7 @@
                                             <h3 class="fw-bold mb-0">{{ $healthRecordCount ?? 0 }}</h3>
                                         </div>
                                         <div class="p-3 rounded-circle bg-pink-100 dashboard-card-icon">
-                                            <i class="fas fa-heartbeat text-pink-rose"></i>
+                                            <i class="fas fa-heartbeat text-danger-rose"></i>
                                         </div>
                                     </div>
                                 </div>
