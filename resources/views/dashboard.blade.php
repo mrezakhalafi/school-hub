@@ -374,6 +374,11 @@
                 </div>
             </div>
         </div>
+
+        <!-- Footer with application version -->
+        <footer class="mt-5 pt-4 border-top text-center text-muted">
+            <p class="mb-0">School Hub Application v1.1.0</p>
+        </footer>
     </div>
     </div>
 @endsection
