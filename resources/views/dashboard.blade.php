@@ -199,7 +199,7 @@
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div>
                                             <p class="text-muted mb-1 fs-6 fw-bold">Attendance</p>
-                                            <h3 class="fw-bold mb-0" style="font-size: 1.3rem">Manage</h3>
+                                            <h3 class="fw-bold mb-0">{{ $attendanceCount ?? 0 }}</h3>
                                         </div>
                                         <div class="p-3 rounded-circle bg-amber-100 dashboard-card-icon">
                                             <i class="fas fa-clipboard-list text-amber-yellow"></i>

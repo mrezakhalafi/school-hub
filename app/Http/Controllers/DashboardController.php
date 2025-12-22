@@ -55,6 +55,7 @@ class DashboardController extends Controller
         // Get counts for new features
         $healthRecordCount = \App\Models\HealthRecord::count();
         $financeRecordCount = \App\Models\FinanceRecord::count();
+        $attendanceCount = Attendance::count();
 
         // Pass data to the view
         return view('dashboard', compact(
@@ -68,6 +69,7 @@ class DashboardController extends Controller
             'parentCount',
             'healthRecordCount',
             'financeRecordCount',
+            'attendanceCount',
             'recentEvents',
             'recentAttendances'
         ));
