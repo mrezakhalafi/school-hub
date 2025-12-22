@@ -181,7 +181,7 @@
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div>
                                             <p class="text-muted mb-1 fs-6 fw-bold">Schedules</p>
-                                            <h4 class="fw-bold mb-0" style="font-size: 1.3rem">View</h4>
+                                            <h3 class="fw-bold mb-0">{{ $classCount }}</h3>
                                         </div>
                                         <div class="p-3 rounded-circle bg-cyan-100 dashboard-card-icon">
                                             <i class="fas fa-calendar text-cyan-blue"></i>
