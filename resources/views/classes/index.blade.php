@@ -24,6 +24,7 @@
                         <table class="table table-striped">
                             <thead>
                                 <tr>
+                                    <th>No</th>
                                     <th>Name</th>
                                     <th>Level</th>
                                     <th>Major</th>
@@ -34,8 +35,9 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse($classes as $class)
+                                @forelse($classes as $index => $class)
                                     <tr onclick="window.location='{{ route('classes.show', $class) }}'" style="cursor: pointer;">
+                                        <td>{{ ($classes->currentPage() - 1) * $classes->perPage() + $index + 1 }}</td>
                                         <td>{{ $class->name }}</td>
                                         <td>{{ $class->level }}</td>
                                         <td>{{ $class->major }}</td>
@@ -68,7 +70,7 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="7" class="text-center">No classes found.</td>
+                                        <td colspan="8" class="text-center">No classes found.</td>
                                     </tr>
                                 @endforelse
                             </tbody>

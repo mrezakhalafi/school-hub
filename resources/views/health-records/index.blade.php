@@ -112,6 +112,7 @@
                 <table class="table table-hover">
                     <thead>
                         <tr>
+                            <th>No</th>
                             <th>Student</th>
                             <th>Height</th>
                             <th>Weight</th>
@@ -123,8 +124,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse($healthRecords as $record)
+                        @forelse($healthRecords as $index => $record)
                         <tr>
+                            <td>{{ ($healthRecords->currentPage() - 1) * $healthRecords->perPage() + $index + 1 }}</td>
                             <td>
                                 <a href="{{ route('health-records.show', $record) }}" class="text-decoration-none fw-medium">
                                     {{ $record->student->first_name ?? '' }} {{ $record->student->last_name ?? '' }}
@@ -166,7 +168,7 @@
                         </tr>
                         @empty
                         <tr>
-                            <td colspan="8" class="text-center py-5">
+                            <td colspan="9" class="text-center py-5">
                                 <i class="fas fa-file-medical text-muted mb-3 dashboard-card-icon"></i>
                                 <p class="text-muted">No health records found.</p>
                                 <a href="{{ route('health-records.create') }}" class="btn btn-primary">Add New Record</a>

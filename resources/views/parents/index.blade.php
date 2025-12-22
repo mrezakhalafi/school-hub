@@ -24,6 +24,7 @@
                         <table class="table table-striped">
                             <thead>
                                 <tr>
+                                    <th>No</th>
                                     <th>Name</th>
                                     <th>Relationship</th>
                                     <th>Email</th>
@@ -33,8 +34,9 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse($parents as $parent)
+                                @forelse($parents as $index => $parent)
                                     <tr>
+                                        <td>{{ ($parents->currentPage() - 1) * $parents->perPage() + $index + 1 }}</td>
                                         <td>{{ $parent->first_name }} {{ $parent->last_name }}</td>
                                         <td>
                                             <span class="badge bg-{{ $parent->relationship === 'father' ? 'primary' :
@@ -70,7 +72,7 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="6" class="text-center">No parents found.</td>
+                                        <td colspan="7" class="text-center">No parents found.</td>
                                     </tr>
                                 @endforelse
                             </tbody>

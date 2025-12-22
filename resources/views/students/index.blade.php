@@ -130,6 +130,7 @@
                         <table class="table table-striped">
                             <thead>
                                 <tr>
+                                    <th>No</th>
                                     <th>Photo</th>
                                     <th>Student ID</th>
                                     <th>Name</th>
@@ -141,8 +142,9 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse($students as $student)
+                                @forelse($students as $index => $student)
                                     <tr>
+                                        <td>{{ ($students->currentPage() - 1) * $students->perPage() + $index + 1 }}</td>
                                         <td>
                                             @if($student->profile_image)
                                                 <img src="{{ asset('storage/' . $student->profile_image) }}"
@@ -192,7 +194,7 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="8" class="text-center">No students found.</td>
+                                        <td colspan="9" class="text-center">No students found.</td>
                                     </tr>
                                 @endforelse
                             </tbody>

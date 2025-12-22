@@ -267,6 +267,7 @@
                                 <table class="table table-hover">
                                     <thead>
                                         <tr>
+                                            <th>No</th>
                                             <th>Title</th>
                                             <th>Date</th>
                                             <th>Type</th>
@@ -274,8 +275,9 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($recentEvents as $event)
+                                        @foreach ($recentEvents as $index => $event)
                                             <tr>
+                                                <td>{{ $index + 1 }}</td>
                                                 <td>
                                                     <a href="{{ route('events.show', $event) }}"
                                                         class="text-decoration-none fw-medium">
@@ -333,6 +335,7 @@
                                 <table class="table table-hover">
                                     <thead>
                                         <tr>
+                                            <th>No</th>
                                             <th>User</th>
                                             <th>Status</th>
                                             <th>Date</th>
@@ -340,8 +343,9 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($recentAttendances as $attendance)
+                                        @foreach ($recentAttendances as $index => $attendance)
                                             <tr>
+                                                <td>{{ $index + 1 }}</td>
                                                 <td>{{ $attendance->user->name }}</td>
                                                 <td>
                                                     <span

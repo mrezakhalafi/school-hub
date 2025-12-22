@@ -125,6 +125,7 @@
                 <table class="table table-hover">
                     <thead>
                         <tr>
+                            <th>No</th>
                             <th>Student</th>
                             <th>Amount</th>
                             <th>Payment Type</th>
@@ -136,8 +137,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse($financeRecords as $record)
+                        @forelse($financeRecords as $index => $record)
                         <tr>
+                            <td>{{ ($financeRecords->currentPage() - 1) * $financeRecords->perPage() + $index + 1 }}</td>
                             <td>
                                 <a href="{{ route('finance-records.show', $record) }}" class="text-decoration-none fw-medium">
                                     {{ $record->student->first_name ?? '' }} {{ $record->student->last_name ?? '' }}
@@ -193,7 +195,7 @@
                         </tr>
                         @empty
                         <tr>
-                            <td colspan="8" class="text-center py-5">
+                            <td colspan="9" class="text-center py-5">
                                 <i class="fas fa-money-bill-wave text-muted mb-3 dashboard-card-icon"></i>
                                 <p class="text-muted">No finance records found.</p>
                                 <a href="{{ route('finance-records.create') }}" class="btn btn-primary">Add New Record</a>

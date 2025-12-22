@@ -63,6 +63,7 @@
                         <table class="table table-striped">
                             <thead>
                                 <tr>
+                                    <th>No</th>
                                     <th>Image</th>
                                     <th>Title</th>
                                     <th>Date</th>
@@ -73,14 +74,15 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse($events as $event)
+                                @forelse($events as $index => $event)
                                     <tr>
+                                        <td>{{ ($events->currentPage() - 1) * $events->perPage() + $index + 1 }}</td>
                                         <td>
                                             @if($event->image)
-                                                <img src="{{ asset('storage/' . $event->image) }}" 
+                                                <img src="{{ asset('storage/' . $event->image) }}"
                                                      alt="Event" class="rounded" width="60" height="40" style="object-fit: cover;">
                                             @else
-                                                <div class="bg-light rounded d-flex align-items-center justify-content-center" 
+                                                <div class="bg-light rounded d-flex align-items-center justify-content-center"
                                                      style="width: 60px; height: 40px;">
                                                     <i class="fas fa-calendar-alt text-muted"></i>
                                                 </div>
@@ -92,9 +94,9 @@
                                         </td>
                                         <td>{{ $event->location ?: 'N/A' }}</td>
                                         <td>
-                                            <span class="badge bg-{{ $event->event_type === 'academic' ? 'primary' : 
-                                                   ($event->event_type === 'sports' ? 'success' : 
-                                                   ($event->event_type === 'arts' ? 'info' : 
+                                            <span class="badge bg-{{ $event->event_type === 'academic' ? 'primary' :
+                                                   ($event->event_type === 'sports' ? 'success' :
+                                                   ($event->event_type === 'arts' ? 'info' :
                                                    ($event->event_type === 'extracurricular' ? 'warning' : 'secondary'))) }}">
                                                 {{ ucfirst($event->event_type) }}
                                             </span>
@@ -125,7 +127,7 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="7" class="text-center">No events found.</td>
+                                        <td colspan="8" class="text-center">No events found.</td>
                                     </tr>
                                 @endforelse
                             </tbody>

@@ -121,6 +121,7 @@
                 <table class="table table-striped table-hover">
                     <thead>
                         <tr>
+                            <th>No</th>
                             <th>Student Name</th>
                             <th>Student ID</th>
                             <th>Date</th>
@@ -130,8 +131,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse($attendances as $attendance)
+                        @forelse($attendances as $index => $attendance)
                         <tr>
+                            <td>{{ ($attendances->currentPage() - 1) * $attendances->perPage() + $index + 1 }}</td>
                             <td>{{ $attendance->user->name ?? 'N/A' }}</td>
                             <td>{{ $attendance->user->student_id ?? 'N/A' }}</td>
                             <td>{{ $attendance->date->format('M d, Y') }}</td>
@@ -153,7 +155,7 @@
                         </tr>
                         @empty
                         <tr>
-                            <td colspan="6" class="text-center py-5">
+                            <td colspan="7" class="text-center py-5">
                                 <i class="fas fa-clipboard-list text-muted mb-3 dashboard-card-icon"></i>
                                 <p class="text-muted">No attendance records found.</p>
                             </td>

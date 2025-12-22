@@ -74,6 +74,7 @@
                         <table class="table table-striped">
                             <thead>
                                 <tr>
+                                    <th>No</th>
                                     <th>Student Name</th>
                                     <th>Class</th>
                                     <th>Type</th>
@@ -85,8 +86,9 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse($permissionReports as $report)
+                                @forelse($permissionReports as $index => $report)
                                     <tr>
+                                        <td>{{ ($permissionReports->currentPage() - 1) * $permissionReports->perPage() + $index + 1 }}</td>
                                         <td>{{ $report->student_name }}</td>
                                         <td>{{ $report->student->class->name ?? 'N/A' }}</td>
                                         <td>
@@ -141,7 +143,7 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="7" class="text-center">No permission reports found.</td>
+                                        <td colspan="8" class="text-center">No permission reports found.</td>
                                     </tr>
                                 @endforelse
                             </tbody>
