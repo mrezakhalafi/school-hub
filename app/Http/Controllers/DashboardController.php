@@ -57,6 +57,26 @@ class DashboardController extends Controller
         $financeRecordCount = \App\Models\FinanceRecord::count();
         $attendanceCount = Attendance::count();
 
+        // Chart data: Student count by year for line chart
+        $studentCountByYear = Student::selectRaw('strftime("%Y", created_at) as year, COUNT(*) as count')
+            ->groupBy('year')
+            ->orderBy('year')
+            ->pluck('count', 'year')
+            ->toArray();
+
+        // Chart data: Teacher count by year for line chart
+        $teacherCountByYear = \App\Models\Teacher::selectRaw('strftime("%Y", created_at) as year, COUNT(*) as count')
+            ->groupBy('year')
+            ->orderBy('year')
+            ->pluck('count', 'year')
+            ->toArray();
+
+        // Chart data: Gender distribution for doughnut chart
+        $genderDistribution = Student::selectRaw('gender, COUNT(*) as count')
+            ->groupBy('gender')
+            ->pluck('count', 'gender')
+            ->toArray();
+
         // Pass data to the view
         return view('dashboard', compact(
             'studentCount',
@@ -71,7 +91,10 @@ class DashboardController extends Controller
             'financeRecordCount',
             'attendanceCount',
             'recentEvents',
-            'recentAttendances'
+            'recentAttendances',
+            'studentCountByYear',
+            'teacherCountByYear',
+            'genderDistribution'
         ));
     }
 

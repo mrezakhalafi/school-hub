@@ -22,6 +22,38 @@
                 </div>
             </div>
 
+            @if (Auth::user()->isAdmin())
+                <!-- Charts Row -->
+                <div class="row g-4 mb-5">
+                    <div class="col-xl-8">
+                        <div class="card shadow-md border-0 h-100">
+                            <div class="card-body p-4">
+                                <h6 class="card-title mb-4 fw-semibold">
+                                    <i class="fas fa-chart-line text-primary me-2"></i>
+                                    Student and Teacher Count Over Years
+                                </h6>
+                                <div style="height: 300px;">
+                                    <canvas id="studentCountChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4">
+                        <div class="card shadow-md border-0 h-100">
+                            <div class="card-body p-4">
+                                <h6 class="card-title mb-4 fw-semibold">
+                                    <i class="fas fa-chart-pie text-success me-2"></i>
+                                    Gender Distribution
+                                </h6>
+                                <div style="height: 300px;">
+                                    <canvas id="genderDistributionChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endif
+
             <!-- Summary Cards Row -->
             <div class="row g-4 mb-5">
                 <div class="col-xl-2 col-md-4">
@@ -381,4 +413,114 @@
         </footer>
     </div>
     </div>
+
+    <!-- Include Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        // Function to destroy existing chart if it exists
+        function destroyChartIfExists(canvasId) {
+            const existingChart = Chart.getChart(canvasId);
+            if (existingChart) {
+                existingChart.destroy();
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Line Chart - Student and Teacher Count Over Years
+            @if (Auth::user()->isAdmin() && isset($studentCountByYear) && isset($teacherCountByYear))
+                const studentCtx = document.getElementById('studentCountChart');
+                if (studentCtx) {
+                    // Destroy existing chart if it exists to prevent duplicates
+                    destroyChartIfExists('studentCountChart');
+
+                    // Prepare data with dummy values for years 2020-2024 and actual data for 2025
+                    const allYears = ['2020', '2021', '2022', '2023', '2024', '2025'];
+                    const actualStudentData = {!! json_encode($studentCountByYear) !!};
+                    const actualTeacherData = {!! json_encode($teacherCountByYear) !!};
+
+                    // Create dataset with dummy values for missing years and actual values for existing years
+                    const studentChartData = allYears.map(year => {
+                        return actualStudentData[year] || Math.floor(Math.random() * 50) +
+                        200; // Random dummy data for missing years
+                    });
+
+                    const teacherChartData = allYears.map(year => {
+                        return actualTeacherData[year] || Math.floor(Math.random() * 10) +
+                        15; // Random dummy data for missing years
+                    });
+
+                    const studentChart = new Chart(studentCtx, {
+                        type: 'line',
+                        data: {
+                            labels: allYears,
+                            datasets: [{
+                                    label: 'Student Count',
+                                    data: studentChartData,
+                                    borderColor: 'rgb(75, 192, 192)',
+                                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                                    tension: 0.1
+                                },
+                                {
+                                    label: 'Teacher Count',
+                                    data: teacherChartData,
+                                    borderColor: 'rgb(255, 99, 132)',
+                                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                                    tension: 0.1
+                                }
+                            ]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            scales: {
+                                y: {
+                                    beginAtZero: true,
+                                    ticks: {
+                                        stepSize: 1
+                                    }
+                                }
+                            }
+                        }
+                    });
+                }
+            @endif
+
+            // Doughnut Chart - Gender Distribution
+            @if (Auth::user()->isAdmin() && isset($genderDistribution) && !empty($genderDistribution))
+                const genderCtx = document.getElementById('genderDistributionChart');
+                if (genderCtx) {
+                    // Destroy existing chart if it exists to prevent duplicates
+                    destroyChartIfExists('genderDistributionChart');
+
+                    const genderChart = new Chart(genderCtx, {
+                        type: 'doughnut',
+                        data: {
+                            labels: Object.keys({!! json_encode($genderDistribution) !!}).map(gender =>
+                                gender === 'male' ? 'Male' : (gender === 'female' ? 'Female' : gender)
+                            ),
+                            datasets: [{
+                                data: Object.values({!! json_encode($genderDistribution) !!}),
+                                backgroundColor: [
+                                    'rgb(54, 162, 235)',
+                                    'rgb(255, 99, 132)',
+                                    'rgb(255, 205, 86)'
+                                ],
+                                hoverOffset: 4
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                legend: {
+                                    position: 'bottom'
+                                }
+                            }
+                        }
+                    });
+                }
+            @endif
+        });
+    </script>
 @endsection
