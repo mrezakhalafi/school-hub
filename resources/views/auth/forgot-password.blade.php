@@ -1,15 +1,63 @@
 <x-guest-layout>
-    <div class="container">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm" style="padding: 1rem 0;">
+        <div class="container">
+            <a class="navbar-brand fw-bold fs-4" href="/">
+                <span class="text-primary">{{ config('app.name', 'School-Hub') }}</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="/#features">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="/#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="/#testimonials">Testimonials</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="/#contact">Contact</a>
+                    </li>
+                    @guest
+                        <li class="nav-item ms-2">
+                            <a href="{{ route('register') }}" class="btn btn-primary rounded-5 px-4 py-2">Get Started</a>
+                        </li>
+                    @else
+                        <li class="nav-item ms-2">
+                            <a href="{{ route('dashboard') }}" class="btn btn-primary rounded-5 px-4 py-2">Dashboard</a>
+                        </li>
+                    @endguest
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container py-5">
         <div class="row justify-content-center">
-            <div class="col-md-6">
-                <div class="card shadow">
-                    <div class="card-header">
-                        <h3 class="text-center">{{ __('Forgot your password?') }}</h3>
-                    </div>
-                    <div class="card-body">
-                        <p class="text-muted mb-4">
-                            {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
-                        </p>
+            <div class="col-lg-6 col-xl-5">
+                <div class="card shadow-lg border-0"
+                    style="background: linear-gradient(135deg, #f5f7fa 0%, #e4edf9 100%);">
+                    <div class="card-body p-5">
+                        <div class="text-center mb-4">
+                            <div class="mx-auto d-flex align-items-center justify-content-center mb-3"
+                                style="width: 64px; height: 64px; background: linear-gradient(135deg, #3b82f6, #8b5cf6); border-radius: 50%;">
+                                <svg class="text-white" style="width: 32px; height: 32px;" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                                </svg>
+                            </div>
+                            <h2 class="h3 mb-2 fw-bold">Forgot Password?</h2>
+                            <p class="text-muted">Enter your email to receive reset instructions</p>
+                        </div>
 
                         <!-- Session Status -->
                         <x-auth-session-status class="alert alert-info mb-4" :status="session('status')" />
@@ -18,28 +66,32 @@
                             @csrf
 
                             <!-- Email Address -->
-                            <div class="mb-3">
-                                <label for="email" class="form-label">{{ __('Email') }}</label>
-                                <input id="email"
-                                       class="form-control @error('email') is-invalid @enderror"
-                                       type="email"
-                                       name="email"
-                                       :value="old('email')"
-                                       required
-                                       autofocus>
-                                <x-input-error :messages="$errors->get('email')" class="invalid-feedback" />
+                            <div class="mb-4">
+                                <label for="email" class="form-label fw-medium">{{ __('Email Address') }}</label>
+                                <div class="input-group">
+                                    <span class="input-group-text px-4">
+                                        <i class="fas fa-envelope"></i>
+                                    </span>
+                                    <input id="email"
+                                           class="form-control form-control-lg @error('email') is-invalid @enderror"
+                                           type="email"
+                                           name="email"
+                                           :value="old('email')"
+                                           required
+                                           autofocus
+                                           placeholder="Enter your email address">
+                                </div>
                             </div>
 
-                            <div class="d-grid gap-2">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Email Password Reset Link') }}
+                            <div class="d-grid mb-4">
+                                <button type="submit" class="btn btn-lg btn-primary shadow-sm"
+                                    style="background: linear-gradient(135deg, #3b82f6, #8b5cf6); border: none; padding: 12px 0; font-weight: 600; letter-spacing: 0.5px;">
+                                    {{ __('Send Reset Link') }}
                                 </button>
+                            </div>
 
-                                <div class="text-center mt-3">
-                                    <a href="{{ route('login') }}" class="btn btn-link">
-                                        {{ __('Back to Login') }}
-                                    </a>
-                                </div>
+                            <div class="text-center">
+                                <p class="mb-0"><a href="{{ route('login') }}" class="text-decoration-none">Back to Login</a></p>
                             </div>
                         </form>
                     </div>
