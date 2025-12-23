@@ -62,7 +62,7 @@
                         <!-- Session Status -->
                         <x-auth-session-status class="alert alert-info mb-4" :status="session('status')" />
 
-                        <form method="POST" action="{{ route('login') }}">
+                        <form method="POST" action="{{ route('login') }}" id="loginForm">
                             @csrf
 
                             <!-- Email Address -->
@@ -74,7 +74,7 @@
                                     </span>
                                     <input id="email"
                                         class="form-control form-control-lg @error('email') is-invalid @enderror"
-                                        type="email" name="email" :value="old('email')" required autofocus
+                                        type="email" name="email" value="{{ old('email') }}" required autofocus
                                         autocomplete="username" placeholder="Enter your email">
                                     @error('email')
                                         <span class="invalid-feedback" role="alert">

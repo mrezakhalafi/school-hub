@@ -44,6 +44,9 @@
 
                             <x-dropdown-link :href="route('logout')"
                                     onclick="event.preventDefault();
+                                                localStorage.removeItem('rememberedEmail');
+                                                localStorage.removeItem('rememberedPassword');
+                                                localStorage.removeItem('rememberedRememberMe');
                                                 this.closest('form').submit();">
                                 {{ __('Log Out') }}
                             </x-dropdown-link>
@@ -90,6 +93,9 @@
 
                     <x-responsive-nav-link :href="route('logout')"
                             onclick="event.preventDefault();
+                                        localStorage.removeItem('rememberedEmail');
+                                        localStorage.removeItem('rememberedPassword');
+                                        localStorage.removeItem('rememberedRememberMe');
                                         this.closest('form').submit();">
                         {{ __('Log Out') }}
                     </x-responsive-nav-link>

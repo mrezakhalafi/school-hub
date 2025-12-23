@@ -77,6 +77,9 @@
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
+                                                     localStorage.removeItem('rememberedEmail');
+                                                     localStorage.removeItem('rememberedPassword');
+                                                     localStorage.removeItem('rememberedRememberMe');
                                                      document.getElementById('logout-form').submit();">
                                         <i class="fas fa-sign-out-alt me-2"></i> {{ __('Logout') }}
                                     </a>

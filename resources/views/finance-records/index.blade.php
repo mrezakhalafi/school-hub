@@ -122,7 +122,7 @@
                         </div>
                         <div class="col-md-2">
                             <a href="{{ route('finance-records.index') }}"
-                                class="btn btn-outline-secondary w-100">Clear</a>
+                                class="btn btn-outline-secondary w-100">Reset</a>
                         </div>
                     </div>
                 </form>

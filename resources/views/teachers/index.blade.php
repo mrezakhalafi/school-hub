@@ -87,8 +87,11 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-1">
                                     <button type="submit" class="btn btn-primary w-100">Filter</button>
+                                </div>
+                                <div class="col-md-1">
+                                    <a href="{{ route('teachers.index') }}" class="btn btn-outline-secondary w-100">Reset</a>
                                 </div>
                             </div>
                         </form>

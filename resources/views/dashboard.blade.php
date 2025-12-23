@@ -25,7 +25,7 @@
             @if (Auth::user()->isAdmin())
                 <!-- Charts Row -->
                 <div class="row g-4 mb-5">
-                    <div class="col-xl-8">
+                    <div class="col-xl-4">
                         <div class="card shadow-md border-0 h-100">
                             <div class="card-body p-4">
                                 <h6 class="card-title mb-4 fw-semibold">
@@ -47,6 +47,19 @@
                                 </h6>
                                 <div style="height: 300px;">
                                     <canvas id="genderDistributionChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4">
+                        <div class="card shadow-md border-0 h-100">
+                            <div class="card-body p-4">
+                                <h6 class="card-title mb-4 fw-semibold">
+                                    <i class="fas fa-chart-bar text-info me-2"></i>
+                                    Student Distribution by Class
+                                </h6>
+                                <div style="height: 300px;">
+                                    <canvas id="studentCountByClassChart"></canvas>
                                 </div>
                             </div>
                         </div>
@@ -409,7 +422,7 @@
 
         <!-- Footer with application version -->
         <footer class="mt-5 pt-4 border-top text-center text-muted">
-            <p class="mb-0">School Hub Application v1.1.0</p>
+            <p class="mb-0">School Hub Application V1.2</p>
         </footer>
     </div>
     </div>
@@ -442,12 +455,12 @@
                     // Create dataset with dummy values for missing years and actual values for existing years
                     const studentChartData = allYears.map(year => {
                         return actualStudentData[year] || Math.floor(Math.random() * 50) +
-                        200; // Random dummy data for missing years
+                            200; // Random dummy data for missing years
                     });
 
                     const teacherChartData = allYears.map(year => {
                         return actualTeacherData[year] || Math.floor(Math.random() * 10) +
-                        15; // Random dummy data for missing years
+                            15; // Random dummy data for missing years
                     });
 
                     const studentChart = new Chart(studentCtx, {
@@ -515,6 +528,63 @@
                             plugins: {
                                 legend: {
                                     position: 'bottom'
+                                }
+                            }
+                        }
+                    });
+                }
+            @endif
+
+            // Bar Chart - Student Count by Class
+            @if (Auth::user()->isAdmin() && isset($studentCountByClass) && !empty($studentCountByClass))
+                const classCtx = document.getElementById('studentCountByClassChart');
+                if (classCtx) {
+                    // Destroy existing chart if it exists to prevent duplicates
+                    destroyChartIfExists('studentCountByClassChart');
+
+                    const classChart = new Chart(classCtx, {
+                        type: 'bar',
+                        data: {
+                            labels: Object.keys({!! json_encode($studentCountByClass) !!}),
+                            datasets: [{
+                                label: 'Student Count',
+                                data: Object.values({!! json_encode($studentCountByClass) !!}),
+                                backgroundColor: [
+                                    'rgba(54, 162, 235, 0.7)',
+                                    'rgba(255, 99, 132, 0.7)',
+                                    'rgba(255, 206, 86, 0.7)',
+                                    'rgba(75, 192, 192, 0.7)',
+                                    'rgba(153, 102, 255, 0.7)',
+                                    'rgba(255, 159, 64, 0.7)',
+                                    'rgba(255, 99, 132, 0.7)',
+                                    'rgba(54, 162, 235, 0.7)',
+                                    'rgba(255, 206, 86, 0.7)',
+                                    'rgba(75, 192, 192, 0.7)'
+                                ],
+                                borderColor: [
+                                    'rgba(54, 162, 235, 1)',
+                                    'rgba(255, 99, 132, 1)',
+                                    'rgba(255, 206, 86, 1)',
+                                    'rgba(75, 192, 192, 1)',
+                                    'rgba(153, 102, 255, 1)',
+                                    'rgba(255, 159, 64, 1)',
+                                    'rgba(255, 99, 132, 1)',
+                                    'rgba(54, 162, 235, 1)',
+                                    'rgba(255, 206, 86, 1)',
+                                    'rgba(75, 192, 192, 1)'
+                                ],
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            scales: {
+                                y: {
+                                    beginAtZero: true,
+                                    ticks: {
+                                        stepSize: 1
+                                    }
                                 }
                             }
                         }

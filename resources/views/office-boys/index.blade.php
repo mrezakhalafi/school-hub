@@ -59,7 +59,7 @@
                     <div class="card-body">
                         <form method="GET" action="{{ route('office-boys.index') }}">
                             <div class="row g-3">
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <input type="text" name="search" class="form-control"
                                         placeholder="Search by name, email, ID, or department..."
                                         value="{{ request('search') }}">
@@ -86,9 +86,12 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-1">
                                     <button type="submit" class="btn btn-primary w-100"><i class="fas fa-search"></i>
                                         Filter</button>
+                                </div>
+                                <div class="col-md-2">
+                                    <a href="{{ route('office-boys.index') }}" class="btn btn-outline-secondary w-100">Reset</a>
                                 </div>
                                 <div class="col-md-2">
                                     <a href="{{ route('office-boys.create') }}" class="btn btn-success w-100"><i

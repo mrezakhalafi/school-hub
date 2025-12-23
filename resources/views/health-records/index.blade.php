@@ -90,7 +90,7 @@
             <div class="card-body">
                 <form method="GET" action="{{ route('health-records.index') }}">
                     <div class="row g-3">
-                        <div class="col-md-6">
+                        <div class="col-md-5">
                             <input type="text" class="form-control" name="search"
                                 placeholder="Search by student name..." value="{{ request('search') }}">
                         </div>
@@ -103,9 +103,12 @@
                                     {{ request('status') == 'needs_attention' ? 'selected' : '' }}>Needs Attention</option>
                             </select>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <button type="submit" class="btn btn-primary w-100"><i class="fas fa-search me-1"></i>
                                 Search</button>
+                        </div>
+                        <div class="col-md-2">
+                            <a href="{{ route('health-records.index') }}" class="btn btn-outline-secondary w-100">Reset</a>
                         </div>
                     </div>
                 </form>

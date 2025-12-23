@@ -49,7 +49,7 @@
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <label for="class_id" class="form-label">Class</label>
                                 <select name="class_id" id="class_id" class="form-select">
                                     <option value="">All Classes</option>
@@ -60,8 +60,11 @@
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-md-1">
                                 <button type="submit" class="btn btn-primary w-100">Filter</button>
+                            </div>
+                            <div class="col-md-1">
+                                <a href="{{ route('permission-reports.index') }}" class="btn btn-outline-secondary w-100">Reset</a>
                             </div>
                         </div>
                     </form>

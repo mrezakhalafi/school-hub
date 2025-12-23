@@ -77,6 +77,13 @@ class DashboardController extends Controller
             ->pluck('count', 'gender')
             ->toArray();
 
+        // Chart data: Student count by class for bar chart
+        $studentCountByClass = Student::selectRaw('classes.name as class_name, COUNT(*) as count')
+            ->join('classes', 'students.class_id', '=', 'classes.id')
+            ->groupBy('classes.name')
+            ->pluck('count', 'class_name')
+            ->toArray();
+
         // Pass data to the view
         return view('dashboard', compact(
             'studentCount',
@@ -94,7 +101,8 @@ class DashboardController extends Controller
             'recentAttendances',
             'studentCountByYear',
             'teacherCountByYear',
-            'genderDistribution'
+            'genderDistribution',
+            'studentCountByClass'
         ));
     }
 
