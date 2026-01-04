@@ -118,6 +118,11 @@ Route::resource('health-records', HealthRecordController::class)
 Route::resource('finance-records', FinanceRecordController::class)
     ->middleware(['auth']);
 
+// Generate PDF for finance record
+Route::get('/finance-records/{financeRecord}/pdf', [FinanceRecordController::class, 'generatePDF'])
+    ->middleware(['auth'])
+    ->name('finance-records.pdf');
+
 // Mark finance record as paid
 Route::post('/finance-records/{financeRecord}/mark-as-paid', [FinanceRecordController::class, 'markAsPaid'])
     ->middleware(['auth'])

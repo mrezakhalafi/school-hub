@@ -160,7 +160,7 @@
                     </li>
                     @guest
                         <li class="nav-item ms-2">
-                            <a href="{{ route('register') }}" class="btn btn-primary rounded-5 px-4 py-2">Get Started</a>
+                            <a href="{{ route('login') }}" class="btn btn-primary rounded-5 px-4 py-2">Login</a>
                         </li>
                     @else
                         <li class="nav-item ms-2">

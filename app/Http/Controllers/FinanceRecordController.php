@@ -6,6 +6,7 @@ use App\Models\FinanceRecord;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class FinanceRecordController extends Controller
 {
@@ -19,6 +20,14 @@ class FinanceRecordController extends Controller
         $totalOverdue = FinanceRecord::where('payment_status', 'overdue')->sum('amount');
 
         return view('finance-records.index', compact('financeRecords', 'totalPending', 'totalPaid', 'totalOverdue'));
+    }
+
+    public function generatePDF(FinanceRecord $financeRecord)
+    {
+        $financeRecord->load('student');
+
+        $pdf = Pdf::loadView('finance-records.pdf', compact('financeRecord'));
+        return $pdf->download('finance-record-' . $financeRecord->id . '.pdf');
     }
 
     public function create()

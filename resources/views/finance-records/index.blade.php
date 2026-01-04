@@ -198,6 +198,9 @@
                                                 <li><a class="dropdown-item"
                                                         href="{{ route('finance-records.edit', $record) }}"><i
                                                             class="fas fa-edit me-2"></i> Edit</a></li>
+                                                <li><a class="dropdown-item"
+                                                        href="{{ route('finance-records.pdf', $record) }}"><i
+                                                            class="fas fa-file-pdf me-2 text-danger"></i> Print PDF</a></li>
                                                 @if ($record->payment_status == 'pending')
                                                     <li>
                                                         <a class="dropdown-item text-success"
