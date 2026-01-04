@@ -13,6 +13,7 @@ use App\Http\Controllers\OfficeBoyController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\HealthRecordController;
 use App\Http\Controllers\FinanceRecordController;
+use App\Http\Controllers\SchoolInformationController;
 use Illuminate\Support\Facades\Route;
 
 // Welcome page
@@ -45,6 +46,12 @@ Route::get('/dashboard/teacher', [DashboardController::class, 'teacherDashboard'
 Route::get('/dashboard/student', [DashboardController::class, 'studentDashboard'])
     ->middleware(['auth', 'verified'])
     ->name('dashboard.student');
+
+// School Information routes - only for admin
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::resource('school-information', SchoolInformationController::class)->only(['index']);
+    Route::put('/school-information', [SchoolInformationController::class, 'update'])->name('school-information.update');
+});
 
 // Attendance routes
 Route::post('/attendance', [AttendanceController::class, 'store'])

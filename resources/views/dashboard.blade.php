@@ -293,6 +293,72 @@
                 @endif
             </div>
 
+            @if (Auth::user()->isAdmin())
+                <!-- School Information Card -->
+                <div class="row g-4 mb-5">
+                    <div class="col-12">
+                        <div class="card shadow-md border-0">
+                            <div class="card-header bg-white border-0 py-4 px-4 d-flex justify-content-between align-items-center">
+                                <h5 class="card-title mb-0 fw-bold">
+                                    <i class="fas fa-school text-primary me-2"></i>School Information
+                                </h5>
+                                <a href="{{ route('school-information.index') }}" class="btn btn-outline-primary btn-sm">
+                                    <i class="fas fa-edit me-1"></i> Edit
+                                </a>
+                            </div>
+                            <div class="card-body p-4">
+                                @php
+                                    $schoolInfo = \App\Models\SchoolInformation::first();
+                                @endphp
+
+                                @if($schoolInfo)
+                                    <div class="row">
+                                        <div class="col-md-4 mb-3">
+                                            <h6 class="text-muted mb-1">School Name</h6>
+                                            <p class="fw-semibold">{{ $schoolInfo->school_name }}</p>
+                                        </div>
+                                        <div class="col-md-4 mb-3">
+                                            <h6 class="text-muted mb-1">Head of School</h6>
+                                            <p class="fw-semibold">{{ $schoolInfo->head_of_school }}</p>
+                                        </div>
+                                        <div class="col-md-4 mb-3">
+                                            <h6 class="text-muted mb-1">Location</h6>
+                                            <p class="fw-semibold">{{ $schoolInfo->location }}</p>
+                                        </div>
+                                        <div class="col-md-4 mb-3">
+                                            <h6 class="text-muted mb-1">History</h6>
+                                            <p class="fw-semibold">{!! Str::limit(strip_tags($schoolInfo->history), 100, '...') !!}</p>
+                                        </div>
+                                        <div class="col-md-4 mb-3">
+                                            <h6 class="text-muted mb-1">Building Features</h6>
+                                            <p class="fw-semibold">{!! Str::limit(strip_tags($schoolInfo->building_features), 100, '...') !!}</p>
+                                        </div>
+                                        <div class="col-md-4 mb-3">
+                                            <h6 class="text-muted mb-1">Extracurricular Activities</h6>
+                                            <p class="fw-semibold">{!! Str::limit(strip_tags($schoolInfo->extracurricular_activities), 100, '...') !!}</p>
+                                        </div>
+                                        <div class="col-md-4 mb-3">
+                                            <h6 class="text-muted mb-1">Accreditation</h6>
+                                            <p class="fw-semibold">{{ $schoolInfo->accreditation ?: '-' }}</p>
+                                        </div>
+                                        <div class="col-md-4 mb-3">
+                                            <h6 class="text-muted mb-1">Founding Year</h6>
+                                            <p class="fw-semibold">{{ $schoolInfo->founding_year ?: '-' }}</p>
+                                        </div>
+                                        <div class="col-md-4 mb-3">
+                                            <h6 class="text-muted mb-1">Student Capacity</h6>
+                                            <p class="fw-semibold">{{ $schoolInfo->student_capacity ?: '-' }}</p>
+                                        </div>
+                                    </div>
+                                @else
+                                    <p class="text-muted text-center py-4">No school information available. <a href="{{ route('school-information.index') }}">Add information</a>.</p>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endif
+
         </div>
 
         <!-- Main Content Grid -->
