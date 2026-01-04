@@ -113,6 +113,9 @@
                         </div>
 
                         <div class="d-flex justify-content-end gap-2">
+                            <a href="{{ route('dashboard.admin') }}" class="btn btn-secondary px-4 py-2">
+                                <i class="fas fa-times me-2"></i>Cancel
+                            </a>
                             <button type="submit" class="btn btn-primary px-4 py-2">
                                 <i class="fas fa-save me-2"></i>Update Information
                             </button>

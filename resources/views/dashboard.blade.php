@@ -298,7 +298,8 @@
                 <div class="row g-4 mb-5">
                     <div class="col-12">
                         <div class="card shadow-md border-0">
-                            <div class="card-header bg-white border-0 py-4 px-4 d-flex justify-content-between align-items-center">
+                            <div
+                                class="card-header bg-white border-0 py-4 px-4 d-flex justify-content-between align-items-center">
                                 <h5 class="card-title mb-0 fw-bold">
                                     <i class="fas fa-school text-primary me-2"></i>School Information
                                 </h5>
@@ -311,7 +312,7 @@
                                     $schoolInfo = \App\Models\SchoolInformation::first();
                                 @endphp
 
-                                @if($schoolInfo)
+                                @if ($schoolInfo)
                                     <div class="row">
                                         <div class="col-md-4 mb-3">
                                             <h6 class="text-muted mb-1">School Name</h6>
@@ -351,7 +352,8 @@
                                         </div>
                                     </div>
                                 @else
-                                    <p class="text-muted text-center py-4">No school information available. <a href="{{ route('school-information.index') }}">Add information</a>.</p>
+                                    <p class="text-muted text-center py-4">No school information available. <a
+                                            href="{{ route('school-information.index') }}">Add information</a>.</p>
                                 @endif
                             </div>
                         </div>
@@ -488,7 +490,7 @@
 
         <!-- Footer with application version -->
         <footer class="mt-5 pt-4 border-top text-center text-muted">
-            <p class="mb-0">School Hub Application V1.2</p>
+            <p class="mb-0">School Hub Application V1.3 (040126)</p>
         </footer>
     </div>
     </div>
